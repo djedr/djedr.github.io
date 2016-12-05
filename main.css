@@ -107,8 +107,22 @@ ul, li {
 	color: #88d;
 }
 
+.mail-addr-postfix:before {
+	content: " at gmail dot com";
+}
+
 @media print {
 	.print-only {
 		display: table-row;
+	}
+	.screen-only {
+		display: none;
+	}
+	a {
+		color: black;
+		text-decoration: none;
+	}
+	.mail-addr-postfix:before {
+		content: "\0040" "gmail" "\002e" "com";
 	}
 }
