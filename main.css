@@ -1,0 +1,109 @@
+/*body {
+	background-color: #111;
+	color: #eee;
+	font-size: 14px;
+}
+pre {
+	margin: auto;
+	width: 50%;
+}
+a {
+	color: #88d; 
+	text-decoration: none;
+}
+a:visited {
+	color: #d8d; 
+}
+a:hover {
+	color: #44d;
+}*/
+
+.title {
+	font-size: 2em;
+}
+.date {
+	line-height: 2em;
+}
+.blog-title {
+	font-size: 3em;
+	text-align: center;
+	display: block;
+	text-align: center;
+}
+.blog-title a {
+	color: #88d;
+}
+.document {
+	width: 60em;
+	margin: auto;
+	position: relative;
+	font-family: serif;
+	font-size: large;
+}
+table, tr, td {
+	border: 1px solid white;
+	table-layout: fixed;
+	border-collapse: collapse;
+}
+table {
+	margin-bottom: 1em;
+}
+td {
+	padding: 0.25em;
+}
+.print-only, .hidden {
+	display: none;
+}
+.personal-data-clause {
+	font-style: italic;
+	font-size: 0.75em;
+}
+.thesis-title {
+	font-style: italic;
+}
+.document {
+	width: 60em;
+	margin: auto;
+	position: relative;
+	font-family: serif;
+	font-size: large;
+}
+
+tr > td {
+	vertical-align: top
+}
+
+h1, h2 {
+	margin: 0;
+}
+
+td > h3 {
+	padding-top: 0.5em;
+	margin: 0;
+}
+p {
+	margin-top: 0;
+}
+
+footer {
+	font-size: 0.75em;
+}
+
+ul, li {
+	margin-top: 0;
+}
+
+.photo {
+	width: 13em;
+	position: absolute;
+	right: 0;
+}
+.summary {
+	width: 45em;
+}
+
+@media print {
+	.print-only {
+		display: table-row;
+	}
+}

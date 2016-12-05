@@ -1,7 +1,5 @@
-<link rel="stylesheet" type="text/css" href="../main.css" />
-<pre><span class="blog-title" title="click to go back to the front page"><a href="../index.html">The Text Files</a></span>
-<span class="date">2016-12-01</span>
-<span class="title">My first</span>
+My first
+2016-12-01
 
 This is going to be a life story, so brace yourself.
 I learned to program, because I wanted to make a computer game.
@@ -13,7 +11,6 @@ I learned to program, because I wanted to make a computer game.
 ~2006 Internets, first webpage, HTML
 C, PHP, XHTML, CSS, D, Vala
 (Object) Pascal
-Ada, Java, C#, Python, Bash, x86 assembly
+Ada, Java, C#, Python, Bash
 Haskell, JavaScript, OCaml
 More JavaScript, HTML5
-<a href="../index.html">Back home</a></pre>
