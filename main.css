@@ -36,7 +36,7 @@ tr > td {
 	vertical-align: top
 }
 
-h1, h2 {
+h1, h2, h3, ul {
 	margin: 0;
 }
 
@@ -109,6 +109,20 @@ ul, li {
 
 .mail-addr-postfix:before {
 	content: " at gmail dot com";
+}
+
+.list-description {
+	margin-bottom: 0;
+}
+
+.list {
+	margin-top: 0;
+}
+
+.pre-serif {
+	font-family: serif;
+	white-space: pre-wrap;
+	margin-top: 0;
 }
 
 @media print {
