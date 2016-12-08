@@ -117,12 +117,17 @@ ul, li {
 
 .list {
 	margin-top: 0;
+	margin-bottom: 1em;
 }
 
 .pre-serif {
 	font-family: serif;
 	white-space: pre-wrap;
 	margin-top: 0;
+}
+
+.label {
+	color: #555;
 }
 
 @media print {
