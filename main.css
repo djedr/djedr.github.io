@@ -57,7 +57,7 @@ ul, li {
 	margin-top: 0;
 }
 
-.print-only, .hidden {
+.print-only, .hidden, .print-only-table-row {
 	display: none;
 }
 
@@ -136,7 +136,10 @@ ul, li {
 
 @media print {
 	.print-only {
-		display: initial;
+		display: unset;
+	}
+	.print-only-table-row {
+		display: table-row;
 	}
 	.screen-only {
 		display: none;
