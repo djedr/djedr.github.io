@@ -9,7 +9,7 @@
 </head>
 	<body>
 	<div class="document">
-	<span class="screen-only"><a href="index.html" >Click here to go back to the home page</a></span>
+	<span class="screen-only"><a href="index.html">Click here to go back to the home page</a></span>
 	<h1>Dariusz Jędrzejczak</h1>
 	<h2>Projects/work</h2>
 
@@ -48,6 +48,7 @@
 <span class="label">	Code review:</span> Gerrit
 <span class="label">	Code quality:</span> JSLint
 <span class="label">	Testing:</span> Jasmine, Karma, Protractor
+<span class="label">	Package management:</span> npm, Bower
 <span class="label">	Tools:</span>
 <span class="label">		Organization:</span> Google Docs
 <span class="label">		Project management:</span> IBM Rational
@@ -77,6 +78,7 @@
 <span class="label">	Version control:</span> Git
 <span class="label">	Code review:</span> Gerrit
 <span class="label">	Project management:</span> Confluence, JIRA
+<span class="label">	Package management:</span> npm, Bower
 <span class="label">	Code quality:</span> SonarQube, JSLint
 
 <b>2014</b>
@@ -105,10 +107,15 @@
 <span class="label">	Summary:</span> Design, architecture and implementation of the application
 <span class="label">	Team size:</span> 4
 <span class="label">Technologies:</span>
-<span class="label">	Languages:</span> JavaScript, SQL
-<span class="label">	Frameworks:</span> AngularJS, Angular 2, LoopBack
+<span class="label">	Languages:</span> JavaScript, HTML, CSS/PostCSS, SQL
+<span class="label">	Frameworks:</span> AngularJS, Angular 2, LoopBack, Express, Bootstrap
+<span class="label">	Libraries:</span> lodash, jQuery, Socket.IO
+<span class="label">	Middleware:</span> Passport
 <span class="label">	Environments:</span> Node.js
 <span class="label">	Database systems:</span> PostgreSQL
+<span class="label">	Build tools:</span> gulp, Grunt
+<span class="label">	Testing:</span> Jasmine, Karma, Protractor
+<span class="label">	Package management:</span> npm, Bower
 
 <span class="label"><b>Project:</b></span> Master's thesis
 <span class="label">Period:</span> 2016-03 to 2016-07 (5 months)
@@ -140,13 +147,14 @@
 <span class="label">	Gameplay video mirror:</span> <a href="https://www.youtube.com/watch?v=wTFr_owPRAU">https://www.youtube.com/watch?v=wTFr_owPRAU</a>
 <span class="label">	GitHub:</span> <a href="https://github.com/djedr/starlight">https://github.com/djedr/starlight</a>
 <span class="label">	Competiton's home page:</span> <a href="http://vrchallenge.io/?lang=en">http://vrchallenge.io/?lang=en</a>
+<span class="label">	Post-mortem report in Polish:</span> <a href="https://docs.google.com/document/d/1eQeG9mwm3LBD785F8xcD_PlaEvOiJAtXYAubJk_POeM/pub">https://docs.google.com/document/d/1eQeG9mwm3LBD785F8xcD_PlaEvOiJAtXYAubJk_POeM/pub</a>
 
 <span class="label"><b>Project:</b></span> Bachelor's thesis
 <span class="label">Period:</span> one semester (5 months)
 <span class="label">Status:</span> completed
 <span class="label">Description:</span>
-<span class="label">	Title:</span> "Optimizing Links, a functional programming language that compiles to JavaScript, for computer games"
-<span class="label">	Abstract:</span> "[E]xplores the subjects of web game programming in the functional paradigm and programming language optimization. A few simple web games are implemented in the the experimental functional programming language Links. Optimizations are introduced to the language to improve performance. A benchmark application is implemented to quantify their effectiveness."
+<span class="label">	Title:</span> Optimizing Links, a functional programming language that compiles to JavaScript, for computer games
+<span class="label">	Abstract:</span> [E]xplores the subjects of web game programming in the functional paradigm and programming language optimization. A few simple web games are implemented in the the experimental functional programming language Links. Optimizations are introduced to the language to improve performance. A benchmark application is implemented to quantify their effectiveness.
 <span class="label">Links:</span>
 <span class="label">	Text in English:</span> <a href="http://djedr.github.io/bachelors_thesis.pdf">http://djedr.github.io/bachelors_thesis.pdf</a>
 <span class="label">Notes:</span> See also my work on the Links programming language at University of Edinburgh. It is the basis of this thesis.
@@ -157,7 +165,7 @@
 <span class="label">Status:</span> closed
 <span class="label">Description:</span>
 <span class="label">	Summary:</span> a computer game, which won the Team Computer Game Development Competition, 6th edition. Project involved design and implementation of a game engine in C# on top of Microsoft's XNA framework and design and implementation of a game on top of that.
-<span class="label">	My role:</span> one of the main programmers, team vice-leader
+<span class="label">	Roles:</span> one of the main programmers, team vice-leader, scrum master responsibilites
 <span class="label">	Team size:</span> 6
 <span class="label">	Methodology:</span> Scrum
 <span class="label">Technologies:</span>
@@ -178,11 +186,12 @@
 <span class="label">Status:</span> completed
 <span class="label">Description:</span>
 <span class="label">	Summary:</span> Unreal Engine 4 game
-<span class="label">	Roles:</span> interface programmer, visual scripting
+<span class="label">	Roles:</span> main interface programmer, visual scripting
 <span class="label">	Team size:</span> &lt; 10
 <span class="label">Technologies:</span>
 <span class="label">	Languages:</span> Blueprint Visual Scripting, JavaScript
 <span class="label">	Engine:</span> Unreal Engine 4
+<span class="label">	Version control:</span> Perforce
 <span class="label">	Hardware:</span> gamepad
 <span class="label">Links:</span>
 <span class="label">	Facebook:</span> <a href="https://www.facebook.com/aegagame/">https://www.facebook.com/aegagame/</a>
@@ -192,8 +201,11 @@
 <span class="label"><b>Project:</b></span> Zippy Web Race
 <span class="label">Period:</span> one semester (5 months)
 <span class="label">Status:</span> completed
-<span class="label">Technologies:</span>
+<span class="label">Description:</span>
 <span class="label">	Summary:</span> A simple game in JavaScript, which uses Wii console's Wiimote as the main controller. This is achieved by using a pluggable intermediate/middleware app in Node.js, which communicates with the front-end part (the game) through a WebSocket, passing information from the C++ back-end, which uses a Wiimote library to talk to the controller. Communication with the back-end is achieved by means of inter-process communication.
+<span class="label">	Team size:</span> 3
+<span class="label">	Roles:</span> programmer
+<span class="label">Technologies:</span>
 <span class="label">	Languages:</span> JavaScript, C++
 <span class="label">	Environments:</span> Node.js
 <span class="label">	Modules:</span> node-ipc (for local Inter Process Communication)
@@ -224,20 +236,45 @@
 <span class="label">Links:</span>
 <span class="label">	GitHub:</span> <a href="https://github.com/Vistritium/The-Light-">https://github.com/Vistritium/The-Light-</a>
 <span class="label">	Gameplay video:</span> <a href="https://www.youtube.com/watch?v=uWDlsLyezXU">https://www.youtube.com/watch?v=uWDlsLyezXU</a>
+	
+<span class="label"><b>Project:</b></span> A prototype of a real-time strategy (RTS) game on Unreal Engine 4
+<span class="label">Period:</span> ~2 months
+<span class="label">Status:</span> completed
+<span class="label">Description:</span>
+<span class="label">	Summary:</span> A collaborative project. The goal was to develop a prototype of an RTS game on top of Unreal Engine 4, examine and describe various parameters of the system and propose optimization possibilities
+<span class="label">	Tasks:</span> AI implementation and measurement of relationship of number of AI units to game frame rate
+<span class="label">	Team size:</span> ~6
+<span class="label">	Role:</span> AI programmer, researcher
+<span class="label">Technologies:</span>
+<span class="label">	Languages:</span> Blueprints Visual Scripting
+<span class="label">	Engine:</span> Unreal Engine 4
+<span class="label">Links:</span>
+<span class="label">	Report in Polish:</span> <a href="https://docs.google.com/document/d/1vNnJADn69Q02vaYTtclFCPalS68Ij90ZPh3p3ocCMFA/pub">https://docs.google.com/document/d/1vNnJADn69Q02vaYTtclFCPalS68Ij90ZPh3p3ocCMFA/pub</a>
 
 <span class="label"><b>Project:</b></span> An emotion-recognition application
 <span class="label">Period:</span> one semester (5 months)
 <span class="label">Status:</span> completed
 <span class="label">Description:</span>
-<span class="label">	Summary:</span> An application, which does face recognition and simple emotion recognition (smile, sadness, frown)
-<span class="label">	Team size:</span> 3
+<span class="label">	Summary:</span> Part of a larger application, which demonstrates biometric techniques of speech and emotion recognition. I was the main developer of the module, which does face recognition and simple emotion recognition (smile, sadness, frown).
+<span class="label">	Tasks:</span> module development, integration of modules
+<span class="label">	Roles:</span> module leader, programmer
+<span class="label">	Team sizes:</span>
+<span class="label">		Emotion recognition module:</span> 2
+<span class="label">		Audio recognition module:</span> 2
 <span class="label">Technologies:</span>
 <span class="label">	Languages:</span> C, C++
+<span class="label">	Libraries:</span> OpenCV
+<span class="label">Links:</span>
+<span class="label">	Report in Polish:</span> <a href="https://docs.google.com/document/d/1yI5cevYwGTnOmP5xvdTMva8xtwUACNXTrrVKB75RWjg/pub">https://docs.google.com/document/d/1yI5cevYwGTnOmP5xvdTMva8xtwUACNXTrrVKB75RWjg/pub</a>
 	
 <b>2014</b>
 <span class="label"><b>Project:</b></span> Frogger clone for a microcontroller
 <span class="label">Period:</span> one semester (5 months)
 <span class="label">Status:</span> completed
+<span class="label">Description:</span>
+<span class="label">	Summary:</span> A clone of the classic Frogger game for a microcontroller. Written in C.
+<span class="label">	Team size:</span> 3
+<span class="label">	Roles:</span> team leader, programmer
 <span class="label">Technologies:</span>
 <span class="label">	Platform:</span> embedded
 <span class="label">	Languages:</span> C
@@ -246,23 +283,142 @@
 <span class="label">		Description:</span> a simple microcontroller extended with a small 256-color display
 <span class="label">Links:</span>
 <span class="label">	GitHub:</span> <a href="https://github.com/Vistritium/frogger---systemy-wbudowane">https://github.com/Vistritium/frogger---systemy-wbudowane</a>
+<span class="label">	Documentation in Polish:</span> <a href="https://docs.google.com/document/d/13TrMJNpzOgk-y1-DD2jQypkYj4CYQPc473BK7LVEId4/pub">https://docs.google.com/document/d/13TrMJNpzOgk-y1-DD2jQypkYj4CYQPc473BK7LVEId4/pub</a>
+	
+<span class="label"><b>Project:</b></span> Near- and far-sightedness  simulation in Unreal Engine 4
+<span class="label">Period:</span> 2 months
+<span class="label">Status:</span> completed
+<span class="label">Description:</span>
+<span class="label">	Description:</span> An application, which simulates visual distortions caused by near- and far-sightedness.
+<span class="label">	Role:</span> leader, programmer
+<span class="label">	Team size:</span> 2
+<span class="label">Technologies:</span>
+<span class="label">	Languages:</span> C#, Blueprints Visual Scripting
+<span class="label">	Engines:</span> Unity3D, Unreal Engine 4
+<span class="label">Links:</span>
+<span class="label">	Presentation in Polish:</span> <a href="https://docs.google.com/presentation/d/1OVtLC7NekSbZf7XETf9goonYk1ZUCesJmIPKrRWKFYU/pub?start=false&loop=false&delayms=3000">https://docs.google.com/presentation/d/1OVtLC7NekSbZf7XETf9goonYk1ZUCesJmIPKrRWKFYU/pub?start=false&loop=false&delayms=3000</a>
 
-<span class="label"><b>Project:</b></span> A simple website for Marketing classes
+<span class="label"><b>Project:</b></span> A business website for Marketing classes
 <span class="label">Period:</span> 2.5 months
 <span class="label">Status:</span> completed
 <span class="label">Description:</span>
 <span class="label">	Team size:</span> 2
+<span class="label">	Roles:</span> programmer, designer
 <span class="label">Technologies:</span>
-<span class="label">	Languages:</span> HTML, CSS/LESS
+<span class="label">	Languages:</span> JavaScript, HTML, CSS/LESS
 <span class="label">	Frameworks:</span> Bootstrap
 <span class="label">Links:</span>
 <span class="label">	GitHub:</span> <a href="https://github.com/Vistritium/MarketingPage">https://github.com/Vistritium/MarketingPage</a>
+<span class="label">	Description in Polish:</span> <a href="https://docs.google.com/document/d/1FqSdF4yLodOjSN4n11OiZI1DuTQuT3Biu9dXTy4PjFI/pub">https://docs.google.com/document/d/1FqSdF4yLodOjSN4n11OiZI1DuTQuT3Biu9dXTy4PjFI/pub</a>
+	
+<span class="label"><b>Project:</b></span> Get To The Core
+<span class="label">Period:</span> weekend
+<span class="label">Status:</span> completed
+<span class="label">Description:</span>
+<span class="label">	Summary:</span> A simple game in Lua for Ludum Dare competition #29. The theme of the competition was Beneath the Surface.
+<span class="label">Technologies:</span>
+<span class="label">	Languages:</span> Lua
+<span class="label">	Engine:</span> LÖVE
+<span class="label">Links:</span>
+<span class="label">	Ludum Dare entry:</span> <a href="http://ludumdare.com/compo/ludum-dare-29/?action=preview&uid=35204">http://ludumdare.com/compo/ludum-dare-29/?action=preview&uid=35204</a>
+	
+<span class="label"><b>Project:</b></span> 15 puzzle solver
+<span class="label">Period:</span> ~1 month
+<span class="label">Status:</span> completed
+<span class="label">Description:</span>
+<span class="label">	Summary:</span> I implemented a program in C, which can solve the 15 puzzle using different algorithms, including Depth-First Search, Breadth-First Search, A* and variants of these, which use heuristics. Then, using this program I thoroughly examined the effectiveness of each algorithms in terms of speed.
+<span class="label">Technologies:</span>
+<span class="label">	Languages:</span> C
+<span class="label">	Tools:</span> gnuplot
+<span class="label">Links:</span>
+<span class="label">	Wikipedia description of the puzzle:</span> <a href="https://en.wikipedia.org/wiki/15_puzzle">https://en.wikipedia.org/wiki/15_puzzle</a>
+<span class="label">	Report in Polish:</span> <a href="http://djedr.github.io/pdf/15_puzzle.pdf">http://djedr.github.io/pdf/15_puzzle.pdf</a>
+	
+<span class="label"><b>Project:</b></span> Angry Metal Through Time
+<span class="label">Period:</span> ~2 months
+<span class="label">Status:</span> completed
+<span class="label">Description:</span>
+<span class="label">	Summary:</span> A 1D turn-based strategy game featuring fuzzy logic and competing agents. The game is intended to be played by AI agents who use fuzzy logic to make decisions.
+<span class="label">	Team size:</span> 5
+<span class="label">	Role:</span> programmer, designer
+<span class="label">Technologies:</span>
+<span class="label">	Languages:</span> C#, FuzzScript
+<span class="label">	Libraries:</span> FuzzScript
+<span class="label">	Version control:</span> SVN
+<span class="label">Links:</span>
+<span class="label">	Report in Polish:</span> <a href="http://djedr.github.io/pdf/AMTT.pdf">http://djedr.github.io/pdf/AMTT.pdf</a>
+<span class="label">	FuzzScript's home page:</span> <a href="https://www.codeproject.com/articles/47795/fuzzscript-a-fuzzy-logic-control-language">https://www.codeproject.com/articles/47795/fuzzscript-a-fuzzy-logic-control-language</a>
+	
+<b>2013</b>
+<span class="label"><b>Project:</b></span> Music video game prototype
+<span class="label">Period:</span> ~3 months
+<span class="label">Status:</span> completed
+<span class="label">Description:</span>
+<span class="label">	Summary:</span> a dynamic, music-based video game for Android, controlled by gestures drawn on the screen. Features random level generation.
+<span class="label">	Team size:</span> ~5
+<span class="label">	Roles:</span> programmer, designer
+<span class="label">Technologies:</span>
+<span class="label">	Engine:</span> Unity3D
+<span class="label">	Platform:</span> Android
+<span class="label">	Languages:</span> UnityScript (JavaScript dialect)
+<span class="label">	Libraries:</span> $P Recognizer (translated to UnityScript and tweaked)
+<span class="label">Links:</span>
+<span class="label">	$P Recognizer's website:</span> <a href="https://depts.washington.edu/aimgroup/proj/dollar/pdollar.html">https://depts.washington.edu/aimgroup/proj/dollar/pdollar.html</a>
+	
+<span class="label"><b>Project:</b></span> The Planet is Fine
+<span class="label">Period:</span> ~1 month
+<span class="label">Status:</span> completed
+Description
+<span class="label">	Summary:</span> a space game made in Game Maker. Features procedural graphics, spaceships, planets, gravity.
+<span class="label">Technologies:</span>
+<span class="label">	Languages:</span> GML (Game Maker Language)
+<span class="label">	Environments:</span> Game Maker
+	
+<span class="label"><b>Project:</b></span> A Pac-Man clone with a twist
+<span class="label">Period:</span> ~1 month
+<span class="label">Status:</span> completed
+Description
+<span class="label">	Summary:</span> a Pac-Man clone made in Game Maker with changed mechanics. The maze is constructed out of circular obstacles -- planets. Pacman moves continuously, orbiting the planets. Game is controlled with one key, which is used for moving from planet to planet.
+<span class="label">Technologies:</span>
+<span class="label">	Languages:</span> GML (Game Maker Language)
+<span class="label">	Environments:</span> Game Maker
+
+<span class="label"><b>Project:</b></span> Heroes of Might and Magic III clone
+<span class="label">Period:</span> one semester (5 months)
+<span class="label">Status:</span> completed
+<span class="label">Description:</span>
+<span class="label">	Summary:</span> a clone of the classic Heroes of Might and Magic III game in Java for OOP classes
+<span class="label">	Team size:</span> ~6
+<span class="label">	Role:</span> combat system programmer
+<span class="label">Technologies:</span>
+<span class="label">	Languages:</span> Java
+<span class="label">	Engine:</span> Slick2D
+<span class="label">	Version control:</span> SVN
+<span class="label">Links:</span>
+<span class="label">	Combat system documentation:</span> <a href="https://docs.google.com/document/d/1x0pbAyWv9KGGqA5s7Rv15QVK_n9FvTxsfx7--NtdUCE/pub">https://docs.google.com/document/d/1x0pbAyWv9KGGqA5s7Rv15QVK_n9FvTxsfx7--NtdUCE/pub</a>
+
+<b>2012</b>
+
+<b>2011</b>
+<span class="label"><b>Project:</b></span> Vortex
+<span class="label">Period:</span> 24 hours
+<span class="label">Status:</span> completed
+<span class="label">Description:</span>
+<span class="label">	Summary:</span> A game for 24 hour game development competition at Zjazd Twórców Gier 2011 (now Game Industry Conference)
+<span class="label">	Team size:</span> 2
+<span class="label">	Role:</span> graphic artist
+<span class="label">Technologies:</span>
+<span class="label">	Languages:</span> C++
+<span class="label">	Libraries:</span> SFML
+<span class="label">	Tools:</span> Gimp
+<span class="label">Links:</span>
+<span class="label">	Conference's current home page:</span> <a href="http://gic.gd/en/">http://gic.gd/en/</a>
 
 <b>Other/earlier</b>
 See a short description of my programming experience: <a href="http://djedr.github.io/programming-bio.html">http://djedr.github.io/programming-bio.html</a>
 </pre>
 
-	<footer class="screen-only">This document was last updated 2016-12-08</footer>
+	<footer class="screen-only">This document was last updated 2016-12-13</footer>
 	</div>
 </body>
 </html>
