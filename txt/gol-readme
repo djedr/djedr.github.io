@@ -1,0 +1,120 @@
+gol, instrukcje
+
+## biblioteki, kompilacja
+gra wymaga biblioteki SFML 2.0 oraz biblioteki ncurses 
+dołączono pliki .so oraz źródła bibliotek do 64 bitowej wersji systemu
+Linux (foldery lib i include)
+SFML można ściągnąć z http://www.sfml-dev.org/download.php#2.0-rc
+ncurses -- http://ftp.gnu.org/pub/gnu/ncurses/
+(albo z repozytoriów w większości dystrybucji systemu Linux)
+najlepiej zainstalować biblioteki w systemie;
+wówczas kompilacja z linii komend w systemie Linux wygląda np. tak:
+g++ -c main.cpp
+g++ main.o -o gol -lsfml-graphics -lsfml-window -lsfml-system -lncurses
+
+## uruchomienie
+./gol <treść_skryptu>
+
+gdzie <treść_skryptu> to opcjonalny argument/argumenty będący kodem
+skryptu w języku gry (polecenia języka opisane poniżej)
+kilka przykładowych skryptów zostało dołączone do gry
+(pliki w folderze examples);
+
+zatem przykładowe uruchomienie (zakładając, że skrypt o nazwie ns4
+znajduje się w katalogu z plikiem wykonywalnym gry):
+./gol import ns4
+
+lub skrypt wieloliniowy:
+./gol 'import ns4
+advance 10000'
+
+## polecenia języka -- wyższego poziomu
+wszystkie polecenia mogą być używane zarówno w plikach tekstowych ze
+skryptami, w argumencie <treść_skryptu> jak i mogą być wpisywane
+podczas działania gry -- wszystkie 3 sposoby wprowadzania poleceń są
+równoprawne (w szczególności wszędzie działa polecenie 'import')
+
+szczególne jest polecenie interpret; przekazuje ono swój argument
+interpreterowi brainfuckopodobnego języka, który służy do modyfikacji
+zawartości planszy (per komórka); można powiedzieć, że skrypty są pisane
+w dwóch językach -- jeden jest wyżej poziomowy (polecenia słowne
+z argumentami), a drugi niżej (pojedyncze znaki/bajty bez argumentów,
+w stylu Brainfucka); składnia języka niższego poziomu jest opisana dalej
+
+lista poleceń wyższego poziomu:
+import
+board
+advance
+interpret
+clear
+halt
+quit
+end
+--
+
+lista poleceń razem z argumentami, objaśnieniami i przykładami:
+import nazwa_pliku
+	polecenie wczytuje skrypt z pliku nazwa_pliku
+	> import ns3
+board szerokość wysokość
+	dostosowuje rozmiar planszy do podanych wymiarów; minimum 100x100
+	> board 800 600
+advance liczba_kroków
+	uruchamia symulację przez określoną liczbę kroków;
+	możliwe zatrzymanie lub modyfikacja tej liczby w czasie działania,
+	a także uruchamianie dowolnych innych poleceń
+	> advance 1000
+interpret treść_niskopoziomowego_skryptu
+	modyfikuje stan planszy za pomocą języka podobnego do Brainfucka;
+	opis poleceń poniżej;
+	w treści nie może być spacji
+	> interpret ![>!]
+clear
+	ustawia wszystkie komórki na planszy na standardowe komórki
+	Game of Life ze stanem 0;
+	> clear
+halt
+	zatrzymuje symulację
+	> halt
+quit
+	kończy grę i wychodzi
+	> quit
+-- cokolwiek_do_końca_linii
+	komentarz, ignoruje cokolwiek_do_końca_linii (może miec spacje);
+	musi być spacja pomiędzy '--' a cokolwiek_do_końca_linii
+	> -- jakiś komentarz
+
+
+## komendy niższego poziomu
+kod złożony z tych komend jest argumentem polecenia 'interpret'
+ten język operuje na pojedynczych komórkach planszy w grze;
+jego komendy tego przedstawiają się następująco:
+> -- przejdź do następnej komórki w wierszu
+< -- przejdź do poprzedniej komórki w wierszu
+v -- przejdź do następnej komórki w kolumnie
+^ -- przejdź do poprzedniej komórki w kolumnie
+[ -- jeżeli dana komórka ma stan 1 to wykonuj kod od tego miejsca do pasującego ],
+	w przeciwnym razie pomiń ten kod
+] -- skocz do pasującego [
+g -- ustaw komórkę jako zwykłą (działającą jak w oryginalnej Grze w Życie)
+h -- ustaw komórkę jako magiczną (będzie zaznaczona innym kolorem)
+! -- zmień stan komórki na przeciwny
+r -- przejdź na pozycję (0, 0)
+
+na starcie zakładamy, że pozycja na planszy to (0, 0), a wszystkie
+komórki są zwykłe i są ustawione na stan 0;
+plansza jest toroidalna -- jej przeciwległe krawędzie są ze sobą
+połączone, zatem wyjście poza planszę z prawej strony powoduje
+pojawienie się z powrotem po lewej, etc.
+
+## pozostałe
+gra była kompilowana pod systemem linux w wersji 64 bitowej;
+na życzenie możemy udostępnić plik wykonywalny i/lub pliki .so/nagłówki
+biblioteki SFML, etc.
+do kodu dołączona jest też prosta dokumentacja kodu wygenerowana za
+pomocą programu Doxygen
+
+## system Windows
+gra nie była kompilowana ani testowana pod systemem Windows;
+pod system Windows bibliotekę ncurses może zastąpić pdcurses;
+zamiana na nią zapewne wymagałaby modyfikacji w kodzie;
