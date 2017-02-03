@@ -101,10 +101,9 @@ ul, li {
 }
 
 body {
-    background: url(gfx/cleveland3.jpg);
-    background-attachment: scroll;
+    background: url(gfx/cleveland17.jpg);
     background-position: top right;
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
 }
 
 .photo {
