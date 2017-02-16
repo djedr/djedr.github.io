@@ -162,6 +162,19 @@ body {
 	margin-bottom: 1em;
 }
 
+.publication-date {
+    color: gray;
+}
+
+.publication-date::before {
+    content: '(';
+}
+
+.publication-date::after {
+    content: ')';
+}
+
+
 @media print {
     .document {
         margin-top: unset;
