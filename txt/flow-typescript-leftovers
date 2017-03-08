@@ -1,0 +1,60 @@
+## Working with TypeScript
+Example:
+Want to use `lodash` with type support.
+1. Install the NPM module:
+
+    npm install --save lodash
+
+2. Install the type definition:
+
+    npm install --save @types/lodash
+
+
+* Types for libraries are defined in declaration files (suffix .d.ts)
+   * Written in TypeScript
+   * Contain the interface to a library
+* Thousands of declaration files available, covering a multitude of JavaScript libraries
+
+## Working with Flow
+Flow has its own library definition mechanism that is vaguely similar to TypeScript’s, but not as well established.
+By default Flow will not try and check against a third-party module unless you have provided a definition file.
+coverage. In short, this is the proportion of your code that is actually being covered by Flow’s type checks. It’s something that the Flow command-line tool can report to you, but in Nuclide the editor itself is able to show which lines are being covered, and which aren’t.
+
+
+Gradual switch from JS to TypeScript
+* .js -> .ts
+* --noImplicitAny
+    will require you to specify types for all the arguments and return value of every function that you use
+
+Gradual switch from JS to Flow
+To have Flow analyse a particular module, you have to opt-in by adding the following to the top of the module’s file:
+
+    // @flow
+
+add type annotations to your code
+
+From Flow to TypeScript
+    Rename the file to .ts
+    Remove the // @flow header
+    Make slight syntax adjustments (imports, interfaces)
+    Fix the type errors that Flow never managed to discover
+
+Using webpack and ES6 features (through Babel-Loader) and ES6 modules (through Webpack2). The change in setup:
+    Add .ts and .tsx extensions to webpacks resolver configuration, before .js and .jsx
+    Add the awesome-typescript-loader
+    Create a tsconfig.json with --strictNullChecks and --noImplicitAny enabled. If you set your target for typescript to es5, set the lib flag to ["dom", "es5", "es2015", "es2016", "es2017"] to prevent complaints about missing definitions for stuff like Promise
+
+vs
+* former Flow user, now pro-TypeScript (2017-02-15) [pro-typescript-flow-vs-typescript]
+    * Unhelpful error messages
+        * "Incompatible instantiation for T, T"
+            * what? where?
+    * "I don’t have the feeling that the React and Flow teams talk much to one another."
+    * "Microsoft on the other hand has given Typescript a ton of attention."
+    * "Facebook isn’t as invested in Flow as it should be."
+    * Bad Tooling
+    * "Typescript on the other hand is its own language, with its own spec. It happens to translate straight to Javascript, but the presence of a spec makes it feel much more stable. Typescript doesn’t have to accomodate untyped Code (although it lets you do so), and can operate in a much stricter, well-defined environment."
+    * "The biggest advantage when working with Typescript [...] is Visual Studio Code"
+    * "lack of reliability"
+
+"There are some issues that are too tricky for Typescript to solve. To circumvent these, the way to go seems to be to cast some expression to any and then to the type you know it has. You need to be explicit here but you can be sure that whatever problem exists, doesn’t propagate"

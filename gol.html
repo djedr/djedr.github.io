@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+ <meta charset="utf-8" />
+ <style>
+ body {
+  margin: 0;
+ }
+ canvas {
+  transform-origin: top left;
+  transform: scale(8, 8);
+  position: relative;
+  image-rendering: optimizeSpeed; /* Legal fallback */
+  image-rendering: -moz-crisp-edges; /* Firefox        */
+  image-rendering: -o-crisp-edges; /* Opera          */
+  image-rendering: -webkit-optimize-contrast; /* Safari         */
+  image-rendering: optimize-contrast; /* CSS3 Proposed  */
+  image-rendering: crisp-edges; /* CSS4 Proposed  */
+  image-rendering: pixelated; /* CSS4 Proposed  */
+  -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
+ }
+ </style>
+</head>
+<body>
+ <canvas id="display"></canvas>
+ <script src="main.js"></script>
+</body>
+</html>

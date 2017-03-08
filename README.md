@@ -1,3 +1,3 @@
 # djedr.github.io
 
-Test
+This is a repository for my home page.
