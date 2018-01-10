@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8" />
 	<link rel="stylesheet" type="text/css" href="main.css" />
+	<link rel="stylesheet" type="text/css" href="gol-animation.css" />
 	<title>Dariusz Jędrzejczak -- Home page</title>
 </head>
 <body>
@@ -16,6 +17,11 @@
             </a>
         </h1>
 		<h2>Home page</h2>
+
+        <div class="avatar-container">
+            <a href="gol.html" title="Click here to start Game of Life"><img src="gfx/replicator.png" class="avatar" /></a>
+        </div>
+
 		<p class="intro">
 			Hello, my name is Dariusz and I am a software engineer.
 			I write code for fun and profit.
@@ -23,26 +29,21 @@
 			about me and my projects<sup><a href="#footer">*</a></sup>.
 		</p>
 
-		<p class="list-description">
-			At the moment I am interested in programming jobs that are:
+		<p>
+			At the moment I am interested in challenging part-time jobs in remote-first companies.
 		</p>
-		<ul class="list">
-			<li>Interesting and challenging.</li>
-			<li>Completely remote.</li>
-			<li>Part-time.</li>
-		</ul>
 
 		<p class="list-description">
 			Relevant for hiring me:
 		</p>
 		<ul class="list">
-			<li><a href="resume.html">CV/resume.</a></li>
-			<li><a href="certificates.html">Some of my diplomas and certificates.</a></li>
-			<li><a href="projects.html">List of some of the projects I've been involved with.</a></li>
-			<li><a href="programming-bio.html">A short description of my programming experience.</a></li>
+			<li><a href="resume.html">CV/resume</a></li>
+			<li><a href="certificates.html">some of my diplomas and certificates</a></li>
+			<li><a href="projects.html">list of some of the projects I've been involved with</a></li>
+			<li><a href="programming-bio.html">a short description of my programming experience</a></li>
 		</ul>
 
-        <p><a href="web-publications.html">List of my web publications</a> may also interest you.</p>
+        <p>You may also be interested in my <a href="notes.html">blog</a> or <a href="web-publications.html">list of my web publications</a>.</p>
 
 		<p class="list-description">Or my social media profiles:</p>
 		<ul class="list">
@@ -60,10 +61,9 @@
 
         <footer id="footer">
 			* Unless noted otherwise, things that I publish on the web are in no way representative of or related to my current or former employers.
-			<div class="gol-container">
-				<a href="gol.html" title="Click here to start Game of Life"><img src="gfx/replicator.png" class="avatar" /></a>
-			</div>
 		</footer>
 	</div>
+	<canvas id="display"></canvas>
+	<script src="main.js"></script>
 </body>
 </html>

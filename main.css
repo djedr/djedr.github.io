@@ -175,12 +175,13 @@ body {
 }
 
 .avatar {
-    width: 32px;
+    width: 64px;
 }
 
-.gol-container {
-	float: right;
-	margin-top: 1em;
+.avatar-container {
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 @media print {
