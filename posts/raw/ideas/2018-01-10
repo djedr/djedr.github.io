@@ -3,15 +3,19 @@ That's my goal. So, without further ado.
 
 JSON
 Here is some JSON:
+<pre>
     {
         "item": "potatoes",
         "amount": "5 kg"
     }
+</pre>
 In case of confusion, wait for explanation in future posts.
 
 Today's featured programming language is JavaScript (aka JS). It will be back.
 Interesting fact: JS is probably the most popular programming lanugage in the world today.
 
-Each post will aim to be short & sweet like this one. Each will feature a different programming concept and a different programming language. There will be a post most of the days in 2018. Stay tuned!
+Each post will aim to be short & sweet like this one. Each will feature a different programming concept and a different programming language.
+
+There will be a post most of the days in 2018. Stay tuned!
 
 Cheerio!
