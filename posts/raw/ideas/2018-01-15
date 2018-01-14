@@ -1,0 +1,19 @@
+Some primitive data types
+Featuring: Java
+
+Computers process data. For the machine it's just organized electricity, representing ones and zeros or -- on a higher level -- numbers. For us it's many different types of data.
+
+So computers like numbers best. We like them too. So we put them in our programming languages. Not just one kind. Different kinds. And we have different ways of writing them down, too. For example:
+<pre>
+    10,
+    0xa,
+    0b1010
+</pre>
+Would all represent the number 10 in Java. Three different notations, same number.  Depending on context, each notation can be more useful than the others.
+
+Strings, as introduced in the previous post, are another good data type. Text. Human-readable. Letters, characters. Sequences of symbols that encode information in some natural language. It used to be hard to represent anything other than English back in the early days of computing. Now we have <a href="https://en.wikipedia.org/wiki/Unicode">Unicode</a>.
+
+So numbers and strings are some basic data types. They are often described as primitive, because they are not composed of other types, as opposed to complex or composite data types.
+
+We'll get to that later.
+ 
