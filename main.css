@@ -70,6 +70,10 @@ ul, li {
 	margin-top: 0;
 }
 
+hr {
+	border: 1px solid black;
+}
+
 .print-only, .hidden, .print-only-table-row {
 	display: none;
 }

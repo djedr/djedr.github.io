@@ -21,7 +21,13 @@
 			[a[href[./[$output_file_name]]][$date] ([$category]) [$title_full]]
 		]
 
-		[div[class[pre-wrap]][$content]]
+		[div[class[pre-wrap]][$content]
+[hr]
+This file was last (re)generated [$regenerate time].
+[a[href[[$github page url]edit/master/posts/[$input file path]]]Edit this post]
+[a[href[https://www.reddit.com/submit?url=[$root url][$output file path]]]reddit this post]
+Write to me: dariusz.jedrzejczak.work+notes[span[class[mail-addr-postfix]]]
+		]
 	]
 ]
 ]
