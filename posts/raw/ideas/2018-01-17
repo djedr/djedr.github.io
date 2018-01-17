@@ -1,0 +1,34 @@
+Loops, but first conditionals
+Featuring: x86 assembly
+
+The ability to make one decision when a certain condition is met and a different decision when it is not is a fundamental feature of [em[]all] programming languages. Perhaps it is even fundamental to reality itself... [span[style[color: darkgreen]]mwahahaha]!
+
+On the lowest level such conditions are very simple, like "is a number equal to zero?". The decisions similarly so, e.g. "should I execute the next instruction in line or should I jump to an instruction at some other location and continue executing there?".
+
+Consider this fragment of more-or-less [a[href[https://en.wikipedia.org/wiki/X86_assembly_language]]x86 assembly code] (lines which start with [code[];] are comments):
+[pre[]
+    ; nonempty lines contain a single instruction and some data it operates on
+    ; instructions are normally executed from top to bottom
+
+    ; subtract one from some number:
+    dec ecx
+
+    ; jump to first instruction after the `some_other_location:`
+    ; label below if after the subtraction the number is zero
+    jz some_other_location
+
+    ; if the number is not zero (so it was greater than one before subtraction), 
+    ; continue with the next instruction in line:
+    mov eax, ebx
+
+    ; ... imagine some more instructions here
+
+
+    ; this is the label
+    some_other_location:
+
+    ; ... imagine some other instructions
+]
+This is a language almost as close to the machine as it gets, something an average CPU would understand.
+
+Once we have a simple decision mechanism like this, we can build powerful abstractions on top of it and do all kinds of wonderful things!

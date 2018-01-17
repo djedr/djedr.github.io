@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" href="../main.css" />
+	<link rel="stylesheet" type="text/css" href="../notes.css" />
+	<title>Dariusz Jędrzejczak -- Note 2018-01-17</title>
+</head>
+<body>
+	<div class="document narrow">
+		<h1>
+            <a href="../index.html" title="Click here to go to the home page">
+                Dariusz Jędrzejczak
+			</a>
+        </h1>
+		<h2>
+            <a href="../notes.html" title="Click here to go to notes index">Notes</a><sup><a href="https://en.wiktionary.org/wiki/notes#Polish">*</a></sup>
+		</h2>
+        
+            <div class="avatar-container">
+                <img src="../gfx/blogo-2-64.png" class="avatar" />
+            </div>
+		<h3>
+			<a href="./ideas-2018-01-17.html">2018-01-17 (ideas) Loops, but first conditionals</a>
+		</h3>
+
+		<div class="pre-wrap">Featuring: x86 assembly
+
+The ability to make one decision when a certain condition is met and a different decision when it is not is a fundamental feature of <em>all</em> programming languages. Perhaps it is even fundamental to reality itself... <span style="color: darkgreen">mwahahaha</span>!
+
+On the lowest level such conditions are very simple, like "is a number equal to zero?". The decisions similarly so, e.g. "should I execute the next instruction in line or should I jump to an instruction at some other location and continue executing there?".
+
+Consider this fragment of more-or-less <a href="https://en.wikipedia.org/wiki/X86_assembly_language">x86 assembly code</a> (lines which start with <code>;</code> are comments):
+<pre>
+    ; nonempty lines contain a single instruction and some data it operates on
+    ; instructions are normally executed from top to bottom
+
+    ; subtract one from some number:
+    dec ecx
+
+    ; jump to first instruction after the `some_other_location:`
+    ; label below if after the subtraction the number is zero
+    jz some_other_location
+
+    ; if the number is not zero (so it was greater than one before subtraction), 
+    ; continue with the next instruction in line:
+    mov eax, ebx
+
+    ; ... imagine some more instructions here
+
+
+    ; this is the label
+    some_other_location:
+
+    ; ... imagine some other instructions
+</pre>
+This is a language almost as close to the machine as it gets, something an average CPU would understand.
+
+Once we have a simple decision mechanism like this, we can build powerful abstractions on top of it and do all kinds of wonderful things!
+<hr />
+This file was last (re)generated 2018-01-17T22:42:10.633Z.
+<a href="https://github.com/djedr/djedr.github.io/edit/master/posts/./raw/ideas/2018-01-17">Edit this post</a>
+<a href="https://www.reddit.com/submit?url=https://djedr.github.io/posts/ideas-2018-01-17.html">reddit this post</a>
+Write to me: dariusz.jedrzejczak.work+notes<span class="mail-addr-postfix"></span>
+		</div>
+	</div>
+</body>
+</html>
