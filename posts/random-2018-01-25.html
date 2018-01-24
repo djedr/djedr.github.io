@@ -1,0 +1,306 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" href="../main.css" />
+	<link rel="stylesheet" type="text/css" href="../notes.css" />
+	<title>Dariusz Jędrzejczak -- Note 2018-01-25</title>
+</head>
+<body>
+	<div class="document narrow">
+		<h1>
+            <a href="../index.html" title="Click here to go to the home page">
+                Dariusz Jędrzejczak
+			</a>
+        </h1>
+		<h2>
+            <a href="../notes.html" title="Click here to go to notes index">Notes</a><sup><a href="https://en.wiktionary.org/wiki/notes#Polish">*</a></sup>
+		</h2>
+        
+            <div class="avatar-container">
+                <img src="../gfx/blogo-2-64.png" class="avatar" />
+            </div>
+		<h3>
+			<a href="./random-2018-01-25.html">2018-01-25 (random) Why NOT to add the pipeline operator to JavaScript (or TypeScript, etc.)? And what to maybe add instead.</a>
+		</h3>
+
+		<div class="pre-wrap">
+<h3>TL;DR</h3>
+Putting operands/arguments before the operator/function is sometimes very useful. Some functional languages have pipeline operators like <code>|&gt;</code> for that. It's been proposed to throw one into JavaScript too. Seems like a good idea. Turns out maybe not quite, since JavaScript is not like the other languages.
+
+A better idea, I argue, would be to build in a mostly equivalent <code>pipe</code> function instead, which would fit better into JS.
+
+Or full-ass the existing proposal by first (or also) changing how operators work in JS.
+
+Or if you people really must have this operator RIGHT NOW, because your personal happiness depends on it, at least throw in <code>pipe</code> along with it, so me and some like-minded folks can be content too.
+
+
+
+<h3>Intro</h3>
+I was inspired to write this, because of <a href="https://news.ycombinator.com/item?id=16193112">a discussion I recently had on Hacker News</a> and <a href="https://www.reddit.com/r/programming/comments/6mpg69/a_proposal_for_adding_the_simplebutuseful/dk4nuu6/">a few comments on topic some time ago on reddit</a>. This post compiles and expands upon my and others' arguments.
+
+
+So a lot of people seem very excited about <a href="https://github.com/tc39/proposal-pipeline-operator">this proposal to introduce a pipeline operator (<code>|></code>)</a>, popular among functional languages such as F#, Elm, Elixir or Ocaml, to JavaScript. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Pipeline_operator">Firefox has it even implemented</a>, hidden behind an <code>--enable-pipeline-operator</code> compile flag.
+
+The operator is supposed to be "a backwards-compatible way of streamlining chained function calls in a readable, functional manner", which "allows for greater readability when chaining several functions together", to quote the proposal.
+
+With the operator "the following invocations are equivalent:"
+<blockquote><pre>
+    let result = exclaim(capitalize(doubleSay("hello")));
+    result //=> "Hello, hello!"
+
+    let result = "hello"
+      |> doubleSay
+      |> capitalize
+      |> exclaim;
+
+    result //=> "Hello, hello!"
+</pre></blockquote>
+Seems pretty neat. Really comes in handy when you want to emphasize flow of data through a pipeline of functions in a concise way and you don't need names or breakpoints for intermediate results. A useful tool for functional programming. No wonder all these languages have it!
+
+So,
+
+<h3>Why not add it to JavaScript as well?</h3>
+Because, while intending otherwise, you'd be making this picture more true:
+<img src="https://pbs.twimg.com/media/Cy4cOJuUUAA7MM5.jpg" />
+<small>(if anybody reading this knows who deserves credit for that drawing, let me know and I'll add it here)</small>
+
+Why? Because operators in JavaScript don't work like in those neat functional languages. You can't overload (you might sort of fake it with <a href="http://2ality.com/2011/12/fake-operator-overloading.html">hacks like this</a>, but please don't) or define custom operators in JS. They are also not first class citizens. Can't pass 'em as arguments or return 'em from functions.
+
+So we're missing some fundamental parts that other languages have which make operators more useful in those languages. But even in those languages operators have some downsides, such as:
+    too much of them can make code look cryptic,
+    you need to have a precedence table memorized to understand and use them right,
+    overloading them and defining custom ones gives some potential for abuse.
+
+These downsides may be important reasons why JavaScript is not big on operators in the first place. Furthermore, even the operators that JavaScript already has come with problems, such as doing some funky coercions of operands.
+
+So stitching a new operator onto the language just because some snippets in other languages look fresh'n'cool, without thinking through if it fits well into <em>this particular</em> language, may not be such a good idea.
+
+If all we care about is the amount of features, why not throw in some <a href="https://github.com/TheNavigateur/proposal-pipeline-operator-for-function-composition
+">more</a> <a href="https://github.com/isiahmeadows/function-composition-proposal">operators</a>, while we're at it? Could be useful!
+
+
+Oh, and you can't polyfill an operator.
+
+
+
+<h3>What then?</h3>
+We can still have most of stuff that make the pipeline operator so cool, without the downsides, and some additional upsides! <em>Most</em>, so you gonna have to trade a tiny bit off, but I promise it's nothing significant and absolutely worth it.
+
+What? How? Well, check this baby out:
+<pre>
+    const pipe = (...args) => args.reduce((prev, curr) => curr(prev))
+</pre>
+What's that? Fire up your console and try it out right away! Just paste this and execute, trust me:
+<pre>
+    const pipe = (...args) => args.reduce((prev, curr) => curr(prev))
+
+    const result = pipe("hello"
+        , $ => $ + ", " + $
+        , $ => $[0].toUpperCase() + $.slice(1)
+        , $ => $ + '!'
+    )
+
+    console.log(result)
+</pre>
+Holy moly, this works just like the awesome operator! And you can use it right this second!
+
+If you replace <code>const</code> with <code>var</code> and arrow functions with regular ones you might even be able to make this work in crummy old browsers too!
+
+So there you go, one line of code, no need to add a special new operator. Thank you for your attention.
+
+
+But wait!
+
+You had to write the line of code and who needs that! Perhaps there is a library that implements something like this? Sure there <strike>is</strike> are. Of course each has slightly different definition of it. And of course to import a library you still have to write at least one line of code. So a built-in operator beats that.
+
+
+But wait!
+
+How about we build the function into the language? No need to implement your own or to figure out how and which of the seven slightly different versions to import while avoiding bringing in twelve million gigabytes of useless junk along. Being an internal function, it can be optimized to oblivion, too.
+
+So what I'm suggesting is: <em>instead of adding the <code>|></code> operator to JavaScript, add something equivalent to <code>pipe</code> above, as <code>Function.pipe</code> or even in the global context (e.g. <code>window.pipe</code>)</em>. 
+
+A simple function, easy to add, fits well within the language, without the aforementioned downsides. It also has some neat extra goodies.
+
+
+
+<h3>How is <code>pipe</code> better?</h3>
+It's a regular function, so:
+    No need to meddle in the parser, precedence tables and whatnot to add it to the language.
+    It can be easily polyfilled, as demonstrated!
+    Arguably it's easier to learn/understand/use for programmers unfamiliar with the pipeline operator.
+    It's first-class! You can pass, return, and compose it neatly with other functions. Whatever you like!
+
+It's variadic, so you can do useful stuff like:
+<pre>
+    // pseudo-map of data source url to corresponding pipeline
+    // imagine data fetched from each url has a different format
+    //
+    // the first step in the pipeline ingests that format,
+    // the last spits out some common format
+    const data_sources_to_pipelines = [
+        [source_1_url, [source_1_function_1, source_1_function_2]],
+        [source_2_url, [source_2_function_1]],
+        [source_3_url, [source_3_function_1, source_3_function_2, source_3_function_3]]
+    ]
+
+    // the common format could then be processed by a common pipeline,
+    // which runs it through some more steps until it's fully baked
+    const common_pipeline = [common_function_1, common_function_2, common_function_3]
+
+    // you could then use something like this to obtain
+    // an array of processed data from all the sources:
+    const data_processed = data_sources_to_pipelines.map(([url, pipeline]) =>
+        pipe(fetch(url), ...pipeline, ...common_pipeline)
+    )
+</pre>
+Try doing things like that with your precious little operator!
+
+
+
+<h3>How is <code>pipe</code> worse?</h3>
+It's a regular function, so:
+    It may not stick out from the surrounding code as much as the operator.
+    It's not as clean syntactically as the operator.
+
+It's variadic, so optimization might be a little more involved than for the fixed-arity operator, <a href="https://news.ycombinator.com/item?id=16194991">as @hajile at HN points out</a>.
+
+
+
+<h3>What can we do about these <em>terrible</em> drawbacks?</h3>
+First, how to make it stick out more? Here's a simple way. Compare:
+<pre>
+    let result = "hello"
+      |> doubleSay
+      |> capitalize
+      |> exclaim
+</pre>
+with
+<pre>
+    let result = pipe("hello"
+      , doubleSay
+      , capitalize
+      , exclaim
+    )
+</pre>
+Not that different, are they?
+
+If you use this special leading-comma convention for <code>pipe</code> only, it'll stand out alright! This could even be enforced by linters, code editors, etc.
+
+If you want something fancier, you could have custom highlighting for <code style="color: brown">pipe</code>. You could probably have your IDE display <code>pipe</code> as unicode <code>ᐅ</code> or whatever.
+
+Surely if editors, IDEs, linters, etc. can treat stuff like JSX and whatnot specially, they could also do the same (even easier!) for regular built-in functions.
+
+
+Next, some arguments in favor of the operator mention words like conciseness, convenience, cleanliness, ergonomy, and whatnot. Let's compare <code>|></code> to <code>pipe</code> with that in mind.
+
+Given the same arguments/operands, in the <code>pipe</code> case we have a fixed additional cost at the beginning (have to prepend <code>pipe(</code>) and end (have to append <code>)</code>), but this is mostly for reading, as autocompletion will do half the typing and balancing for you here.
+
+On the other hand we have less keys to press per argument (<code>[,]</code> vs <code>[shift] + [|], [>]</code>).
+
+So at less than a handful of arguments we're even, and after that <code>pipe</code> gets cheaper both to write and to read, even disregarding autocompletion.
+
+Should <code>pipe</code> be placed inside the <code>Function</code> built-in object, you may also need to put a line like
+<pre>
+    const { pipe } = Function
+</pre>
+atop a file that uses it, for convenience. Your editor might help you out with this while autocompleting though. Alternatively, <code>pipe</code> could be a property of the global scope, like <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch">fetch</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/atob">atob</a>. So you could just use it right away, like the operator. But then we may upset this guy:
+<img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Woodsy_Owl.jpg" />
+So maybe take one for the team here?
+
+
+As for the optimization, I'm sure engine implementers can handle it.
+
+
+All in all, I think we did well. Didn't we?
+
+
+
+<h3>NO, YOU DIDN'T CONVINCE ME! I MUST HAVE THE OPERATOR!!!11!</h3>
+If you people still believe that the operator is really what the language needs right now, consider introducing it along with a more general and powerful extension to JavaScript: make all operators first-class, like functions, so you can pass them around. Also, add the ability to overload and define custom operators. This seems like a better idea than adding a new operator every time enough people think it'd be cool.
+
+It's a major thing though. Personally, I'm on the fence here, leaning more towards the "against" side. I actually like the fact that JS is fairly restricted and minimal in some aspects.
+
+Either way, if the pressure is already past the point of no return and the operator <em>must</em> be added, consider bringing <code>pipe</code> along.
+
+Or do nothing. Or whatever.
+
+Anyway, I tried.
+
+
+
+<h3>Outro</h3>
+To use <a href="https://www.goodreads.com/book/show/2998152-javascript">Douglas Crockford's</a> metaphor, I think <code>pipe</code> would be a better part than the pipeline operator. It may not look as cool, but it's definitely "a <em>backwards-compatible</em> way of streamlining chained function calls in a readable, <code>functional</code> manner", which "allows for greater readability when chaining several functions together".
+
+Putting in bad parts is real easy, especially with good intentions.
+
+<small>BTW they're <a href="https://github.com/Microsoft/TypeScript/issues/17718">trying to add it to TypeScript too</a>. I'd advise against, on the same grounds.</small>
+
+
+
+<h3>Appendix</h3>
+<blockquote cite="https://news.ycombinator.com/item?id=16196011">
+    A nice feature of a code editor would be if you could magically switch back and forth between code with intermediate named variables and pipelined version of the same code, e.g. by selecting the code and invoking an option.
+</blockquote>
+Anybody up for implementing that?!
+
+
+If you liked <code>pipe</code>, try also this other fantastic flavor:
+<pre>
+    const compose = (...args) => args.reduceRight((prev, curr) => curr(prev))
+
+    // yum!
+    const result = compose(exclaim, capitalize, doubleSay, "hello")
+
+    const logged = (fn) => (...args) => {
+        console.log('calling', fn)
+        return fn(...args)
+    }
+
+    const memoized = (fn) => {
+        const cache = new WeakMap()
+        return (arg) => {
+            if (cache.has(arg)) return cache.get(arg)
+            const result = fn(arg)
+            cache.set(arg, result)
+            return result
+        }
+    }
+
+    const special_square = compose(
+        logged,
+        memoized,
+        (a) => a * a
+    )
+</pre>
+So... decorative?
+
+
+Check out some more mad stuff you could do with <code>pipe</code>:
+<pre>
+    const { pipe: ᐅ } = Function
+    const { PI: π } = Math
+
+    const double = (n) => n * 2;
+    const increment = (n) => n + 1;
+
+    const result = ᐅ(π
+        , double
+        , increment
+        , double
+    ) // -> 14.566370614359172
+</pre>
+Wow! Pretty cool! Just kidding, don't do it.
+
+
+
+<hr />
+This file was last (re)generated 2018-01-24T23:31:18.325Z.
+<a href="https://github.com/djedr/djedr.github.io/edit/master/posts/./raw/random/2018-01-25">Edit this post</a>
+<a href="https://www.reddit.com/submit?url=https://djedr.github.io/posts/random-2018-01-25.html">reddit this post</a>
+Write to me: dariusz.jedrzejczak.work+notes<span class="mail-addr-postfix"></span>
+		</div>
+	</div>
+</body>
+</html>
