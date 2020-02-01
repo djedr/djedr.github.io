@@ -219,3 +219,10 @@ body {
 		content: "\0040" "gmail" "\002e" "com";
 	}
 }
+
+iframe {
+	border: none;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
