@@ -5,7 +5,7 @@ body {
 </style>
 <p><a name="top"></a></p>
 <h1 id="specification-draft-for-a-simple-data-interchange-format">Specification draft for a simple data interchange format<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></h1>
-<p><em>Published on 02.02.2020 02:02:20.20</em></p>
+<p><em>Published close to 02.02.2020 02:02:20.20.</em></p>
 <p>This specification introduces a <a href="https://www.martinfowler.com/bliki/TwoHardThings.html">anonymous</a> simple data interchange <em>Format</em><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, with potential advantages over <a href="https://www.json.org/json-en.html">JSON</a>, <a href="https://yaml.org/">YAML</a>, <a href="https://www.w3.org/TR/REC-xml/">XML</a>, <a href="https://en.wikipedia.org/wiki/S-expression">S-expressions</a>, <a href="toml">TOML</a>, <a href="https://github.com/lightbend/config/blob/master/HOCON.md">HOCON</a>, and others.</p>
 <p>In describing the Format, JSON will be used as a reference. Reading the description at <a href="https://www.json.org/json-en.html">JSON.org</a> is advised.</p>
 <p>The Format is <em>very</em> simple. It is essentially text in which paired <em>Brackets</em> (<code>[</code> and <code>]</code>) define structural relationships (i.e. nesting). On top of that there is a generalized Escape mechanism which allows encoding Brackets as part of text as well as mixing in more sophisticated grammars.</p>
