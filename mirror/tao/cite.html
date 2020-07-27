@@ -30,7 +30,7 @@
 <li><code>cite</code> is the symbol <code>`</code> followed by <code>any</code> symbol.</li>
 </ul>
 <p>Primarily, it introduces an <a href="https://en.wikipedia.org/wiki/Escape_sequence">escape mechanism</a> for the brackets, so that they can be parsed as non-meta and “included” in notes. From the perspecitve of the parser though, whatever follows the cite symbol is opaque. No escaping or including happens there.</p>
-<p>It is instead handled by a separate layer.</p>
+<p>Escaping should instead be handled by a layer separate from the parser.</p>
 <p>By defining <code>cite</code> in terms of <code>any</code> rather than restricting it to the meta symbols only, a space is opened for extensions that need not be a part of the basic syntax, but are permitted by it. On the other hand we can also introduce restrictions to <code>cite</code> outside of the syntax.</p>
 <p>Features introduced by cites may be contextual.</p>
 <p>Some standard features that are enabled by cites include:</p>

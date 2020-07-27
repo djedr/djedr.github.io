@@ -46,8 +46,8 @@ function tao(input) {
 }
 ]</code></pre>
 <p>Contains embedded JavaScript which in turn in its syntax contains square brackets and sometimes the <code>`</code> symbol. Nonetheless this embedded JavaScript is valid TAO, because all brackets are balanced and there are no <code>`</code> symbols in conjunction with either <code>`</code> or <code>[</code> or <code>]</code>. These constraints are sufficient to represent any embedded string within TAO, regardless of what other symbol combinations it contains.</p>
-<p>A specific interpretation of a tao as such an embedded string may be enforced by using a type annotation, like the <code>raw</code> here.</p>
-<p>Such a <code>raw</code> tao could be processed by unparsing with a simple modification on encountering a cite symbol <code>`</code>: if it is followed by any of the 3 meta symbols then the unparse will only include the meta symbol. This means that a in <code>raw</code> tao it is only necessary to escape the following:</p>
+<p>Interpretation of a tao an embedded string like this may be enforced explicitly by using a type annotation, like the <code>raw</code> here.</p>
+<p>Such a <code>raw</code> tao could be processed by unparsing with a simple modification on encountering a cite symbol <code>`</code>: if it is followed by any of the 3 meta symbols then the unparse will only include the meta symbol. This means that in a <code>raw</code> tao it is only necessary to escape the following:</p>
 <ul>
 <li>an <strong>unbalanced</strong> bracket <code>[</code> or <code>]</code></li>
 <li>the cite symbol <code>`</code> <strong>if it is followed by <code>`</code> or <code>[</code> or <code>]</code></strong></li>

@@ -232,7 +232,7 @@ phone numbers [
       const value = Array.isArray(e)? e[1]: e
       const name = Array.isArray(e)? e[0]: e.length > 15? e.slice(0, 15) + "…": e
       const option = document.createElement("option")
-      option.value = e
+      option.value = value
       option.textContent = name
       examplesSelect.appendChild(option)
     })

@@ -94,8 +94,8 @@
 <span class="key">age</span> [<span class="number">25</span>]
 </pre>
 <p>May be considered a <a href="shapes.html#dict"><code>dictionary</code></a>.</p>
-<p>Each key in this dictionary is a <a href="shapes.html#matter"><code>matter</code></a>. That is the usual case.</p>
-<p><strong>The leading and trailing whitespace should not be considered part of a key</strong>, i.e. keys may be checked for equality only after trimming any whitespace that they contain. This is similar to a common practice of trimming strings before comparison.</p>
+<p>Each key in this dictionary is a <a href="shapes.html#matter"><code>matter</code></a>. This is the usual case for dictionaries.</p>
+<p><strong>The leading and trailing whitespace are not considered part of a key</strong>, i.e. keys may be checked for equality only after trimming any whitespace that they contain. This is similar to a common practice of trimming strings before comparison.</p>
 <p>Rarely however we might want to include leading or trailing (or both) whitespace in a key. This can be done by delimiting the key by <code>cites</code> with <code>'</code>:</p>
 <pre><code>`&#39;   key with leading whitespace []
 key with trailing whitespace   `&#39; []
@@ -115,9 +115,9 @@ key with trailing whitespace   `&#39; []
 `] []
 `` []</code></pre>
 <p>is a dictionary with unusual keys that contain meta symbols.</p>
-<p>So keys in the general case besides <code>matter</code>, may be interleaved <code>notes</code> and <code>cites</code>. They are necessarily interleaved, since two consecutive <code>notes</code> are impossible by TAO’s grammar.</p>
+<p>So keys in the general case besides <code>matter</code>, may be interleaved <code>notes</code> and <code>cites</code>. Note that two consecutive <code>notes</code> are impossible by TAO’s grammar.</p>
 <p>The first <code>cite</code> in a key may be the <code>`'</code> delimiter if it is not preceded by <code>matter</code>. The last <code>cite</code> may be the same delimiter if it is not followed by <code>matter</code>. The <code>cites</code> inbetween are restricted to <code>[</code> or <code>]</code> or <code>`</code>.</p>
 <p>This is a complete definition of a <code>key</code>.</p>
-<p>The value of a key can then be obtained by removing any leading space from the first <code>note</code> of the key and trailing space from the last <code>note</code> of the key, removing the <code>`'</code> delimiters, resolving cites to their escaped symbols and concatenating thus obtained parts into one string.</p>
+<p>The value of a <code>key</code> can then be obtained by removing any leading space from its first <code>note</code> and trailing space from its last <code>note</code>, removing the <code>`'</code> delimiters, resolving cites to their escaped symbols and concatenating thus obtained parts into one string.</p>
 </body>
 </html>

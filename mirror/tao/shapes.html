@@ -137,7 +137,7 @@ as well as this []
 and this []</code></pre>
 <h1 id="primitive">Primitive</h1>
 <p>Synonyms: scalar, a basic or simple data type.</p>
-<p>A <code>primitive</code> is a <code>tao</code> with zero or more parts which are all <code>notes</code> or <code>cites</code>.</p>
+<p>A <code>primitive</code> is a <code>tao</code> with zero or more parts which are all <code>notes</code> or <code>cites</code>. Note that two consecutive <code>notes</code> are impossible by TAO’s grammar.</p>
 <pre><code>this is a primitive</code></pre>
 <h2 id="number">Number</h2>
 <p>A <code>number</code> may be a primitive which conforms to a specific <em>number grammar</em>.</p>
@@ -145,8 +145,8 @@ and this []</code></pre>
 <pre><code>36.5</code></pre>
 <p>This however does not:</p>
 <pre><code>0xcafe</code></pre>
-<p>even though they may be reasonably interpreted as a number according to some other grammar.</p>
-<p>It may be useful to distinguish between different kinds of numbers, such as integers, floating point, big, short, etc. Different grammars may be used for that.</p>
+<p>even though it may be reasonably interpreted as a number according to some other grammar.</p>
+<p>It may be useful to distinguish between different kinds of numbers, such as integers, floating point, big, short, etc. Domain-specific grammars may be used for that.</p>
 <h2 id="other-specific-primitives">Other specific primitives</h2>
 <p>Other specific primitives, such as <code>booleans</code> may be defined analogously to <code>numbers</code>. For example:</p>
 <pre><code>is tao [true]
@@ -169,7 +169,7 @@ is primitive [false]</code></pre>
 <p>A <code>structure</code> is a <code>tao</code> with at least one part which is a <code>tree</code>.</p>
 <h2 id="list">List</h2>
 <p>Synonyms: array, vector, sequence.</p>
-<p>A <code>list</code> is a <code>structure</code> with no <code>notes</code> or with <code>notes</code> that are all <code>spaces</code>.</p>
+<p>A <code>list</code> is a <code>structure</code> with no <code>notes</code> or <code>cites</code> or with <code>notes</code> that are all <code>spaces</code>.</p>
 <pre><code>[parsley][sage][rosemary][thyme]</code></pre>
 <p>or equivalent:</p>
 <pre><code>[parsley]
@@ -218,6 +218,9 @@ is primitive [false]</code></pre>
 <span id="cb15-15"><a href="#cb15-15" aria-hidden="true"></a>    <span class="ot">]</span></span>
 <span id="cb15-16"><a href="#cb15-16" aria-hidden="true"></a><span class="fu">}</span></span></code></pre></div>
 <p>See also <a href="order.html">a note on orderedness</a>, <a href="concatenation.html">on concatenability</a>, and <a href="keys.html">on keys</a>.</p>
+<h1 id="comments-type-annotations-and-other-extensions">Comments, type annotations, and other extensions</h1>
+<p>Different variants of the above definitions are possible, but these capture the general theme.</p>
+<p>For example if we introduce <a href="comments.html">comments</a>, <a href="explicit.html">type annotations</a> then the above definitions have to be adjusted to accomodate them.</p>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
