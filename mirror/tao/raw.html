@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>TAO: raw taos</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="style.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="icon" type="image/png" href="favicon.png" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">TAO: raw taos</h1>
+</header>
+<p><a href="index.html"><img src="logo.png" class="logo" /></a></p>
+<p><strong>Note:</strong> This is subject to <a href="future.html">future work</a>. Errors, ambiguities, and omissions are to be expected.</p>
+<p>A tao like this:</p>
+<pre><code>embedded js`: raw [
+function meta(input) {
+  return input.at(&#39;[&#39;) || input.at(&#39;`&#39;) || input.at(&#39;]&#39;)
+}
+function tree(input) {
+  if (input.at(&#39;[&#39;)) { input.next()
+    const tree = tao(input.until(&#39;]&#39;))
+    input.next()
+    return [&#39;tree&#39;, tree]
+  }
+}
+function tao(input) {
+  const tao = []
+  while (true) {
+    if (input.done()) return [&#39;tao&#39;, tao]
+    tao.push(tree(input) || cite(input) || note(input))
+  }
+}
+]</code></pre>
+<p>Contains embedded JavaScript which in turn in its syntax contains square brackets and sometimes the <code>`</code> symbol. Nonetheless this embedded JavaScript is valid TAO, because all brackets are balanced and there are no <code>`</code> symbols in conjunction with either <code>`</code> or <code>[</code> or <code>]</code>. These constraints are sufficient to represent any embedded string within TAO, regardless of what other symbol combinations it contains.</p>
+<p>A specific interpretation of a tao as such an embedded string may be enforced by using a type annotation, like the <code>raw</code> here.</p>
+<p>Such a <code>raw</code> tao could be processed by unparsing with a simple modification on encountering a cite symbol <code>`</code>: if it is followed by any of the 3 meta symbols then the unparse will only include the meta symbol. This means that a in <code>raw</code> tao it is only necessary to escape the following:</p>
+<ul>
+<li>an <strong>unbalanced</strong> bracket <code>[</code> or <code>]</code></li>
+<li>the cite symbol <code>`</code> <strong>if it is followed by <code>`</code> or <code>[</code> or <code>]</code></strong></li>
+</ul>
+<p>These cases are very rare indeed, as most brackets in any kind of text are balanced and the <code>`</code> symbol is among the least frequently occuring and especially in combination with any of the three TAO meta symbols.</p>
+<p>In this way, by means reducing probability and sticking to minimalism, we get a powerful syntactical feature “for free”. There is no need for specialized mechanisms such as multiline strings or here documents. The “escape friction” that remains is so negligible that introducing such mechanisms would add more complexity than subtract.</p>
+</body>
+</html>

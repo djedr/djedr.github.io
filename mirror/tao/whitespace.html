@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>TAO: whitespace</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="style.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="icon" type="image/png" href="favicon.png" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">TAO: whitespace</h1>
+</header>
+<p><a href="index.html"><img src="logo.png" class="logo" /></a></p>
+<p><strong>Note:</strong> This is subject to <a href="future.html">future work</a>. Errors, ambiguities, and omissions are to be expected.</p>
+<p>Unlike most other syntaxes, TAO does not include a notion of or a rule for whitespace in its grammar. Instead, it leaves it to be handled on further layers, as needed.</p>
+<p>Whitespace may seem like a natural optional token separator, but treating it as insignificant and a separator immediately leads to a need for a special rule for text strings. In most programming languages, traditionally, these rules are often unnecessarily restrictive and further make working with freeform text difficult. Which spawns new, less restrictive rules, but sometimes still not permissive enough. This adds unnecessary complexity to a notation.</p>
+<p>One effect which is apparent in virtually all programming languages that stems from treating whitespace as a separator is the inability (or difficulty) to create identifiers which include whitespace, e.g. multiple space-separated words to describe a single entity. Nonetheless a need for that still remains. This leads to introduction of special rules and conventions for multiword identifiers, such as camelCase, snake_case, kebab-case and various others. These are often incompatible between languages and programmers disagree on which is better. They are all compromises and so may never be fully satisfactory. Such encodings make it difficult or impossible to encode certain common patterns or names exactly, so conventions are invented on top of them.</p>
+</body>
+</html>

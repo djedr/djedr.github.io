@@ -1,0 +1,46 @@
+body {
+    margin: auto;
+    max-width: 16cm;
+    padding: 0.25cm;
+}
+.logo {
+    margin: auto; 
+    display: block;
+}
+
+.key {
+    background-color: rgb(242, 252, 252);
+    color: rgb(0, 102, 0);
+    font-weight: bold;
+}
+.string {
+    color: rgb(128, 26, 0);
+}
+.number {
+    color: rgb(102, 102, 102);
+}
+.cite {
+    color: rgb(153, 26, 26);
+}
+.line {
+    color: rgb(26, 26, 32);
+    background-color: rgb(242, 242, 252);
+}
+.type {
+    color: rgb(26, 26, 153);
+    font-weight: bold;
+}
+.bracket {
+    color: #007020;
+    font-weight: bold;
+}
+.tag {
+    color: #007020;
+    font-weight: bold;
+}
+.attrib {
+    color: #007020;
+}
+.avalue {
+    color: #4070a0;
+}

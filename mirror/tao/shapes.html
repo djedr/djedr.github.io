@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>TAO: shapes</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="style.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="icon" type="image/png" href="favicon.png" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">TAO: shapes</h1>
+</header>
+<p><a href="index.html"><img src="logo.png" class="logo" /></a></p>
+<p><strong>Note:</strong> This is subject to <a href="future.html">future work</a>. Errors, ambiguities, and omissions are to be expected.</p>
+<p>TAO is a clay that can take any shape. It includes only the most generic data types: <strong>trees</strong> and <strong>annotations</strong> (notes) to go with them.   Any data type can be created out of those without need for specialized syntax.</p>
+<p>Trees can be constrained in different ways to encode any data structure. Notes can be constrained to encode any data primitive.</p>
+<p>All data in TAO naturally has implicit types, but <a href="explicit.html">explicit type annotations</a> may be included as well via <a href="cite.html"><strong>cites</strong></a>. The preferred <a href="typing.html">typing discipline</a> may be enforced or they can be mixed.</p>
+<p>All this can be achieved within the minimal syntax of TAO. Alternatively, a custom syntax may be laid on top. Although to reap the benefits of a <a href="tas.html">UTAS</a>, common data types should be represented in a standard way across domains.</p>
+<p>Conventions are proposed here for sensible representations of the basic shapes<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> based on common patterns of various languages. This is a starting point for future standardization. <a href="future.html">Experimental adoption of TAO is needed to help that</a>.</p>
+<p><strong>Generalizations of these conventions are independent of TAO and may be used with other syntaxes as well</strong>.</p>
+<p>In practice, it is up to <em>TAO endpoints</em><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> to decide on a mutually intelligible data representation on top of TAO, as is the case with any other TAS. TAO though is exceptionally flexible in that regard, offering maximum freedom.</p>
+<h1 id="fundamental">Fundamental</h1>
+<p>The fundamental data types of TAO are defined by its <a href="grammar.html">grammar</a>:</p>
+<ul>
+<li><strong><code>tao</code></strong> is zero or more parts each of which is a <code>tree</code> or a <code>note</code> or a <code>cite</code></li>
+<li><code>tree</code> is a <strong><code>tao</code></strong> inbetween a <code>[</code> and a <code>]</code>.</li>
+<li><code>note</code> is one or more symbols that are not <code>[</code> or <code>]</code> or <code>`</code>.</li>
+<li><code>cite</code> is the meta symbol <code>`</code> followed by <code>any</code> symbol.</li>
+</ul>
+<p>These are the building blocks of other patterns which will now be described in terms of them.</p>
+<h1 id="value">Value</h1>
+<p>A <code>value</code> is a synonym for <code>tao</code>.</p>
+<h1 id="emptiness">Emptiness</h1>
+<p>An <code>emptiness</code> is a <code>tao</code> with zero parts, i.e. an empty string.</p>
+<p>It may be sometimes useful to define and distinguish different kinds of emptiness. This could be achieved with type annotations:</p>
+<pre><code>emptiness is []
+
+a nil is [`: nil]
+a null is [`: null]
+a none is [`: none]
+a unit is [`: unit]
+
+`; or with prefix annotations:
+
+a void is`: void []
+a nothing is`: nothing []
+an undefined is`: undefined []
+an empty string is`: string []</code></pre>
+<p>These may be interpreted as different kinds of <code>emptiness</code>.</p>
+<h1 id="space">Space</h1>
+<p>A <code>space</code> is a <code>note</code> which contains only whitespace.</p>
+<p>For example:</p>
+<pre><code>[   ]</code></pre>
+<p>is a <code>tao</code> which contains a <code>tree</code> with a <code>space</code>.</p>
+<h1 id="matter">Matter</h1>
+<p>A <code>matter</code> is a <code>note</code> which contains at least one symbol other than whitespace.</p>
+<pre><code>matter</code></pre>
+<h1 id="key">Key</h1>
+<p>A <code>key</code> is <a href="keys.html">usually</a> a <code>matter</code>. A <code>tao</code> with 3 different keys:</p>
+<pre><code>this is a key []
+as well as this []
+and this []</code></pre>
+<h1 id="primitive">Primitive</h1>
+<p>Synonyms: scalar, a basic or simple data type.</p>
+<p>A <code>primitive</code> is a <code>tao</code> with zero or more parts which are all <code>notes</code> or <code>cites</code>.</p>
+<pre><code>this is a primitive</code></pre>
+<h2 id="number">Number</h2>
+<p>A <code>number</code> may be a primitive which conforms to a specific <em>number grammar</em>.</p>
+<p>For example this <code>tao</code> conforms to a JSON definition of a number:</p>
+<pre><code>36.5</code></pre>
+<p>This however does not:</p>
+<pre><code>0xcafe</code></pre>
+<p>even though they may be reasonably interpreted as a number according to some other grammar.</p>
+<p>It may be useful to distinguish between different kinds of numbers, such as integers, floating point, big, short, etc. Different grammars may be used for that.</p>
+<h2 id="other-specific-primitives">Other specific primitives</h2>
+<p>Other specific primitives, such as <code>booleans</code> may be defined analogously to <code>numbers</code>. For example:</p>
+<pre><code>is tao [true]
+is dictionary [true]
+is primitive [false]</code></pre>
+<p>Might be a <code>dictionary</code> with 3 <code>boolean</code> entries.</p>
+<h2 id="generic">Generic</h2>
+<p>A <code>generic</code> primtive may be defined as a a primitive which does not conform to any known grammar.</p>
+<p>For example:</p>
+<pre><code>this is a generic primitive</code></pre>
+<p>In various syntaxes strings are commonly used as such a generic fallback data type when there is no adequate primitive defined in the grammar of the syntax itself. Such a catch-all primitive type is often indispensable.</p>
+<h2 id="string">String</h2>
+<p>A <code>string</code> may be defined as synonymous with <code>generic</code> or by a specific grammar:</p>
+<pre><code>&quot;this is a string because it begins with a quote mark</code></pre>
+<p>or as a <code>primitive</code> with an explicit type annotation:</p>
+<pre><code>42`: string</code></pre>
+<p>Depending on the level of restriciveness desired.</p>
+<h1 id="structures">Structures</h1>
+<p>Synonyms: a composite or compound or complex data type.</p>
+<p>A <code>structure</code> is a <code>tao</code> with at least one part which is a <code>tree</code>.</p>
+<h2 id="list">List</h2>
+<p>Synonyms: array, vector, sequence.</p>
+<p>A <code>list</code> is a <code>structure</code> with no <code>notes</code> or with <code>notes</code> that are all <code>spaces</code>.</p>
+<pre><code>[parsley][sage][rosemary][thyme]</code></pre>
+<p>or equivalent:</p>
+<pre><code>[parsley]
+[sage]
+[rosemary]
+[thyme]</code></pre>
+<p>The same as a JSON array:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="ot">[</span><span class="st">&quot;parsley&quot;</span><span class="ot">,</span> <span class="st">&quot;sage&quot;</span><span class="ot">,</span> <span class="st">&quot;rosemary&quot;</span><span class="ot">,</span> <span class="st">&quot;thyme&quot;</span><span class="ot">]</span></span></code></pre></div>
+<p>See also <a href="list.html">a note for the extreme syntactic minimalist</a>.</p>
+<h2 id="pair">Pair</h2>
+<p>A <code>pair</code> is a <code>structure</code> with a single <code>key</code> followed by a single <code>tree</code>. The <code>value</code> of the <code>tree</code> is considered the <code>value</code> of the <code>pair</code>.</p>
+<h2 id="dict">Dictionary</h2>
+<p>Synonyms: dict, object, record, struct, map, symbol table, hash table, keyed list, associative array.</p>
+<p>A <code>map</code> is a <code>structure</code> with one or more <code>pairs</code>. This means that a single <code>pair</code> is the simplest <code>dictionary</code>.</p>
+<pre>
+<span class="key">songs</span> [
+    [
+        <span class="key">title</span> [<span class="string">Scarborough Fair / Canticle</span>]
+        <span class="key">length</span> [<span class="string">3:10</span>]
+    ]
+    [
+        <span class="key">title</span> [<span class="string">Patterns</span>]
+        <span class="key">length</span> [<span class="string">2:45</span>]
+    ]
+    [
+        <span class="key">title</span> [<span class="string">Cloudy</span>]
+        <span class="key">length</span> [<span class="string">2:15</span>]
+    ]
+]
+</pre>
+<p>Equivalent JSON object:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a><span class="fu">{</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a>    <span class="dt">&quot;songs&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true"></a>        <span class="fu">{</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true"></a>            <span class="dt">&quot;title&quot;</span><span class="fu">:</span> <span class="st">&quot;Scarborough Fair / Canticle&quot;</span><span class="fu">,</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true"></a>            <span class="dt">&quot;length&quot;</span><span class="fu">:</span> <span class="st">&quot;3:10&quot;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true"></a>        <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true"></a>        <span class="fu">{</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true"></a>            <span class="dt">&quot;title&quot;</span><span class="fu">:</span> <span class="st">&quot;Patterns&quot;</span><span class="fu">,</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true"></a>            <span class="dt">&quot;length&quot;</span><span class="fu">:</span> <span class="st">&quot;2:45&quot;</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true"></a>        <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true"></a>        <span class="fu">{</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true"></a>            <span class="dt">&quot;title&quot;</span><span class="fu">:</span> <span class="st">&quot;Cloudy&quot;</span><span class="fu">,</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true"></a>            <span class="dt">&quot;length&quot;</span><span class="fu">:</span> <span class="st">&quot;2:15&quot;</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true"></a>        <span class="fu">}</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true"></a>    <span class="ot">]</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true"></a><span class="fu">}</span></span></code></pre></div>
+<p>See also <a href="order.html">a note on orderedness</a>, <a href="concatenation.html">on concatenability</a>, and <a href="keys.html">on keys</a>.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>The terms data <em>type</em> or <em>pattern</em> or <em>shape</em> may be used interchangeably.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>A TAO endpoint is any entity that reads or writes TAO.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>

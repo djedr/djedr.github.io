@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>TAO: interactive parser</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="style.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="icon" type="image/png" href="favicon.png" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">TAO: interactive parser</h1>
+</header>
+<p><a href="index.html"><img src="logo.png" class="logo" /></a></p>
+<p>This is a demonstration of a basic parser and unparser for TAO. JavaScript needs to be enabled for it to work. If any errors occur, they will appear in your web browser’s console.</p>
+<style>
+.parser {    
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+.box {
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  top: 0;
+}
+.button {
+  width: 3cm;
+  cursor: pointer;
+  user-select: none;
+  text-align: center;
+  font-family: sans-serif;
+}
+.button:hover,
+.button:focus {
+  transform: scale(1.02);
+}
+.button:active {
+  transform: scale(0.98);
+}
+#input, #output {
+  box-sizing: border-box;
+  font-size: 1.25em;
+  font-weight: bold;
+  min-height: 3cm;
+  
+  min-width: 7cm;
+  width: 100%;
+}
+#input, #parse, #examples {
+  color: white;
+  background-color: black;
+}
+#input, #parse, #output, #unparse, #examples {
+  border: 1px solid lightgray;
+}
+</style>
+example: <select id="examples"></select>
+<script src="parser.js"></script>
+<div class="parser">
+<div class="box">
+<textarea id="input">Enter TAO here and click parse or select an example. JSON AST of TAO will appear in the other box. This text is valid TAO, so you may click parse now.</textarea>
+<div id="parse" class="button">
+parse
+</div>
+</div>
+ 
+<div class="box">
+<textarea id="output">Or enter JSON AST of TAO here and click unparse. TAO will appear in the other box. This text is not valid JSON, so delete it first.</textarea>
+<div id="unparse" class="button">
+unparse
+</div>
+</div>
+</div>
+<script>
+    const inputArea = document.getElementById("input")
+    const outputArea = document.getElementById("output")
+    const parseButton = document.getElementById("parse")
+    const unparseButton = document.getElementById("unparse")
+
+    const examplesSelect = document.getElementById("examples")
+
+    const doParse = () => {
+      outputArea.value = ""
+      setTimeout(() => outputArea.value = toAst(inputArea.value), 150)
+    }
+    parseButton.onclick = doParse
+    unparseButton.onclick = () => {
+      inputArea.value = ""
+      setTimeout(() => inputArea.value = unparse(JSON.parse(outputArea.value)), 150)
+    }
+
+    const examples = [
+      ['default', `Enter TAO here and click parse or select an example. JSON AST of TAO will appear in the other box. This text is valid TAO, so you may click parse now.`],
+      `key [value]`,
+      `[parsley][sage][rosemary][thyme]`,
+      `songs [
+    [
+        title [Scarborough Fair / Canticle]
+        length [3:10]
+    ]
+    [
+        title [Patterns]
+        length [2:45]
+    ]
+    [
+        title [Cloudy]
+        length [2:15]
+    ]
+]`,
+      `first name [John]
+last name [Smith]
+age [25]
+address [
+    street address [21 2nd Street]
+    city [New York]
+    state [NY]
+    postal code [10021]
+]
+phone numbers [
+    [
+        type [home]
+        number [212 555-1234]
+    ]
+    [
+        type [fax]
+        number [646 555-4567]
+    ]
+]`,
+      ['TAO-HTML 1', `hello, [a href[https://tree-annotation.org]\`>TAO]!`],
+      ['TAO-HTML 2', `[p\`>TAO ([a href[tao.html]\`>Tree Annotation Objects]) is a unique and extremely simple [a href[tas.html]\`>Tree Annotation Syntax] which can be used in [a href[contexts.html]\`>all kinds of contexts]. It is easily readable and writable by humans and machines and has only three basic constructs]`],
+      `defun [factorial [x]
+   if [zerop [x]
+       1
+       * [x factorial [-[x 1]]]
+    ]
+]`,
+      `[defun\` factorial [x]
+   [if [zerop\` x]
+       1
+       [*\` x [factorial [-\` x\` 1]]]]]`,
+      `\`: set [
+    [potato]
+    [tomato]
+    [zucchini]
+    [courgette] \`; oops
+\`: set ]`,
+      ['nestable comment', `\`#[
+    nestable comment [
+        is simply a "commented-out" tree
+    ]
+]`],
+    ]
+
+    examples.forEach(e => {
+      const value = Array.isArray(e)? e[1]: e
+      const name = Array.isArray(e)? e[0]: e.length > 15? e.slice(0, 15) + "…": e
+      const option = document.createElement("option")
+      option.value = e
+      option.textContent = name
+      examplesSelect.appendChild(option)
+    })
+    
+    examplesSelect.onchange = (e) => {
+      inputArea.value = e.target.value
+      doParse()
+    }
+</script>
+<h1 id="source-code">Source code</h1>
+<p>The parser is implemented in simple JavaScript. The implementation can be used as a reference for more advanced parsers.</p>
+<p>Note that in JavaScript:</p>
+<ul>
+<li>a <code>function</code> returns <code>undefined</code> by default; <code>undefined</code> is <em>falsy</em></li>
+<li>the <code>||</code> operator only evaluates and returns its right operand if the left one is falsy; otherwise it returns the left one</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">function</span> <span class="fu">meta</span>(input) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  <span class="cf">return</span> input<span class="op">.</span><span class="fu">at</span>(<span class="st">&#39;[&#39;</span>) <span class="op">||</span> input<span class="op">.</span><span class="fu">at</span>(<span class="st">&#39;`&#39;</span>) <span class="op">||</span> input<span class="op">.</span><span class="fu">at</span>(<span class="st">&#39;]&#39;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>}</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">function</span> <span class="fu">cite</span>(input) {</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>  <span class="cf">if</span> (input<span class="op">.</span><span class="fu">at</span>(<span class="st">&#39;`&#39;</span>)) { input<span class="op">.</span><span class="fu">next</span>()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>    <span class="cf">if</span> (input<span class="op">.</span><span class="fu">done</span>()) input<span class="op">.</span><span class="fu">error</span>(<span class="st">&#39;cite&#39;</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>    <span class="cf">return</span> [<span class="st">&#39;cite&#39;</span><span class="op">,</span> input<span class="op">.</span><span class="fu">next</span>()]</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>  }</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>}</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="kw">function</span> <span class="fu">note</span>(input) {</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>  <span class="cf">if</span> (<span class="fu">meta</span>(input)) input<span class="op">.</span><span class="fu">error</span>(<span class="st">&#39;note&#39;</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>  <span class="kw">let</span> note <span class="op">=</span> input<span class="op">.</span><span class="fu">next</span>()</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>  <span class="cf">while</span> (<span class="kw">true</span>) {</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>    <span class="cf">if</span> (input<span class="op">.</span><span class="fu">done</span>() <span class="op">||</span> <span class="fu">meta</span>(input)) <span class="cf">return</span> [<span class="st">&#39;note&#39;</span><span class="op">,</span> note]</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>    note <span class="op">+=</span> input<span class="op">.</span><span class="fu">next</span>()</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>  }</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>}</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a><span class="kw">function</span> <span class="fu">tree</span>(input) {</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>  <span class="cf">if</span> (input<span class="op">.</span><span class="fu">at</span>(<span class="st">&#39;[&#39;</span>)) { input<span class="op">.</span><span class="fu">next</span>()</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>    <span class="kw">const</span> tree <span class="op">=</span> <span class="fu">tao</span>(input<span class="op">.</span><span class="fu">until</span>(<span class="st">&#39;]&#39;</span>))</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a>    input<span class="op">.</span><span class="fu">next</span>()</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a>    <span class="cf">return</span> [<span class="st">&#39;tree&#39;</span><span class="op">,</span> tree]</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a>  }</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a>}</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a><span class="kw">function</span> <span class="fu">tao</span>(input) {</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a>  <span class="kw">const</span> tao <span class="op">=</span> []</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a>  <span class="cf">while</span> (<span class="kw">true</span>) {</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a>    <span class="cf">if</span> (input<span class="op">.</span><span class="fu">done</span>()) <span class="cf">return</span> [<span class="st">&#39;tao&#39;</span><span class="op">,</span> tao]</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true"></a>    tao<span class="op">.</span><span class="fu">push</span>(<span class="fu">tree</span>(input) <span class="op">||</span> <span class="fu">cite</span>(input) <span class="op">||</span> <span class="fu">note</span>(input))</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true"></a>  }</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true"></a>}</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true"></a><span class="kw">function</span> <span class="fu">parse</span>(str) {</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true"></a>  <span class="kw">const</span> {length} <span class="op">=</span> str</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true"></a>  <span class="kw">let</span> position <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true"></a>  <span class="kw">const</span> input <span class="op">=</span> {</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true"></a>    <span class="fu">done</span>() { <span class="cf">return</span> position <span class="op">&gt;=</span> length }<span class="op">,</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true"></a>    <span class="fu">at</span>(symbol) { <span class="cf">return</span> str[position] <span class="op">===</span> symbol }<span class="op">,</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true"></a>    <span class="fu">next</span>() { <span class="cf">return</span> str[position<span class="op">++</span>] }<span class="op">,</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true"></a>    <span class="fu">save</span>() { saved <span class="op">=</span> position }<span class="op">,</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true"></a>    <span class="fu">error</span>(name) { <span class="cf">throw</span> <span class="bu">Error</span>(<span class="vs">`ERROR: malformed </span><span class="sc">${</span>name<span class="sc">}</span><span class="vs"> at </span><span class="sc">${</span>position<span class="sc">}</span><span class="vs">.`</span>) }<span class="op">,</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true"></a>    <span class="co">// returns a shallow copy of input with a replaced done() method</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true"></a>    <span class="co">// the new method uses the original one</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true"></a>    <span class="fu">until</span>(symbol) {</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true"></a>      <span class="kw">const</span> saved <span class="op">=</span> position</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true"></a>      <span class="cf">return</span> {<span class="op">...</span>input<span class="op">,</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true"></a>        <span class="fu">done</span>() {</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true"></a>          <span class="cf">if</span> (input<span class="op">.</span><span class="fu">done</span>()) <span class="cf">throw</span> <span class="bu">Error</span>(</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true"></a>            <span class="vs">`ERROR: since </span><span class="sc">${</span>saved<span class="sc">}</span><span class="vs"> expected </span><span class="sc">${</span><span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(symbol)<span class="sc">}</span><span class="vs"> before end of input`</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true"></a>          )</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true"></a>          <span class="cf">return</span> input<span class="op">.</span><span class="fu">at</span>(symbol)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true"></a>        }</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true"></a>      }</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true"></a>    }</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true"></a>  }</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true"></a>  <span class="cf">return</span> <span class="fu">tao</span>(input)</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true"></a>}</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true"></a><span class="kw">function</span> <span class="fu">unparse</span>(ast) {</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true"></a>    <span class="kw">const</span> [tag<span class="op">,</span> value] <span class="op">=</span> ast</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true"></a>    <span class="cf">if</span> (tag <span class="op">===</span> <span class="st">&#39;tao&#39;</span>) <span class="cf">return</span> value<span class="op">.</span><span class="fu">reduce</span>((acc<span class="op">,</span> next) <span class="kw">=&gt;</span> acc <span class="op">+</span> <span class="fu">unparse</span>(next)<span class="op">,</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true"></a>    <span class="cf">if</span> (tag <span class="op">===</span> <span class="st">&#39;tree&#39;</span>) <span class="cf">return</span> <span class="st">&#39;[&#39;</span> <span class="op">+</span> <span class="fu">unparse</span>(value) <span class="op">+</span> <span class="st">&#39;]&#39;</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true"></a>    <span class="cf">if</span> (tag <span class="op">===</span> <span class="st">&#39;note&#39;</span>) <span class="cf">return</span> value</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true"></a>    <span class="cf">if</span> (tag <span class="op">===</span> <span class="st">&#39;cite&#39;</span>) <span class="cf">return</span> <span class="st">&#39;`&#39;</span> <span class="op">+</span> value</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true"></a>    <span class="cf">throw</span> <span class="bu">Error</span>(<span class="vs">`Invalid JSON AST of TAO: </span><span class="sc">${</span><span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(ast)<span class="sc">}</span><span class="vs">`</span>)</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true"></a>}</span></code></pre></div>
+</body>
+</html>

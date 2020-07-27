@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>TAO: HTML and XML</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="style.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="icon" type="image/png" href="favicon.png" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">TAO: HTML and XML</h1>
+</header>
+<p><a href="index.html"><img src="logo.png" class="logo" /></a></p>
+<p><strong>Note:</strong> This is subject to <a href="future.html">future work</a>. Errors, ambiguities, and omissions are to be expected.</p>
+<p>The major good qualities of HTML and XML are:</p>
+<ul>
+<li><p>ability to naturally mix structure into freeform text with low number of meta symbols that may interrupt it and thus need to be escaped</p></li>
+<li><p>whitespace flexibility</p></li>
+</ul>
+<p>TAO retains these.</p>
+<p>On the other hand HTML and XML are sometimes described as unnecessarily:</p>
+<ul>
+<li>complex</li>
+<li>coupled</li>
+<li>restricted</li>
+<li>redundant</li>
+<li>quirky</li>
+</ul>
+<p>And combinations of those.</p>
+<p>These are all undesirable traits in a syntax that may translate into thinking when using it. TAO tries to eliminate them, following <a href="principles.html">principles of minimalism</a>.</p>
+<h1 id="xml-attributes">XML attributes</h1>
+<p>XML’s syntax has a major and unnecessary impediment for extension: the ubiquitous attributes. They reintroduce some compactness to the syntax at the expense of making extensibility difficult. This is not a necessary transaction. For example a compact piece of XML like this<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">&lt;person</span><span class="ot"> firstName=</span><span class="st">&quot;John&quot;</span><span class="ot"> lastName=</span><span class="st">&quot;Smith&quot;</span><span class="ot"> age=</span><span class="st">&quot;25&quot;</span><span class="ot"> address=</span><span class="st">&quot;New York&quot;</span> <span class="kw">/&gt;</span></span></code></pre></div>
+<p>may be expressed in TAO as:</p>
+<pre>
+<span class="key">person</span> [<span class="key">first name</span> [<span class="string">John</span>] <span class="key">last name</span> [<span class="string">Smith</span>] <span class="key">age</span> [<span class="number">25</span>] <span class="key">address</span> [<span class="string">New York</span>]]
+</pre>
+<p>If we were now to extend the <code>address</code> value to include more structured information we may do it like so in TAO:</p>
+<pre>
+<span class="key">person</span> [<span class="key">first name</span> [<span class="string">John</span>] <span class="key">last name</span> [<span class="string">Smith</span>] <span class="key">age</span> [<span class="number">25</span>] 
+    <span class="key">address</span> [<span class="key">street address</span> [<span class="string">21 2nd Street</span>] <span class="key">city</span> [<span class="string">New York</span>] <span class="key">state</span> [<span class="string">NY</span>] <span class="key">postal code</span> [<span class="string">10021</span>]]
+]
+</pre>
+<p>This is simply adding another level of nesting inside of the value.</p>
+<p>In XML though we would have to change the structure significantly to achieve the same result:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">&lt;person</span><span class="ot"> firstName=</span><span class="st">&quot;John&quot;</span><span class="ot"> lastName=</span><span class="st">&quot;Smith&quot;</span><span class="ot"> age=</span><span class="st">&quot;25&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>  <span class="kw">&lt;address</span><span class="ot"> streetAddress=</span><span class="st">&quot;21 2nd Street&quot;</span><span class="ot"> city=</span><span class="st">&quot;New York&quot;</span><span class="ot"> state=</span><span class="st">&quot;NY&quot;</span><span class="ot"> postalCode=</span><span class="st">&quot;10021&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">&lt;/person&gt;</span></span></code></pre></div>
+<p>For this reason much use of XML as DTAS avoids using attributes altogether (reintroducing redundancy) or devises different complicated ways or workarounds of dealing with the shortcomings of the syntax. This is one of the reasons why XML, as DTAS, was largely superseded by the <a href="json.html">much simpler and less (but still) restrictive JSON</a>.</p>
+<p>This hints at how unnecessary complexity and restrictiveness of a syntax may propagate into thinking and inform design.</p>
+<h1 id="html">HTML</h1>
+<p>The above example shows XML used as DTAS for which it was not originally designed. After all it is a <em>markup</em> language. As is the closely related HTML. In markup HTML, even though imperfect, still prevails as a good enough solution. This is due to its aforementioned good qualities.</p>
+<p>A HTML fragment like this for example:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">&lt;p&gt;</span>TAO (<span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;tao.html&quot;</span><span class="kw">&gt;</span>Tree Annotation Objects<span class="kw">&lt;/a&gt;</span>) is a unique and extremely simple </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;tas.html&quot;</span><span class="kw">&gt;</span>Tree Annotation Syntax<span class="kw">&lt;/a&gt;</span> which can be used in </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;contexts.html&quot;</span><span class="kw">&gt;</span>all kinds of contexts<span class="kw">&lt;/a&gt;</span>. It is easily readable and writable </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>by humans and machines and has only three basic constructs<span class="kw">&lt;/p&gt;</span></span></code></pre></div>
+<p>looks like a mixture of freeform text with parts marked up as hyperlinks. It is still a tree, since this is the ultimate syntactical structure, but less apparently so than a typical piece of data like the above XML example.</p>
+<p>In this context the way HTML appears fits more naturally and conveniently into its domain. It still has problems, such as redundancy, which is one of the reasons it is being replaced in some contexts by more lightweight markup syntaxes, like Markdown. However these are much more specialized and so are not suitable as a underlying syntax of the World Wide Web. And so HTML remains.</p>
+<p>A lightweight <em>and</em> generic syntax would therefore be ideal. This is what TAO might offer:</p>
+<pre>
+<span class="bracket">[</span><span class="tag">p</span><span class="bracket">`></span>TAO (<span class="bracket">[</span><span class="tag">a</span> <span class="attrib">href</span><span class="avalue">[tao.html]</span><span class="bracket">`></span>Tree Annotation Objects<span class="bracket">]</span>) is a unique and extremely simple 
+<span class="bracket">[</span><span class="tag">a</span> <span class="attrib">href</span><span class="avalue">[tas.html]</span><span class="bracket">`></span>Tree Annotation Syntax<span class="bracket">]</span> which can be used in 
+<span class="bracket">[</span><span class="tag">a</span> <span class="attrib">href</span><span class="avalue">[contexts.html]</span><span class="bracket">`></span>all kinds of contexts<span class="bracket">]</span>. It is easily readable and writable 
+by humans and machines and has only three basic constructs<span class="bracket">]</span>
+</pre>
+<p>This is the same fragment as above, closely translated to TAO, without changing the structure of HTML or introducing improvements. But it already removes some redundancy and opens up avenues for lifting of restrictions.</p>
+<p>For example in the general case we might allow extensible TAO-HTML attributes which would be translated into a HTML attributes if they consist of a primitive or to an HTML tree if they contain a structure, similarly to the above XML example.</p>
+<p>In this way we might slowly evolve out of HTML, starting at near 1:1 translation and going from there into a better MTAS.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>Based on <a href="https://en.wikipedia.org/wiki/JSON#XML_samples">an example from Wikipedia</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>

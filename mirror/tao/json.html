@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>TAO: the JSON family</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="style.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="icon" type="image/png" href="favicon.png" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">TAO: the JSON family</h1>
+</header>
+<p><a href="index.html"><img src="logo.png" class="logo" /></a></p>
+<p><strong>Note:</strong> This is subject to <a href="future.html">future work</a>. Errors, ambiguities, and omissions are to be expected.</p>
+<p>The major good quality of JSON is simplicity. </p>
+<p>TAO not only retains it but dramatically increases it while introducing good qualities of its own.</p>
+<p>On the other hand JSON is sometimes described as unnecessarily:</p>
+<ul>
+<li>restrictive</li>
+<li>redundant</li>
+<li>noisy</li>
+</ul>
+<p>And combinations of those.</p>
+<p>These are all undesirable traits in a syntax that may translate into thinking when using it. TAO tries to eliminate them, following <a href="principles.html">principles of minimalism</a>.</p>
+<h1 id="restrictiveness">Restrictiveness</h1>
+<p>JSON is minimal and simple at its core. This however does not imply that it needs to be restrictive.</p>
+<p>The unnecessary restrictiveness of JSON spawns countless incompatible derivatives.</p>
+<p>TAO instead is permissive and accomodating, providing space within a maximally simple, generic, and flexible framework.</p>
+<p>On the other hand TAO may be easily restricted by disallowing certain constructs while retaining the essential while JSON cannot be made more flexible syntactically without breaking compatibility.</p>
+<h1 id="primitives">Primitives</h1>
+<p>JSON defines the following primitive data types in its syntax:</p>
+<ul>
+<li>string</li>
+<li>number</li>
+<li>boolean: <code>true</code> and <code>false</code></li>
+<li><code>null</code> to represent emptiness</li>
+</ul>
+<p>TAO instead has only two primitive syntactical data types:</p>
+<ul>
+<li>note</li>
+<li>cite</li>
+</ul>
+<p>With these, all other primitives can then be built. This is a better approach, because it avoids problems built into JSON which cannot be separated or removed.</p>
+<h2 id="numbers-and-other-primitives">Numbers and other primitives</h2>
+<p>The definition of a JSON number is simple indeed, but it is not sufficient to truly represent numbers syntactically and causes problems of compatibility and precision.</p>
+<p>The only kind of numbers that JSON can syntactically represent are positive and negative decimal numbers with optional exponents. JSON as a syntax does not define non-syntactical details such as precision of those numbers. In practice however, since it is derived from JavaScript, some implementations assume it to be in accordance with JavaScript’s limited-precision floating point number data type. This may lead to significant problems and errors in data interchange.</p>
+<p>Moreover, values that are part of JavaScript’s definition of a number, such as Infinity or the NaN value can’t be represented with JSON’s number data type.</p>
+<p>This is a real source of practical issues caused by restrictive syntax.</p>
+<p>TAO approaches the problem differently by providing only a the basic syntactical primitives on top of which grammatical or other restrictions may be imposed to achieve different number definitions without influencing the underlying syntax of TAO. These restrictions are a separate concern and may be domain-specific, even agreed between two individual interchange parties.</p>
+<p>Practical use of JSON follows a similar pattern, encoding different kinds of numbers or other primitives with the fallback string type. The built-in number then may be considered an impediment rather than a feature.</p>
+<p>This falling back on a generic (usually string) type is a very common pattern in many DTAS and is the only universal solution, since there are many different valid representations of numbers or other primitive data types.</p>
+<p></p>
+<p>As UTAS, TAO retains only universal features and so only two primitive syntactical shapes are left which can be restricted arbitrarily. Common restrictions can then be standardized and become universally understood.</p>
+<h2 id="objects">Objects</h2>
+<p>JSON defines two distinct recursive data types: objects and arrays.</p>
+<p>TAO instead has only the <code>tree</code> which is mutually recursive with the <code>tao</code>.</p>
+<p>A generic recursive data type is a defining feature of TAS. However one is enough.</p>
+<p>In JSON the more generic one is the array, so objects could be removed, without losing expressive properties of the syntax.</p>
+<p></p>
+<p>Objects in JSON capture the concept of an <em>unordered</em> key-value collection as specialized syntax. This is however <a href="order.html">unnecessarily couples a strictly semantic consideration into the syntax</a>.</p>
+<p>The concept of unorderedness may be captured on a separate syntactical or semantic layer. Thus, TAO itself takes no position on the matter, instead offering flexibility.</p>
+<h2 id="reduced-json-as-precursor-to-tao">Reduced JSON as precursor to TAO</h2>
+<p>A reduced version of JSON could be imagined which not only dropped objects, but all other syntactical constructs except arrays and strings.</p>
+<p>This minimal syntax would still be capable, in principle, of encoding arbitrary annotated tree structures. If we modify that further by dropping a few more decorating symbols and loosening the grammar, we arrive at a member of the <a href="tao.html">TAO family</a>.</p>
+<p>In this way JSON may be viewed as a restricted version of TAO.</p>
+<h2 id="whitespace">Whitespace</h2>
+<p>The restrictiveness of JSON’s definition of strings and its treatment of whitespace are features that make it unsuitable as a markup syntax or a truly human-readable data syntax.</p>
+<p>In TAO, especially with the use of the concept of a <a href="raw.html">raw tao</a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> it is possible to embed any content with minimum possible syntactical friction.</p>
+<h2 id="comments">Comments</h2>
+<p>JSON, unlike many other syntaxes, does not contain any notion of a comment. This is not in line with the goal of being easy for humans to read and write.</p>
+<p>It is another source of countless incompatible JSON derivatives.</p>
+<p>A commonly given reason for this restrictiveness is that comments may be used beyond some predefined use cases.</p>
+<p>In the same way, though, other features may be misused. Lack of comments may be substituted for by the use of special structures that contain strings in their place.</p>
+<p>In fact, strings may fit into almost any use case. This does not imply that they need to be restricted.</p>
+<p>TAO takes no position in the matter and is independent of any use cases as such. It does however provide a generic feature that may be used to implement <a href="comments.html">comments</a>.</p>
+<h1 id="example">Example</h1>
+<p>The following JSON sample<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  <span class="dt">&quot;first name&quot;</span><span class="fu">:</span> <span class="st">&quot;John&quot;</span><span class="fu">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>  <span class="dt">&quot;last name&quot;</span><span class="fu">:</span> <span class="st">&quot;Smith&quot;</span><span class="fu">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>  <span class="dt">&quot;age&quot;</span><span class="fu">:</span> <span class="dv">25</span><span class="fu">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>  <span class="dt">&quot;address&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>    <span class="dt">&quot;street address&quot;</span><span class="fu">:</span> <span class="st">&quot;21 2nd Street&quot;</span><span class="fu">,</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>    <span class="dt">&quot;city&quot;</span><span class="fu">:</span> <span class="st">&quot;New York&quot;</span><span class="fu">,</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>    <span class="dt">&quot;state&quot;</span><span class="fu">:</span> <span class="st">&quot;NY&quot;</span><span class="fu">,</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>    <span class="dt">&quot;postal code&quot;</span><span class="fu">:</span> <span class="st">&quot;10021&quot;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>  <span class="fu">},</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>  <span class="dt">&quot;phone numbers&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>    <span class="fu">{</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>      <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;home&quot;</span><span class="fu">,</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>      <span class="dt">&quot;number&quot;</span><span class="fu">:</span> <span class="st">&quot;212 555-1234&quot;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>    <span class="fu">{</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>      <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;fax&quot;</span><span class="fu">,</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>      <span class="dt">&quot;number&quot;</span><span class="fu">:</span> <span class="st">&quot;646 555-4567&quot;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>    <span class="fu">}</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>  <span class="ot">]</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a><span class="fu">}</span></span></code></pre></div>
+<p>may be translated into TAO as:</p>
+<pre>
+<span class="key">first name</span> [<span class="string">John</span>]
+<span class="key">last name</span> [<span class="string">Smith</span>]
+<span class="key">age</span> [<span class="number">25</span>]
+<span class="key">address</span> [
+    <span class="key">street address</span> [<span class="string">21 2nd Street</span>]
+    <span class="key">city</span> [<span class="string">New York</span>]
+    <span class="key">state</span> [<span class="string">NY</span>]
+    <span class="key">postal code</span> [<span class="string">10021</span>]
+]
+<span class="key">phone numbers</span> [
+    [
+        <span class="key">type</span> [<span class="string">home</span>]
+        <span class="key">number</span> [<span class="string">212 555-1234</span>]
+    ]
+    [
+        <span class="key">type</span> [<span class="string">fax</span>]
+        <span class="key">number</span> [<span class="string">646 555-4567</span>]
+    ]
+]
+</pre>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>Which is only an interpretation of data encoded in TAO and not a special grammatical construct<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>Based on <a href="https://en.wikipedia.org/wiki/JSON#JSON_sample">a JSON sample from Wikipedia</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>TAO: typing</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="style.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="icon" type="image/png" href="favicon.png" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">TAO: typing</h1>
+</header>
+<p><a href="index.html"><img src="logo.png" class="logo" /></a></p>
+<p><strong>Note:</strong> This is subject to <a href="future.html">future work</a>. Errors, ambiguities, and omissions are to be expected.</p>
+<p>An overview of different useful approaches to typing is described here in the context of TAO which itself assumes no position but offers space for any approach.</p>
+<h2 id="implicit">Implicit</h2>
+<p>The implicit methods of typing are ones where the <strong>structure of the data itself</strong> is the primary mechanism for specifying and verifying data types.</p>
+<p>The major typing disciplines known from programming languages that can be classified as implicit are: structural, dynamic, duck, and inferred.</p>
+<p>Implicit typing is more flexible than explicit. It requires less effort but more care from humans in structuring data, as it makes machine verification more difficult.</p>
+<p>In the context of TAO we might use the following definition:</p>
+<ul>
+<li>a <code>tao</code> which matches a structural definition of a type is of that type.</li>
+</ul>
+<p>For example if we define a <code>primitive</code> type as a <code>tao</code> with zero or more parts which are all <code>notes</code> then the following <code>tao</code>:</p>
+<pre><code>this is a primitive</code></pre>
+<p>is implicitly of type <code>primitive</code>, but the following:</p>
+<pre><code>this is [not a primitive]</code></pre>
+<p>is not.</p>
+<h2 id="explicit">Explicit</h2>
+<p>The explicit methods of typing are ones where <strong>type annotations</strong> attached to data are the primary mechanism for specifying and verifying data types.</p>
+<p>The major typing disciplines known from programming languages that can be classified as explicit are: nominal, static, manifest.</p>
+<p>Explicit typing is more rigid than implicit. It requires more effort but less care from humans in structuring data, as it facilitates machine verification.</p>
+<p>In the context of TAO we might use the following definition:</p>
+<ul>
+<li>a <code>tao</code> may <a href="explicit.html">go together with a type annotation</a> which declares its type.</li>
+</ul>
+<p>A type annotation may serve as:</p>
+<ul>
+<li>documentation, statement of intention (for a human)</li>
+<li>basis for verification (for a human or a machine)</li>
+</ul>
+<p>For example if we define a <code>primitive</code> type as a <code>tao</code> with zero or more parts which are all <code>notes</code> then the following <code>tao</code>:</p>
+<pre><code>this is a primitive`: primitive</code></pre>
+<p>is explicitly of type <code>primitive</code>, but the following:</p>
+<pre><code>this is a primitive</code></pre>
+<p>is not, even though it is implicitly <code>primitive</code>. On the other hand the following <code>tao</code>:</p>
+<pre><code>this is [not a primitive]`: primitive</code></pre>
+<p>is explicitly of type <code>primitive</code>, but not implicitly. This indicates, in principle, that there is an error either in the structure of the <code>tao</code> or in the type annotation or in the type definition itself. Automatic verification can be employed to signal errors like this.</p>
+<h1 id="mixed">Mixed</h1>
+<p>A mix of explicit and implicit typing is a pragmatic approach that tries to maximize the benefits and minimize the drawbacks of both.</p>
+<p>In programming languages this may be known as gradual typing.</p>
+</body>
+</html>

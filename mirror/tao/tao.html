@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>TAO: Tree Annotation Objects</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="style.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="icon" type="image/png" href="favicon.png" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">TAO: Tree Annotation Objects</h1>
+</header>
+<p><a href="index.html"><img src="logo.png" class="logo" /></a></p>
+<p><strong>Note:</strong> This is subject to <a href="future.html">future work</a>. Errors, ambiguities, and omissions are to be expected.</p>
+<p>Tree Annotation Objects (TAO), besides the <a href="grammar.html">primary syntax</a>, may also mean a <strong>family</strong> of syntaxes which is a subset of <a href="tas.html">TAS</a>.</p>
+<p>In the context of this document, the primary syntax will be disambiguated as TAO-UC2 where <code>U</code> stands for Unicode, <code>C</code> stands for the characteristic syntactical construct of a <code>cite</code> which distinguishes it from other TAO members and <code>2</code> is more or less an ordinal number which follows complexity.</p>
+<p>This is a provisional classification, but indicates that:</p>
+<ol start="0" type="1">
+<li>There are more TAO-like syntaxes.</li>
+<li>There may be TAO members not based on Unicode or, for that matter, not human-readable at all.</li>
+<li>Syntactical constructs beyond <a href="grammar.html">TAO-UC2 grammar</a> exist in the TAO family.</li>
+<li>There are simpler as well as more complex members of the family.</li>
+</ol>
+<p>These points are elaborated on below.</p>
+<h1 id="primitive-taos">Primitive TAOs</h1>
+<p>We shall define a few of the more primitive TAOs that are subsets of TAO-UC2.</p>
+<h2 id="tao-ut0">TAO-UT0</h2>
+<p>This is a syntax which consists only of two symbols <code>[</code> and <code>]</code> and allows encoding arbitrary tree structures without annotations:</p>
+<ul>
+<li><code>tree</code> is a <strong><code>tao</code></strong> inbetween a <code>[</code> and a <code>]</code>.</li>
+<li><strong><code>tao</code></strong> is zero or more <code>trees</code>.</li>
+</ul>
+<p>It is equivalent to the <a href="https://en.wikipedia.org/wiki/Dyck_language">Dyck language</a>. It provides the foundational structure of TAO: the <code>tree</code>.</p>
+<h2 id="tao-un1">TAO-UN1</h2>
+<p>This is TAO-UT0 where other symbols may appear inbetween the brackets:</p>
+<ul>
+<li><code>note</code> is one or more symbols that are not <code>[</code> or <code>]</code>.</li>
+<li><code>tree</code> is a <strong><code>tao</code></strong> inbetween a <code>[</code> and a <code>]</code>.</li>
+<li><strong><code>tao</code></strong> is zero or more parts each of which is either a <code>tree</code> or a <code>note</code>.</li>
+</ul>
+<p>Just by adding the <code>note</code> rule the expressive power of the syntax is increased very close to TAO-UC2. The essential elements are now in place: <code>trees</code> from TAO-UT0 are joined by <code>notes</code> to be carried by them.</p>
+<p>Annotations are however restricted and cannot contain the meta symbols <code>[</code> or <code>]</code>. This is an artifact of representing trees and notes with the same system of symbols (Unicode).</p>
+<h2 id="tao-uc2">TAO-UC2</h2>
+<p>This is the primary syntax.</p>
+<p>It is TAO-UN1 with the restriction on annotations lifted. This is done by the introduction of another meta symbol <code>`</code> which essentially creates a generalized <a href="https://en.wikipedia.org/wiki/Escape_sequence">escape mechanism</a>:</p>
+<ul>
+<li><code>cite</code> is the symbol <code>`</code> followed by <code>any</code> symbol.</li>
+<li><code>note</code> is one or more symbols that are not <code>[</code> or <code>]</code> or <code>`</code>.</li>
+<li><code>tree</code> is a <strong><code>tao</code></strong> inbetween a <code>[</code> and a <code>]</code>.</li>
+<li><strong><code>tao</code></strong> is zero or more parts each of which is either a <code>tree</code> or a <code>cite</code> or a <code>note</code>.</li>
+</ul>
+<p>Now <code>notes</code> may effectively contain arbitrary symbols. Also, by defining <code>cite</code> in terms of <code>any</code> rather than restricting it to the meta symbols only we leave <a href="cite.html">space for extensions that need not be a part of the basic syntax, but are permitted by it</a>. On the other hand we can also introduce restrictions to <code>cite</code> outside of the syntax.</p>
+<p>More advanced TAOs and features are subject to future discussion.</p>
+</body>
+</html>

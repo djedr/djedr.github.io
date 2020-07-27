@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>TAO: the S-expression family</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="style.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="icon" type="image/png" href="favicon.png" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">TAO: the S-expression family</h1>
+</header>
+<p><a href="index.html"><img src="logo.png" class="logo" /></a></p>
+<p><strong>Note:</strong> This is subject to <a href="future.html">future work</a>. Errors, ambiguities, and omissions are to be expected.</p>
+<p>S-expressions are the closest TAS family to TAO. Both TAO and S-expressions in some way follow the <a href="principles.html">principles of minimalism</a>.</p>
+<p>The major good quality of S-expressions is simplicity. It is probably the simplest TAS in wide use. It is difficult to imagine a simpler syntax.</p>
+<p>In overcoming this difficulty, TAO arises.</p>
+<p>Both S-expressions and TAO make explicit the fact that all syntax comes down to various forms of trees. This helps in making leaps of connection and analogy between seemingly disparate structures and promotes further unification and simplification.</p>
+<p>On the other hand S-expressions are sometimes described as difficult to read, unusual or confusing, for reasons that are related to their extreme simplcity. TAO is even simpler, yet it differs in some key areas that may be the root of the problem. These are subject to future discussion.</p>
+<h1 id="examples">Examples</h1>
+<p>The following S-expression<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>:</p>
+<pre><code>(defun factorial (x)
+   (if (zerop x)
+       1
+       (* x (factorial (- x 1)))))</code></pre>
+<p>may be trivially translated into TAO as:</p>
+<pre><code>[defun factorial [x]
+   [if [zerop x]
+       1
+       [* x [factorial [- x 1]]]]]</code></pre>
+<p>or, to tokenize on the level of TAO’s grammar:</p>
+<pre><code>[defun` factorial [x]
+   [if [zerop` x]
+       1
+       [*` x [factorial [-` x` 1]]]]]</code></pre>
+<p>which could <em>technically</em> be shortened:</p>
+<pre><code>[defun`factorial [x]
+   [if [zerop`x]
+       1
+       [*`x [factorial [-`x`1]]]]]</code></pre>
+<p>or, with semantic differences:</p>
+<pre><code>defun [factorial [x]
+   if [zerop [x]
+       1
+       * [x factorial [-[x 1]]]
+    ]
+]</code></pre>
+<p>or other ways and variations.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>Example <a href="https://en.wikipedia.org/wiki/S-expression#Example_of_source_code_S-expressions">from Wikipedia</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>

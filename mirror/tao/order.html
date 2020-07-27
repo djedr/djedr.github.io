@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>TAO: orderedness</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="style.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="icon" type="image/png" href="favicon.png" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">TAO: orderedness</h1>
+</header>
+<p><a href="index.html"><img src="logo.png" class="logo" /></a></p>
+<p><strong>Note:</strong> This is subject to <a href="future.html">future work</a>. Errors, ambiguities, and omissions are to be expected.</p>
+<p>Most syntaxes for encoding arbitrary data (<a href="tas.html">DTAS</a>) include in their definition a notion of an <em>unordered</em> collection, e.g. dictionaries. Such collections are very useful to represent certain kinds of data. However they need not be defined at the syntax level.</p>
+<p>At syntax level, all structures encoded in a text format are ordered, i.e. their parts appear one after another in the direction of the text. Unorderedness is thus a strictly <em>semantic</em> consideration.</p>
+<p>Ambiguity of definition of unorderedness often generates issues of incompatibility between syntaxes and is one of the reasons why TAO does not include any special syntax for unordered collections.</p>
+<p>Instead in TAO a notion of unorderedness should be imposed on the data either implicitly or explicitly, via <a href="explicit.html">type annotations</a>.</p>
+</body>
+</html>

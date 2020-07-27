@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>TAO: a Tree Annotation Syntax</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="style.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="icon" type="image/png" href="favicon.png" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">TAO: a Tree Annotation Syntax</h1>
+</header>
+<p><a href="index.html"><img src="logo.png" class="logo" /></a></p>
+<p><strong>Note:</strong> This is subject to <a href="future.html">future work</a>. Errors, ambiguities, and omissions are to be expected.</p>
+<p><strong>Tree Annotation Syntax (TAS)</strong> is any syntax which is based on constructs equivalent to trees and annotations of TAO. A TAS may include other elements as well. The following syntaxes are all examples of TAS: XML, JSON, S-expressions, HTML, YAML.</p>
+<p><a href="tao.html">TAO and its family</a> are TAS.</p>
+<p>All TAS can be translated between each other, so they are fundamentally equivalent. However in practice each is used only in a specific range of <a href="contexts.html">contexts</a> because of certain properties that make it more suitable there.</p>
+<p>Some have very broad ranges. For example JSON is today used as a universal human-readable syntax for data interchange with derivatives used in other contexts, such as application configuration. Before JSON, XML was a common language in those domains, and is still widely used today. Its close relative, HTML, is the standard markup language of the internet. Both HTML and XML were defined according to SGML which predates the internet, with origins reaching as far as the 1970s. Before that still, in 1960, S-expressions emerged – a milestone minimalist syntax with derivatives still in wide use.</p>
+<p>These syntaxes and their derivatives are the major TAS families in use today.</p>
+<p>Both the JSON and S-expression families can be further classified as <strong>Data TAS (DTAS)</strong>.</p>
+<p>Next to them, XML or HTML may be classified as (text) <strong>Markup TAS (MTAS)</strong>.</p>
+<p>DTAS and MTAS were designed for different purposes and have fundamental differences, for example in whether they try to accomodate more human or machine users<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, in flexibility of their basic constructs, as well as in the total number of these available.</p>
+<p>DTAS are more minimal and flexible and machine-friendly, although human-readable as well. </p>
+<p>MTAS are more complex with more elements and restrictions. They are often used to mark up content by hand for rendering by web browsers or other programs. </p>
+<p>DTAS are used sometimes to represent MTAS, but not the other way around. The DTAS representations of MTAS are however rarely written by humans.</p>
+<p>It may be a reasonable conclusion then that DTAS are more generic than MTAS and perhaps a <strong>Universal TAS (UTAS)</strong> may exist which may be well-suited both for encoding data and marking up content.</p>
+<p>If a UTAS indeed can exist there are two possibilities:</p>
+<ul>
+<li>it is a feature-rich amalgam of all TAS that satisfies all possible specialized use cases and data types while remaining coherent</li>
+<li>or it is the intersection of all TAS which contains a handful of the most generic, essential, flexible and unrestrictive features.</li>
+</ul>
+<p>TAO is the result of an attempt to find such a UTAS on the assumption that it must be the latter. It follows <a href="principles.html">the principles of DTAS</a> which are the source of their generic nature: minimality and flexibility, taking them to a coherent extreme. In getting rid of a few more inessential elements, perhaps unexpectedly, it becomes a promising basis for MTAS as well.</p>
+<p>TAO aims to remove a dichotomy between complicated syntax for loose or mixed structures and a simple syntax for rigid structures by simplifying further and lifting unnecessary fundamental restrictions.</p>
+<p>If this is indeed founded and TAO is close to a UTAS, it should naturally, gradually, and gracefully replace XML, HTML, JSON, S-expressions and other syntaxes in most contexts.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>Which is reflected, for example, in the way they treat freeform text and whitespace.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>
