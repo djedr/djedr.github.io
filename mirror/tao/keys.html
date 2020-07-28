@@ -96,7 +96,7 @@
 <p>May be considered a <a href="shapes.html#dict"><code>dictionary</code></a>.</p>
 <p>Each key in this dictionary is a <a href="shapes.html#matter"><code>matter</code></a>. This is the usual case for dictionaries.</p>
 <p><strong>The leading and trailing whitespace are not considered part of a key</strong>, i.e. keys may be checked for equality only after trimming any whitespace that they contain. This is similar to a common practice of trimming strings before comparison.</p>
-<p>Rarely however we might want to include leading or trailing (or both) whitespace in a key. This can be done by delimiting the key by <code>cites</code> with <code>'</code>:</p>
+<p>Rarely however we might want to include leading or trailing (or both) whitespace in a key. This can be done by delimiting the key by <code>`'</code> <code>ops</code>:</p>
 <pre><code>`&#39;   key with leading whitespace []
 key with trailing whitespace   `&#39; []
 `&#39;    key with padding    `&#39; []
@@ -108,16 +108,16 @@ key with trailing whitespace   `&#39; []
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="dt">&quot;    key with padding    &quot;</span><span class="fu">:</span> <span class="st">&quot;&quot;</span><span class="fu">,</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>   <span class="dt">&quot;   indented key with padding   &quot;</span><span class="fu">:</span> <span class="st">&quot;&quot;</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="fu">}</span></span></code></pre></div>
-<p>Also rarely it might be necessary to include the meta symbols <code>[</code> or <code>]</code> or <code>`</code> in a dictionary key. This can be achieved by escaping them with <code>cite</code>:</p>
+<p>Also rarely it might be necessary to include the meta symbols <code>[</code> or <code>]</code> or <code>`</code> in a dictionary key. This can be achieved by escaping them with <code>op</code>:</p>
 <pre><code>key with `[ brackets `] []
 `[  ``  `] []
 `[ []
 `] []
 `` []</code></pre>
 <p>is a dictionary with unusual keys that contain meta symbols.</p>
-<p>So keys in the general case besides <code>matter</code>, may be interleaved <code>notes</code> and <code>cites</code>. Note that two consecutive <code>notes</code> are impossible by TAO’s grammar.</p>
-<p>The first <code>cite</code> in a key may be the <code>`'</code> delimiter if it is not preceded by <code>matter</code>. The last <code>cite</code> may be the same delimiter if it is not followed by <code>matter</code>. The <code>cites</code> inbetween are restricted to <code>[</code> or <code>]</code> or <code>`</code>.</p>
+<p>So keys in the general case besides <code>matter</code>, may be interleaved <code>notes</code> and <code>ops</code>. Note that two consecutive <code>notes</code> are impossible by TAO’s grammar.</p>
+<p>The first <code>op</code> in a key may be the <code>`'</code> delimiter if it is not preceded by <code>matter</code>. The last <code>op</code> may be the same delimiter if it is not followed by <code>matter</code>. The <code>ops</code> inbetween are restricted to <code>[</code> or <code>]</code> or <code>`</code>.</p>
 <p>This is a complete definition of a <code>key</code>.</p>
-<p>The value of a <code>key</code> can then be obtained by removing any leading space from its first <code>note</code> and trailing space from its last <code>note</code>, removing the <code>`'</code> delimiters, resolving cites to their escaped symbols and concatenating thus obtained parts into one string.</p>
+<p>The value of a <code>key</code> can then be obtained by removing any leading space from its first <code>note</code> and trailing space from its last <code>note</code>, removing the <code>`'</code> delimiters, resolving ops to their escaped symbols and concatenating thus obtained parts into one string.</p>
 </body>
 </html>

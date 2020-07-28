@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>TAO: cites</title>
+  <title>TAO: ops</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -21,19 +21,19 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">TAO: cites</h1>
+<h1 class="title">TAO: ops</h1>
 </header>
 <p><a href="index.html"><img src="logo.png" class="logo" /></a></p>
 <p><strong>Note:</strong> This is subject to <a href="future.html">future work</a>. Errors, ambiguities, and omissions are to be expected.</p>
-<p>In <a href="grammar.html">TAO’s grammar</a>, cite is defined as:</p>
+<p>In <a href="grammar.html">TAO’s grammar</a>, op is defined as:</p>
 <ul>
-<li><code>cite</code> is the symbol <code>`</code> followed by <code>any</code> symbol.</li>
+<li><code>op</code> is the symbol <code>`</code> followed by <code>any</code> symbol.</li>
 </ul>
-<p>Primarily, it introduces an <a href="https://en.wikipedia.org/wiki/Escape_sequence">escape mechanism</a> for the brackets, so that they can be parsed as non-meta and “included” in notes. From the perspecitve of the parser though, whatever follows the cite symbol is opaque. No escaping or including happens there.</p>
+<p>Primarily, it introduces an <a href="https://en.wikipedia.org/wiki/Escape_sequence">escape mechanism</a> for the brackets, so that they can be parsed as non-meta and “included” in notes. From the perspecitve of the parser though, whatever follows the op symbol is opaque. No escaping or including happens there.</p>
 <p>Escaping should instead be handled by a layer separate from the parser.</p>
-<p>By defining <code>cite</code> in terms of <code>any</code> rather than restricting it to the meta symbols only, a space is opened for extensions that need not be a part of the basic syntax, but are permitted by it. On the other hand we can also introduce restrictions to <code>cite</code> outside of the syntax.</p>
-<p>Features introduced by cites may be contextual.</p>
-<p>Some standard features that are enabled by cites include:</p>
+<p>By defining <code>op</code> in terms of <code>any</code> rather than restricting it to the meta symbols only, a space is opened for extensions that need not be a part of the basic syntax, but are permitted by it. On the other hand we can also introduce restrictions to <code>op</code> outside of the syntax.</p>
+<p>Features introduced by ops may be contextual.</p>
+<p>Some standard features that are enabled by ops include:</p>
 <ul>
 <li><a href="comments.html">comments</a></li>
 <li><a href="explicit.html">type annotations</a></li>

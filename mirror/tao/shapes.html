@@ -89,7 +89,7 @@
 <p><strong>Note:</strong> This is subject to <a href="future.html">future work</a>. Errors, ambiguities, and omissions are to be expected.</p>
 <p>TAO is a clay that can take any shape. It includes only the most generic data types: <strong>trees</strong> and <strong>annotations</strong> (notes) to go with them.   Any data type can be created out of those without need for specialized syntax.</p>
 <p>Trees can be constrained in different ways to encode any data structure. Notes can be constrained to encode any data primitive.</p>
-<p>All data in TAO naturally has implicit types, but <a href="explicit.html">explicit type annotations</a> may be included as well via <a href="cite.html"><strong>cites</strong></a>. The preferred <a href="typing.html">typing discipline</a> may be enforced or they can be mixed.</p>
+<p>All data in TAO naturally has implicit types, but <a href="explicit.html">explicit type annotations</a> may be included as well via <a href="op.html"><strong>ops</strong></a>. The preferred <a href="typing.html">typing discipline</a> may be enforced or they can be mixed.</p>
 <p>All this can be achieved within the minimal syntax of TAO. Alternatively, a custom syntax may be laid on top. Although to reap the benefits of a <a href="tas.html">UTAS</a>, common data types should be represented in a standard way across domains.</p>
 <p>Conventions are proposed here for sensible representations of the basic shapes<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> based on common patterns of various languages. This is a starting point for future standardization. <a href="future.html">Experimental adoption of TAO is needed to help that</a>.</p>
 <p><strong>Generalizations of these conventions are independent of TAO and may be used with other syntaxes as well</strong>.</p>
@@ -97,10 +97,10 @@
 <h1 id="fundamental">Fundamental</h1>
 <p>The fundamental data types of TAO are defined by its <a href="grammar.html">grammar</a>:</p>
 <ul>
-<li><strong><code>tao</code></strong> is zero or more parts each of which is a <code>tree</code> or a <code>note</code> or a <code>cite</code></li>
+<li><strong><code>tao</code></strong> is zero or more parts each of which is a <code>tree</code> or a <code>note</code> or an <code>op</code></li>
 <li><code>tree</code> is a <strong><code>tao</code></strong> inbetween a <code>[</code> and a <code>]</code>.</li>
 <li><code>note</code> is one or more symbols that are not <code>[</code> or <code>]</code> or <code>`</code>.</li>
-<li><code>cite</code> is the meta symbol <code>`</code> followed by <code>any</code> symbol.</li>
+<li><code>op</code> is the meta symbol <code>`</code> followed by <code>any</code> symbol.</li>
 </ul>
 <p>These are the building blocks of other patterns which will now be described in terms of them.</p>
 <h1 id="value">Value</h1>
@@ -137,7 +137,7 @@ as well as this []
 and this []</code></pre>
 <h1 id="primitive">Primitive</h1>
 <p>Synonyms: scalar, a basic or simple data type.</p>
-<p>A <code>primitive</code> is a <code>tao</code> with zero or more parts which are all <code>notes</code> or <code>cites</code>. Note that two consecutive <code>notes</code> are impossible by TAO’s grammar.</p>
+<p>A <code>primitive</code> is a <code>tao</code> with zero or more parts which are all <code>notes</code> or <code>ops</code>. Note that two consecutive <code>notes</code> are impossible by TAO’s grammar.</p>
 <pre><code>this is a primitive</code></pre>
 <h2 id="number">Number</h2>
 <p>A <code>number</code> may be a primitive which conforms to a specific <em>number grammar</em>.</p>
@@ -169,7 +169,7 @@ is primitive [false]</code></pre>
 <p>A <code>structure</code> is a <code>tao</code> with at least one part which is a <code>tree</code>.</p>
 <h2 id="list">List</h2>
 <p>Synonyms: array, vector, sequence.</p>
-<p>A <code>list</code> is a <code>structure</code> with no <code>notes</code> or <code>cites</code> or with <code>notes</code> that are all <code>spaces</code>.</p>
+<p>A <code>list</code> is a <code>structure</code> with no <code>notes</code> or <code>ops</code> or with <code>notes</code> that are all <code>spaces</code>.</p>
 <pre><code>[parsley][sage][rosemary][thyme]</code></pre>
 <p>or equivalent:</p>
 <pre><code>[parsley]

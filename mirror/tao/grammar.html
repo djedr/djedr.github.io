@@ -39,20 +39,20 @@
 </ol>
 <h1 id="descriptive">Descriptive</h1>
 <ul>
-<li><code>cite</code> is the symbol <code>`</code> followed by <code>any</code> symbol.</li>
+<li><code>op</code> is the symbol <code>`</code> followed by <code>any</code> symbol.</li>
 <li><code>note</code> is one or more symbols that are not <code>`</code> or <code>[</code> or <code>]</code>.</li>
 <li><code>tree</code> is a <strong><code>tao</code></strong> inbetween a <code>[</code> and a <code>]</code>.</li>
-<li><strong><code>tao</code></strong> is zero or more parts each of which is a <code>tree</code> or a <code>cite</code> or a <code>note</code>.</li>
+<li><strong><code>tao</code></strong> is zero or more parts each of which is a <code>tree</code> or an <code>op</code> or a <code>note</code>.</li>
 </ul>
 <h1 id="augmented-backus-naur-form-abnf">Augmented Backus-Naur Form (ABNF)</h1>
-<pre class="abnf"><code>    cite = &quot;`&quot; any
+<pre class="abnf"><code>    op = &quot;`&quot; any
     note = 1*any-except-meta
     tree = &quot;[&quot; tao &quot;]&quot;
-    tao  = *(tree / cite / note)</code></pre>
+    tao  = *(tree / op / note)</code></pre>
 <h1 id="backus-naur-form-bnf">Backus-Naur Form (BNF)</h1>
-<pre class="bnf"><code>    &lt;cite&gt; ::= &quot;`&quot; &lt;any&gt;
+<pre class="bnf"><code>    &lt;op&gt; ::= &quot;`&quot; &lt;any&gt;
     &lt;note&gt; ::= &lt;any-except-meta&gt; | &lt;note&gt; &lt;note&gt;
     &lt;tree&gt; ::= &quot;[&quot; &lt;tao&gt; &quot;]&quot;
-    &lt;tao&gt;  ::= &quot;&quot; | &lt;tree&gt; | &lt;cite&gt; | &lt;note&gt; | &lt;tao&gt; &lt;tao&gt;</code></pre>
+    &lt;tao&gt;  ::= &quot;&quot; | &lt;tree&gt; | &lt;op&gt; | &lt;note&gt; | &lt;tao&gt; &lt;tao&gt;</code></pre>
 </body>
 </html>
