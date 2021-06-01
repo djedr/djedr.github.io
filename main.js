@@ -10,13 +10,13 @@ window.addEventListener('load', () => {
  function count_live_neighbours() {
  }
  function should_cell_survive(x, y, n) {
-  return boardRules[y][x].survival.includes(n);
+  return boardRules[y][x].survival.includes(n) || Math.random() > 0.999;
   //let nn = 1 << n;
   //return (nn & boardRules[y][x] >> 9) > 0;
   //return (n === 2 || n === 3);
  }
  function should_cell_be_born(x, y, n) {
-  return boardRules[y][x].birth.includes(n);
+  return boardRules[y][x].birth.includes(n) || Math.random() > 0.999;
   //let nn = 1 << n;
   //return (nn & boardRules[y][x]) > 0;
   //return (n === 3);
