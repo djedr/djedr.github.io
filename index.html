@@ -8,49 +8,43 @@
 </head>
 <body>
 	<div class="document narrow">
-        <!--<p style="position: fixed; color: #444; padding: 0em; top: 0; bottom: 0; background: #000; left: 0; width: 4em"></p>-->
-        <!--<p style="position: fixed; color: #444; padding: 0.5em; transform: translateX(100%) rotate(90deg);
-    transform-origin: left top; top: 0; right: 0">&copy; Dariusz Jędrzejczak</p>-->
-		<h1>
-            <a href="index.html" title="Click here to go to the home page">
-                Dariusz Jędrzejczak
-            </a><br/>
-			<span title="a terse approximation of my name; less terse but more accurate: Dariush Yeh-J-Chuck">[Darius JJ Chuck]</span>
-		</h1>
-		<h2>Home page</h2>
+		<div style="display: flex; align-items: center; margin-bottom: 1em;">
+			<a href="gol.html" title="Click here to play the Game of Life" style="margin-right: 1em"><img src="gfx/replicator.png" class="avatar" /></a>
 
-        <div class="avatar-container">
-            <a href="gol.html" title="Click here to start Game of Life"><img src="gfx/replicator.png" class="avatar" /></a>
+      <h1>
+        <a href="index.html" title="Click here to go to the home page">
+          Dariusz Jędrzejczak
+        </a><br/>
+        <span title="a terse approximation of my name; less terse but more accurate: Dariush Yeh-J-Chuck">[Darius JJ Chuck]</span>
+      </h1>
 		</div>
 
 		<p class="intro">
-			Hello, my name is Dariusz and I am a software engineer.
-			Below you will find links to pages that contain more information
-			about me and my projects<sup><a href="#footer">*</a></sup>.
+			Hello, my name is Dariusz. I do software.
 		</p>
 
-		<p style="text-align: center; position: absolute; right: 0">
-			<a href="tao.html">
-				<img src="gfx/tao-logo-128-inv.png" class="avatar" />
+		<p><div style="display: flex; align-items: center;">
+			<a href="https://xtao.org" style="margin-right: 1em">
+				<img src="gfx/tao-logo.png" class="avatar" />
 			</a>
-		</p>
-
-		<!-- <p>
-			At the moment I am interested in challenging part-time jobs in remote-first companies.
-		</p> -->
+			&nbsp;
+			<div>
+				<div>I created <a href="tao.html">TAO</a>, a universal syntax for structured communication.</div>
+				<div>See <a href="https://xtao.org/">xtao.org</a> for details.</div>
+			</div>
+		</div></p>
 
 		<p class="list-description">
-			Relevant for hiring me:
+			You may be interested in my:
 		</p>
 		<ul class="list">
-			<li><a href="resume.html">CV/resume</a></li>
+			<li><a href="resume.html">resume/CV</a></li>
 			<!-- <li><a href="programming-profile.html">my professional profile</a></li> -->
-			<li><a href="programming-bio.html">a short description of my programming experience</a></li>
-			<li><a href="projects.html">list of some of the projects I've been involved with</a></li>
-			<li><a href="certificates.html">some of my diplomas and certificates</a></li>
+			<li><a href="programming-bio.html">programming bio</a></li>
+			<li><a href="projects.html">projects</a></li>
+      <li><a href="web-publications.html">publications</a></li>
+			<!-- <li><a href="certificates.html">some of my diplomas and certificates</a></li> -->
 		</ul>
-
-		<p>You may also be interested in my <a href="web-publications.html">web publications</a>.</p>
 		
 		<p class="list-description">Or my social media profiles:</p>
 		<ul class="list">
@@ -66,9 +60,9 @@
 
 		<p>Thank you for visiting.</p>
 
-        <footer id="footer">
+  <!-- <footer id="footer">
 			* Unless noted otherwise, things that I publish on the web are in no way representative of or related to my current or former employers.
-		</footer>
+  </footer> -->
 	</div>
 	<canvas id="display"></canvas>
 	<script src="main.js"></script>
