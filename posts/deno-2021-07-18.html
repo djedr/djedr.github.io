@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" href="../main.css" />
+	<link rel="stylesheet" type="text/css" href="../notes.css" />
+	<title>Deno / 2021-07-18 / Dariusz Jędrzejczak</title>
+</head>
+<body>
+	<div class="document narrow">
+		<h1>
+            <a href="../index.html" title="Click here to go to the home page">
+                Dariusz Jędrzejczak
+			</a>
+        </h1>
+            <div class="avatar-container">
+                <img src="../gfx/blogo-2-64.png" class="avatar" />
+            </div>
+						<h2 id="deno-the-greatest-thing-since-sliced-bread-node.js">Deno: the greatest thing since <del>sliced bread</del> Node.js</h2>
+						<p>In this post I would like to bring attention to <a href="https://deno.land/">Deno</a><a href="https://en.wikipedia.org/wiki/Deno_(software)"><sup>[W]</sup></a> which is a new runtime for TypeScript, created by <a href="https://tinyclouds.org/">Ryan Dahl</a><a href="https://en.wikipedia.org/wiki/Ryan_Dahl"><sup>[W]</sup></a>, the original creator of <a href="https://nodejs.org">Node.js</a><a href="https://en.wikipedia.org/wiki/Node.js"><sup>[W]</sup></a>.</p>
+						<p>There are many reasons why I really like this project and I believe it is a worthy successor to Node.js. Here I will highlight three general points.</p>
+						<p><img src="https://raw.githubusercontent.com/denolib/high-res-deno-logo/master/deno_hr_circle.svg" alt="tao-deno-logo" height="128" /></p>
+						<p>Deno logo.<br/>From <a href="https://deno.land/artwork">deno.land/artwork</a>. Author: <a href="https://github.com/kevinkassimo">kevinkassimo</a>. License: MIT.</p>
+						<h2 id="modern">Modern</h2>
+						<p>Like Node.js, Deno features a non-blocking, event-driven architecture, and is built on <a href="https://v8.dev/">V8</a><a href="https://en.wikipedia.org/wiki/V8_(JavaScript_engine)"><sup>[W]</sup></a>. What sets Deno apart:</p>
+						<ul>
+						<li><p>Written in <a href="https://www.rust-lang.org/">Rust</a><a href="https://en.wikipedia.org/wiki/Rust_(programming_language)"><sup>[W]</sup></a></p></li>
+						<li><p>Seamless support for <a href="https://www.typescriptlang.org/">TypeScript</a><a href="https://en.wikipedia.org/wiki/TypeScript"><sup>[W]</sup></a>.</p></li>
+						<li><p>Promise-based API that works with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function">async</a>-<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await">await</a>.</p></li>
+						<li><p>Sandboxed by default with restricted file system and network access.</p></li>
+						</ul>
+						<h2 id="browser-compatible">Browser-compatible</h2>
+						<p>Deno aims for better compatibility with browsers. In particular:</p>
+						<ul>
+						<li><p>Uses standard <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">ES Modules instead of CommonJS</a>.</p></li>
+						<li><p>Uses URLs for loading local or remote dependencies. Can import modules from anywhere, in particular GitHub or CDNs.</p></li>
+						<li><p>Maintains compatibility with Web APIs where possible.</p></li>
+						</ul>
+						<h2 id="integrated-and-simple">Integrated and simple</h2>
+						<p>Deno bets on simplicity and high integration:</p>
+						<ul>
+						<li><p>Ships only a single executable file with built-in:</p>
+						<p><ul>
+						<li>Package manager.</li>
+						<li>TypeScript compiler.</li>
+						<li>Dependency inspector.</li>
+						<li>Code formatter.</li>
+						<li>Test runner with coverage tools.</li>
+						<li>Tree-shaking and bundling.</li>
+						<li>Tool to compile scripts to standalone binaries with cross-compilation support.</li>
+						</ul></p></li>
+						<li><p>Minimal <a href="https://doc.deno.land/builtin/stable">core API</a> + large <a href="https://deno.land/std">standard library</a> with no external dependencies.</p></li>
+						<li><p>Provides <a href="https://deno.land/x">public hosting for Deno modules</a>.</p></li>
+						</ul>
+						<h2 id="more">More</h2>
+						<p><a href="https://deno.land/">The official Deno website</a> is a good starting point to dig in to learn more.</p>
+
+	</div>
+</body>
+</html>
