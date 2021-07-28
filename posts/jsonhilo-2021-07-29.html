@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" href="../main.css" />
+	<link rel="stylesheet" type="text/css" href="../notes.css" />
+	<title>JsonHilo.js – ultra-fast lossless JSON parse event streaming / 2021-07-29 / Dariusz Jędrzejczak</title>
+</head>
+<body>
+	<div class="document narrow">
+		<h1>
+            <a href="../index.html" title="Click here to go to the home page">
+                Dariusz Jędrzejczak
+			</a>
+        </h1>
+            <div class="avatar-container">
+                <img src="../gfx/blogo-2-64.png" class="avatar" />
+            </div>
+						<h2 id="jsonhilo.js-ultra-fast-lossless-json-parse-event-streaming">JsonHilo.js – ultra-fast lossless JSON parse event streaming</h2>
+<p style="text-align: center;"><img src="https://raw.githubusercontent.com/xtao-org/JsonHilo/master/logo.png" alt="JsonHilo logo" style="height: 128px; margin-top: 1rem;" /></p>
+<p>Today I would like to announce <a href="https://github.com/xtao-org/JsonHilo">JsonHilo.js</a> – the project I hinted at in a <a href="tao-2021-07-21.html">previous post</a>.</p>
+<p>It is an <a href="https://github.com/xtao-org/JsonHilo-benchmarks">ultra-fast</a> <em>lossless</em> streaming JSON parser with two interfaces:</p>
+<ul>
+<li><p><strong>Hi</strong>gh-level <a href="https://github.com/xtao-org/JsonHilo#jsonhigh">JsonHigh</a>, akin to <a href="https://en.wikipedia.org/wiki/Simple_API_for_XML">SAX</a>, similar to <a href="https://github.com/dscape/Clarinet">Clarinet</a>,</p></li>
+<li><p><strong>lo</strong>w-level <a href="https://github.com/xtao-org/JsonHilo#jsonlow">JsonLow</a> – the ultra-fast core that provides a unique feature of losslessness.</p></li>
+</ul>
+<h2 id="rationale">Rationale</h2>
+<p>JsonHigh <a href="https://stackoverflow.com/questions/58070346/reading-large-json-file-in-deno">fills the streaming JSON parser gap in the Deno ecosystem</a>. It can also work as a good modern alternative in the browser and in Node.js.</p>
+<p>JsonLow was originally created as a prerequisite to implementing an accurate JSON-<a href="https://jevko.org">Jevko</a> translator, as no JSON parser known to me could fulfill my needs.</p>
+<p>In particular all of them are lossy – there is no way to recover the exact input, including whitespace and string escape sequences, from their output.</p>
+<p>I needed something lossless, but also fast and minimal.</p>
+<p>Thus JsonHilo was born.</p>
+<h2 id="highlights">Highlights</h2>
+<h3 id="speed">Speed</h3>
+<p>As far as I can <a href="https://github.com/xtao-org/JsonHilo-benchmarks">benchmark</a>, JsonHilo is the fastest streaming JSON parser in JavaScript.</p>
+<p>This is based on a comparison with Clarinet which is the fastest parser I could find.</p>
+<p>Despite having spent quite some time on optimizing and benchmarking, I’m sure I haven’t optimized everything there is to optimize (nor did I need to), so battle testing might reveal further possibilities.</p>
+<p>Proper benchmarking is very difficult, so, as always, caveats apply:</p>
+<ol type="1">
+<li>The current benchmarks are very basic. I would love to see more sophisticated ones.</li>
+<li>They were performed only on a single machine. Comparisons across different machines and configurations would be nice.</li>
+<li>The libraries have different core architectures and low-level usage is different. JsonHilo’s basic interface is very fast, because it operates on a lower level than Clarinet.</li>
+</ol>
+<p>I am working to improve the benchmarks further – all help and contributions are welcome.</p>
+<p>With the above in mind, the gist of the results is this: <strong>low-level JsonHilo seems to be around 2x faster than Clarinet</strong>.</p>
+<p>For a dramatic example let’s take a 3.2 GB JSON obtained like this:</p>
+<pre><code>curl https://dumps.wikimedia.org/other/wikibase/wikidatawiki/20210623/wikidata-20210623-lexemes.json.bz2 | bunzip2 &gt; big.json</code></pre>
+<p>and run it thru a benchmark which traverses the entire JSON tree to count how many values it holds:</p>
+<pre><code>sh avg.sh values.sh big.json</code></pre>
+<p>This yields the following results on my <a href="https://en.wikipedia.org/wiki/ThinkPad_E495">modest machine</a> running up to date Linux:</p>
+<table>
+<tr>
+<th>
+command
+</th>
+<th>
+average time (s)
+</th>
+<th>
+ratio
+</th>
+</tr>
+<tr style="outline: 1px solid red">
+<td>
+deno run jsonhilo/values.js &lt; big.json
+</td>
+<td>
+38.998
+</td>
+<td>
+1.000
+</td>
+</tr>
+<tr>
+<td>
+node jsonhilo/values.node.js &lt; big.json
+</td>
+<td>
+42.886
+</td>
+<td>
+1.100
+</td>
+</tr>
+<tr>
+<td>
+node <b>clarinet</b>/values.js &lt; big.json
+</td>
+<td>
+97.832
+</td>
+<td>
+2.509
+</td>
+</tr>
+</table>
+<p>Over 200 million values in under 39 seconds. Nearly identical performance on Deno and Node.js. 2.5x faster than Clarinet. Overall not too shabby.</p>
+<h3 id="losslessness">Losslessness</h3>
+<p>Because JsonHilo generates events for <em>all</em> of the input code points without converting or stripping anything off (including whitespace), things are possible to implement with it that are not possible with other parsers.</p>
+<p>For example, an accurate <a href="https://github.com/xtao-org/JsonHilo/blob/master/demo/highlight.js">JSON highlighter is trivial</a>:</p>
+<p><img src="https://raw.githubusercontent.com/xtao-org/JsonHilo/master/highlight.gif" alt="Highlight demo" height="480" /></p>
+<p>It is only a matter of spitting the code points back out with <a href="https://en.wikipedia.org/wiki/ANSI_escape_code">ANSI escape codes</a> (in the above case) or HTML tags or whathaveyou attached, according to the events.</p>
+<p>Similarly we can translate JSON to another format while preserving as much of the original as we like. I use this to translate JSON to Data Jevko to compare size and performance. Preliminary results are in line with predictions – Jevko is smaller and significantly faster. More on that in a future post.</p>
+<h2 id="more">More</h2>
+<p>See <a href="https://github.com/xtao-org/JsonHilo">JsonHilo on GitHub</a> for more. Issues and contributions welcome.</p>
+<h2 id="enjoy">Enjoy</h2>
+<p>JsonHilo.js is released under the MIT license, so it can be used without restrictions.</p>
+<p>Use it in your projects, share it with anyone who might find it useful, and let me know if it causes or (preferably) solves you any problems. ;)</p>
+<p>Above all, have fun!</p>
+<hr />
+<p>Write to me at dariusz.jedrzejczak.work+jsonhilo<span class="mail-addr-postfix"></span></p>
+<p>Share this post on <a href="https://www.reddit.com/submit?url=https://djedr.github.io/posts/jsonhilo-2021-07-29.html">Reddit</a> or <a href="https://news.ycombinator.com/submitlink?u=https%3A%2F%2Fdjedr.github.io%2Fposts%2Fjsonhilo-2021-07-29.html&t=JsonHilo.js%20--%20ultra-fast%20lossless%20JSON%20parse%20event%20streaming">Hacker News</a>.</p>
+
+	</div>
+</body>
+</html>
