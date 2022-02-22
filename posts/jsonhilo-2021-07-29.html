@@ -44,7 +44,7 @@
 <p>I am working to improve the benchmarks further – all help and contributions are welcome.</p>
 <p>With the above in mind, the gist of the results is this: <strong>low-level JsonHilo seems to be around 2x faster than Clarinet</strong>.</p>
 <p>For a dramatic example let’s take a 3.2 GB JSON obtained like this:</p>
-<pre><code>curl https://dumps.wikimedia.org/other/wikibase/wikidatawiki/20210623/wikidata-20210623-lexemes.json.bz2 | bunzip2 &gt; big.json</code></pre>
+<pre style="white-space: pre-wrap;"><code>curl https://dumps.wikimedia.org/other/wikibase/wikidatawiki/20210623/wikidata-20210623-lexemes.json.bz2 | bunzip2 &gt; big.json</code></pre>
 <p>and run it thru a benchmark which traverses the entire JSON tree to count how many values it holds:</p>
 <pre><code>sh avg.sh values.sh big.json</code></pre>
 <p>This yields the following results on my <a href="https://en.wikipedia.org/wiki/ThinkPad_E495">modest machine</a> running up to date Linux:</p>

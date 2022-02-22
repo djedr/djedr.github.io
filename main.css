@@ -95,15 +95,6 @@ hr {
 	font-style: italic;
 }
 
-.document {
-	width: 44em;
-	margin: auto;
-    margin-top: 1em;
-	position: relative;
-	font-family: "Times New Roman", Times, serif;
-	font-size: large;
-}
-
 .wide {
     width: 60em;
 }
@@ -112,10 +103,24 @@ hr {
     padding-left: 1.5em;
 }
 
+a {
+	color: yellow;
+}
+
 body {
-    background: url(gfx/cleveland28.jpg);
-    background-position: top right;
-    background-repeat: repeat-y;
+	background-color: #111;
+	color: #eee;
+	/* font-size: 12pt; */
+}
+
+.document {
+	max-width: 44em;
+	padding: 0 1em;
+	margin: auto;
+    margin-top: 1em;
+	position: relative;
+	font-family: "Times New Roman", Times, serif;
+	font-size: 17pt;
 }
 
 .photo {
