@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" href="../main.css" />
+	<link rel="stylesheet" type="text/css" href="../notes.css" />
+	<title>Introducing Jevko: a minimal general-purpose syntax / 2022-02-22 / Darius J Chuck</title>
+</head>
+<body>
+	<div class="document narrow">
+		<h1>
+            <a href="../index.html" title="Click here to go to the home page">
+                Darius J Chuck
+			</a>
+        </h1>
+            <div class="avatar-container">
+                <img src="../gfx/blogo-2-64.png" class="avatar" />
+            </div>
+						<h2 id="introducing-jevko-a-minimal-general-purpose-syntax">Introducing Jevko: a minimal general-purpose syntax</h2>
+						<p>Dear Hackers,</p>
+						<p>I am making something for you and I’d like to show you an early preview today, on this palindromic datetime of 2022-02-22T20:22:02.</p>
+						<p>It is a small thing, but one that I hope at least some of you will like, because it’s very hackable.</p>
+						<p>I hope that it turns out to be a valuable contribution, and all the energy and time I put into obsessing over this will turn out to be worth it.</p>
+						<p>I’ve been working on this on and off for a very long time now, but my latest streak started on the second week of this year and I’ve been at it every day since. This is the first public status update.</p>
+						<p>Anyway, let me tell you about the thing and show you how you can try it out, and then I hope you will tell me whether it is worth obsessing over further. Feel free to skip to the bits which are the most interesting for you.</p>
+						<h2 id="what-is-it">What is it?</h2>
+						<p>The main thing I’m showing you here is the minimal general-purpose syntax that I developed, called Jevko.</p>
+						<p>Everything else is built on top and around it. This everything else includes formats and prototype libraries or scripts to handle them. There is a demo for a data-interchange format I’ve been calling Interjevko that you can play with <a href="https://jevko.github.io/interjevko.bundle.html">here</a>.</p>
+						<p>The syntax is stable. There is a <a href="https://github.com/jevko/parsejevko.js">simple parser for it in JavaScript</a> and a <a href="https://github.com/jevko/tutorials/blob/master/parser.md">tutorial to write your own in your favorite programming language</a> (not yet finished; I hope I can find some syntax enthusiasts who can help write parsers to support the syntax in different programming languages – the good news is that it is really dead simple – porting the basic parser should be a matter of minutes for a seasoned hacker). The software is a bunch of prototypes and demos, so not quite polished, but it gets the job done.</p>
+						<p>Alright, let’s get to the syntax.</p>
+						<h3 id="how-minimal-is-it">How minimal is it?</h3>
+						<p>Well, its grammar can be condensed into one line of ABNF:</p>
+						<pre class="abnf" style="white-space: pre-line;"><code>Jevko = *(&quot;[&quot; Jevko &quot;]&quot; / &quot;`&quot; (&quot;`&quot; / &quot;[&quot; / &quot;]&quot;) / %x0-5a / %x5c / %x5e-5f / %x61-10ffff)</code></pre>
+						<p>But you don’t have to know what ABNF is or need to derive anything from this fact. I’m just illustrating that the thing has an extremely minimal formal definition. Everything that follows is rooted in this.</p>
+						<p>A less minimal, but more workable and useful definition of the syntax is <a href="https://github.com/jevko/specifications/blob/master/spec-standard-grammar.md">formally specified here</a> (a solid starting point for implementations).</p>
+						<h3 id="how-general-purpose-is-it">How general-purpose is it?</h3>
+						<p>Here are some of the different applications of this syntax that I’ve been working on (a mess at the moment):</p>
+						<ul>
+						<li><p><a href="https://github.com/jevko/interjevko.js">Interjevko: Experimental Schema-based Minimal Data Interchange with Jevko</a></p></li>
+						<li><p><a href="https://github.com/jevko/jevkoschema.js">Jevko schema</a></p></li>
+						<li><p><a href="https://github.com/jevko/jevkonfig.js">Experimental Schema-based Configuration with Jevko</a></p></li>
+						<li><p><a href="https://github.com/jevko/schemainfer.js">Schema inference PoC</a></p></li>
+						<li><p><a href="https://github.com/jevko/jevkodom.js">Experimental Jevko to browser DOM</a></p></li>
+						<li><p><a href="https://github.com/jevko/jsonjevko.js">JSON-Jevko compatibility functions</a></p></li>
+						<li><p><a href="https://github.com/jevko/jevkalk">jevkalk: a Jevko-based interpreter</a></p></li>
+						<li><p><a href="https://github.com/jevko/examples">Examples of information encoded with Jevko.</a></p></li>
+						<li><p><a href="https://github.com/jevko/jevkocss.js">Experimental Jevko-CSS functions</a></p></li>
+						<li><p><a href="https://github.com/jevko/binary-experiments">Experiments with various binary formats based on Jevko.</a></p></li>
+						<li><p><a href="https://github.com/jevko/queryjevko.js">queryjevko.js</a></p></li>
+						<li><p><a href="https://github.com/jevko/markup-experiments">A collection of experiments with Jevko and text markup.</a></p></li>
+						<li><p><a href="https://github.com/jevko/experiments">A collection of various experiments with Jevko.</a></p></li>
+						</ul>
+						<h2 id="where-is-it">Where is it?</h2>
+						<p>Official Jevko-related content can be found here:</p>
+						<ul>
+						<li><p><a href="https://jevko.github.io/">GitHub page</a> with the <a href="https://jevko.github.io/interjevko.bundle.html">interactive demo</a></p></li>
+						<li><p><a href="https://github.com/jevko">GitHub organization</a> with all the repos:</p>
+						<ul>
+						<li><p><a href="https://github.com/jevko/specifications/blob/master/spec-standard-grammar.md">Formal specification of the syntax</a></p></li>
+						<li><p><a href="https://github.com/jevko/parsejevko.js">Simple parser for Jevko in JavaScript</a></p></li>
+						<li><p><a href="https://github.com/jevko/tutorials">Tutorials related to Jevko</a></p></li>
+						</ul></li>
+						<li><p><a href="https://jevko.org">Jevko.org</a> – the home page of Jevko</p></li>
+						<li><p><a href="https://github.com/jevko/writing">jevko/writing</a> – a public place for quick unpolished technical writing on related topics</p></li>
+						</ul>
+						<h2 id="how-is-it-different">How is it different?</h2>
+						<p>Jevko is simpler and more low-level than JSON, XML, or even S-expressions.</p>
+						<p>It has no data types, no semantics, no underlying model of cons cells or anything similar. It’s as close to pure generic syntax as it gets.</p>
+						<p>Basically there is only one recursive syntactic structure (Jevko/tree) and one non-recursive primitive (text).</p>
+						<p>So at the lowest level Jevko is a minimal formal specification for flexible trees of text.</p>
+						<p>A notable and distinguishing syntacitc feature of the syntax is that whitespace does not play a role. It is not a word or token separator. It’s just part of text. Interpretation of the text is a separate, higher-level concern.</p>
+						<p>Jevko is then an extremely simple and flexible low-level syntactic building block.</p>
+						<p>It is an extreme manifestation of syntactic minimalism, a basic recursive syntax – just like any recursive syntax, but with everything inessential removed.</p>
+						<p>This simplicity and flexibility is what is valuable.</p>
+						<p>Jevko as a building block can be composed together with additional syntactic and semantic blocks to build portable or semi-portable formats. The syntax is simple to write and read and can be easily embedded in JSON or XML strings – in this way it can complement them. A Jevko-based format, like Interjevko, can also stand on its own, as a simpler alternative.</p>
+						<h2 id="roadmap">Roadmap</h2>
+						<p>Here is a rough roadmap for Jevko and related projects.</p>
+						<p>ASAP:</p>
+						<ul>
+						<li><p>Implement Jevko parsers in various programming languages.</p></li>
+						<li><p>Support Interjevko in the same languages.</p>
+						<ul>
+						<li><p>This includes basic schema support, and then support for the schemaless flavor.</p></li>
+						<li><p>Not sure yet if there should be a separate flavor for configuration or not.</p></li>
+						</ul></li>
+						<li><p>Implement basic syntax highlighting in editors.</p></li>
+						</ul>
+						<p>Next in line:</p>
+						<ul>
+						<li><p>Streaming parsers for processing large volumes of data fast.</p></li>
+						<li><p>Explore binary formats based on Jevko.</p></li>
+						<li><p>Specify and support extensions, such as heredocs to allow convenient embedding of text data without escaping.</p></li>
+						<li><p>Explore advanced syntax highlighting.</p></li>
+						<li><p>Explore markup flavors.</p></li>
+						<li><p>Explore Jevko as programming language syntax – implement programming language ideas.</p></li>
+						<li><p>Explore visual programming ideas on top of Jevko, including an editor which feels like a text editor but has features of a visual programming environment. In particular there is no way to make a syntax error.</p></li>
+						<li><p>…</p></li>
+						</ul>
+						<h2 id="thats-it-for-now">That’s it for now</h2>
+						<p>Time is up, so this is it for now.</p>
+						<p>If you have any feedback please reach out to me at darius.j.chuck+jevko at gmail.</p>
+						<p>Thank you for reading.</p>
+						<p>Until next time.</p>
+						<p>Cheers, Darius</p>
+						
+<hr />
+<p>Write to me at darius.j.chuck+jevko<span class="mail-addr-postfix"></span></p>
+
+	</div>
+</body>
+</html>
