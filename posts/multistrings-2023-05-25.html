@@ -105,9 +105,13 @@
 strings</h1>
 <p class="date">2023-05-25</p>
 </header>
-<!--  -->
-<!-- # Multistrings: a simple syntax for heredoc-style strings -->
 <!-- *This is meant to be the first part in a series of articles. The [remaining parts](#whats-next) shall be linked here once available.* -->
+<p><em>2023-05-26 edit: based on the feedback from <a
+href="https://www.reddit.com/r/ProgrammingLanguages/comments/13rij54/multistrings_a_simple_syntax_for_heredocstyle/">this
+discussion</a> (thanks everyone!), I simplified things by leaving only
+the more universal multistring variant. I also moved some information to
+appendices and simplified the formal definition, removing tags and
+reintroducing them as a possible extension.</em></p>
 <p>In this article I will share with you a recipe I developed for a very
 useful, but notoriously difficult to get right, and still not fully
 evolved syntactic feature that has been gainig more and more adoption in
@@ -147,146 +151,54 @@ populate a text file inside a script, to embed one language into
 another, to embed a fragment of source code of a language in itself as a
 string (suppressing normal interpretation), etc.</p>
 <p>Multistrings aim to unify and simplify all these features into one
-extensible construct that could become standard in programming
-languages, portable configuration or data-interchange formats, or other
-text-syntax-driven languages, new or already existing.</p>
+extensible construct that could become (perhaps already is becoming)
+standard in programming languages, portable configuration or
+data-interchange formats, or other text-syntax-driven languages, new or
+already existing.</p>
+<p>I think that if you were forced to choose only one type of strings
+for your language, multistrings would be an excellent choice.</p>
 <h2 id="the-idea">The idea</h2>
 <p>I propose one simple syntax construct, called the “multistring”,
 which shall look very similar to Markdown syntax for embedding code. I
 choose Markdown as the basis, because it offers syntax which is perhaps
 the simplest and most familiar, and among the least flawed.</p>
-<p>Like the Markdown syntax, multistrings may come in two variants:
-block and inline<a href="#fn1" class="footnote-ref" id="fnref1"
-role="doc-noteref"><sup>1</sup></a>.</p>
-<h3 id="block-multistrings">Block multistrings</h3>
-<p>The block variant is a near-superset of the Markdown fenced code
-block syntax: almost all (except <a
-href="#empty-markdown-code-blocks-are-not-valid-multistrings">empty</a>)
-valid Markdown code blocks should also be valid multistrings, e.g.</p>
-<pre><code>```
-a block
-multistring
-```</code></pre>
+<p>The syntax I propose is very similar to the Markdown fenced code
+block syntax. The difference is that it uses <code>'</code>
+(apostrophes)<a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a> instead of linebreaks to separate
+the multistring content from the delimiters. With that adjustment,
+almost all (except <a
+href="#empty-multistrings-are-not-like-empty-markdown-code-blocks">empty</a>)
+valid Markdown code blocks would also be valid multistrings, e.g.</p>
+<pre><code>```&#39;a multiline
+multistring&#39;```</code></pre>
 <p>is a valid multistring.</p>
-<p>Block multistrings shall also admit blocks delimited with double and
-single backticks<a href="#fn2" class="footnote-ref" id="fnref2"
-role="doc-noteref"><sup>2</sup></a>, e.g.:</p>
-<pre><code>``
-also a block
-multistring
-``
-
-`
-another block
-multistring
-`</code></pre>
-<p>Block multistrings also admit what I call tags, which can be seen as
-a generalization of Markdown language specifiers:</p>
-<pre><code>```tag
+<p>Compare that to a Markdown code block:</p>
+<pre><code>```
+a multiline
 multistring
 ```</code></pre>
-<p>These tags can be used as metadata to describe the content within the
-multistring. This metadata may direct transformation(s) of the
-multistring: e.g. to interpret it as a specific language, to remove
-indentation, to enable interpretation of <code>\x</code> escape
-sequences, to enable <code>${substitutions}</code>, etc. Some details of
-the syntax of tags as well as their interpretation shall be left
-unspecified for now<a href="#fn3" class="footnote-ref" id="fnref3"
-role="doc-noteref"><sup>3</sup></a>.</p>
-<p>Like in Markdown, the linebreaks that separate the content of the
-block multistring from the delimiters are not considered part of the
-content.</p>
-<h3 id="inline-multistrings">Inline multistrings</h3>
-<p>Inline multistrings are very much like block multistrings, except
-their content is separated from delimiters by <code>'</code>
-(apostrophes) instead of linebreaks. Thanks to this, they appear
-visually more compact and look better inline. Otherwise there is no
-difference between them and block multistrings.</p>
-<p>The previous examples rendered as inline multistrings would look
-like:</p>
-<pre><code>```&#39;a block
-multistring&#39;```
-
-``&#39;also a block
+<p>The only difference is the use of apostrophes instead of
+linebreaks.</p>
+<p>Multistrings may also admit blocks delimited with double and single
+backticks<a href="#fn2" class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a>, e.g.:</p>
+<pre><code>``&#39;also a multiline
 multistring&#39;``
 
-`&#39;another block
-multistring&#39;`
-
-```tag&#39;multistring&#39;```</code></pre>
-<h3
-id="important-difference-between-markdown-inline-code-and-inline-multistrings">Important
-difference between Markdown inline code and inline multistrings</h3>
-<p>Note that inline multistrings significantly differ from the Markdown
-inline code syntax. They are a simple variant of block strings and are
-thus much more regular: there are no special cases for single-backtick
-vs multiple-backticks, no requirement of conditional space-separation
-for the content. Inline Markdown code syntax is thus NOT a subset of
-inline multistrings and the following Markdown examples are NOT valid
-multistrings:</p>
-<pre><code>`a`
-`` `a` ``
-``` ``a`` ```</code></pre>
-<p>Some valid inline multistrings happen to be valid inline Markdown
-code, albeit that’s incidental and they still differ in interpretation,
-e.g. the following are valid multistrings as well as valid Markdown:</p>
-<pre><code>`&#39;a&#39;`
-``&#39;`&#39;a&#39;`&#39;``
-```&#39;``&#39;`&#39;a&#39;`&#39;``&#39;```</code></pre>
-<p>However when interpreted as multistrings their content is,
-respectively:</p>
-<pre><code>a
-`&#39;a&#39;`
-``&#39;`&#39;a&#39;`&#39;``</code></pre>
-<p>whereas when interpreted as Markdown, the content is,
-respectively:</p>
-<pre><code>&#39;a&#39;
-&#39;`&#39;a&#39;`&#39;
-&#39;``&#39;`&#39;a&#39;`&#39;``&#39;</code></pre>
-<p>i.e. in Markdown the separator becomes part of the content.</p>
-<h3 id="why-choose-as-the-separator-for-inline-multistrings">Why choose
-<code>'</code> as the separator for inline multistrings?</h3>
-<p>Other more or less viable separators for inline multistrings
-include:</p>
-<ul>
-<li><code>"</code> (double quote): <code>'</code> (apostrophe) was
-chosen over it because often languages use <code>'</code> for raw
-strings which do not support escape sequences or substitutions – as is
-true for (untagged) multistrings. An implementation may choose to allow
-<code>"</code> as an alternative separator. Another (very minor) reason
-is that <code>'</code> is generally one keypress less than
-<code>"</code>.</li>
-<li>” ” (space): which would be similar to edge-case Markdown inline
-code – this was rejected as less obvious, more error-prone, and to
-reduce <a
-href="#important-difference-between-markdown-inline-code-and-inline-multistrings">confusion
-with Markdown’s inline code</a>.</li>
-</ul>
-<p>A nice advantage of <code>'</code> also is that if we find ourselves
-needing to convert from a regular <code>'</code>-delimited string into a
-multistring, there is no need to delete or replace the delimiters. We
-only need to add a layer of <code>`</code>-delimiters around the regular
-string. This is particularly easy in a modern code editor.</p>
-<p>For example if we have an <code>'</code>-delimited string such
-as:</p>
-<pre><code>&#39;a string with an apostrophe: &#39;</code></pre>
-<p>and we find that the next character we insert is <code>'</code>,
-making the string invalid:</p>
-<pre><code>&#39;a string with an apostrophe: &#39;&#39;</code></pre>
-<p>we can quickly fix this by surrounding the whole string with
-<code>`</code>:</p>
-<pre><code>`&#39;a string with an apostrophe: &#39;&#39;`</code></pre>
+`&#39;another multiline
+multistring&#39;`</code></pre>
 <h2 id="formal-definition">Formal definition</h2>
 <!-- [ISO/IEC 14977 : 1996(E)](https://www.cl.cam.ac.uk/~mgk25/iso-14977.pdf) -->
-<p>The syntax for multistrings cannot be fully defined as a rule in a
-standard <a
+<p>The syntax for multistrings cannot, in principle, be fully defined as
+a rule in a standard <a
 href="https://en.wikipedia.org/wiki/Metasyntax">metasyntax</a> such as
 <a
 href="https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form">EBNF</a>
 or <a
 href="https://en.wikipedia.org/wiki/Augmented_Backus%E2%80%93Naur_form">ABNF</a>.
-We need a hyperrule<a href="#fn4" class="footnote-ref" id="fnref4"
-role="doc-noteref"><sup>4</sup></a> instead: a parametrizable kind of
+We need a hyperrule<a href="#fn3" class="footnote-ref" id="fnref3"
+role="doc-noteref"><sup>3</sup></a> instead: a parametrizable kind of
 rule that can accept arguments to produce concrete rules.</p>
 <p>This is a lot less scary than it sounds and actually easy to
 implement in any programming language. A “hyperrule” is simply a
@@ -294,73 +206,89 @@ function with parameters.</p>
 <p>For this reason, I will first introduce the proposed
 <code>multistring</code> syntax rule (or hyperrule if you will) in the
 form of Python-like pseudocode:</p>
-<div class="sourceCode" id="cb12"><pre
-class="sourceCode py"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the `multistring` hyperrule accepts two parameters:</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   * `n` -- the number of repetitions of the multistring delimiter &quot;`&quot;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   * `separator` -- the multistring separator</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> multistring(</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># `n` is an integer in range 1 to infinity</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># in practice uint &gt; 1 or even uint8 &gt; 1 shall be sufficient</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  n,</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># `separator` is either:</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   * a `linebreak` (for block multistrings) </span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   * or &quot;&#39;&quot; (for inline multistrings)</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  separator</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># where: a `linebreak` is any valid linebreak, e.g. &#39;\n&#39; or &#39;\r\n&#39;</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>):</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> sequence(</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;`&quot;</span>.times(n),</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    tag,</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    separator,</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># `anychar` is any unicode character</span></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    zeroOrMore(anychar).terminatedBy(</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>      sequence(</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>        separator,</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;`&quot;</span>.times(n)</span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="co"># `tagchar` could be `anychar` or its arbitrary subset</span></span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tag(): <span class="cf">return</span> zeroOrMore(tagchar.minus(either(<span class="st">&quot;&#39;&quot;</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="st">&quot;</span><span class="ch">\r</span><span class="st">&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode py"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the `multistring` hyperrule accepts one parameter `n` which specifies</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the number of repetitions of the multistring delimiter &quot;`&quot;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> multistring(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># `n` is an integer in range 1 to infinity</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># in practice uint &gt; 1 or even uint8 &gt; 1 shall be sufficient</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  n</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> sequence(</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;`&quot;</span>.times(n),</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;&#39;&quot;</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># `anychar` is any unicode character</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    zeroOrMore(anychar).terminatedBy(</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>      sequence(</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;&#39;&quot;</span>,</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;`&quot;</span>.times(n)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <p>Now here is the above more concisely expressed in customized
 ABNF:</p>
-<pre class="abnf"><code>multistring(n, sep) = {n}&quot;`&quot; tag sep *any⇥(sep {n}&quot;`&quot;)</code></pre>
+<pre class="abnf"><code>multistring(n) = {n}&quot;`&quot; &quot;&#39;&quot; *any⇥(&quot;&#39;&quot; {n}&quot;`&quot;)</code></pre>
 <p>where the customizations are:</p>
 <ul>
-<li><code>rule(a, b) =</code> introduces a <code>rule</code>
-parametrized with arguments <code>a</code> and <code>b</code> (a
-hyperrule)</li>
+<li><code>rule(a) =</code> introduces a <code>rule</code> parametrized
+with the argument <code>a</code> (a hyperrule)</li>
 <li><code>{n}rule</code> matches <code>rule</code> repeated
 <code>n</code> times</li>
 <li><code>rule_a⇥rule_b</code> matches <code>rule_a</code> delimited by
 <code>rule_b</code>, i.e. as soon a match for <code>rule_b</code> is
 found while matching <code>rule_a</code>, matching succeeds<a
-href="#fn5" class="footnote-ref" id="fnref5"
-role="doc-noteref"><sup>5</sup></a></li>
+href="#fn4" class="footnote-ref" id="fnref4"
+role="doc-noteref"><sup>4</sup></a></li>
 </ul>
-<p>This hyperrule would “expand to” an infinite<a href="#fn6"
-class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>
+<p>This hyperrule would “expand to” an infinite<a href="#fn5"
+class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>
 number of regular rules, such as:</p>
-<pre><code>multistring_1_inline = &quot;`&quot; tag &quot;&#39;&quot; *any|(&quot;&#39;&quot; &quot;`&quot;)
-multistring_2_inline = &quot;``&quot; tag &quot;&#39;&quot; *any|(&quot;&#39;&quot; &quot;``&quot;)
-multistring_3_inline = &quot;```&quot; tag &quot;&#39;&quot; *any|(&quot;&#39;&quot; &quot;```&quot;)
+<pre><code>multistring_1 = &quot;`&quot; &quot;&#39;&quot; *any⇥(&quot;&#39;&quot; &quot;`&quot;)
+multistring_2 = &quot;``&quot; &quot;&#39;&quot; *any⇥(&quot;&#39;&quot; &quot;``&quot;)
+multistring_3 = &quot;```&quot; &quot;&#39;&quot; *any⇥(&quot;&#39;&quot; &quot;```&quot;)
 ...
-multistring_5_inline = &quot;`````&quot; tag &quot;&#39;&quot; *any|(&quot;&#39;&quot; &quot;`````&quot;)
+multistring_5 = &quot;`````&quot; &quot;&#39;&quot; *any⇥(&quot;&#39;&quot; &quot;`````&quot;)
 ...
-
-multistring_1_block = &quot;`&quot; tag linebreak *any|(linebreak &quot;`&quot;)
-multistring_2_block = &quot;``&quot; tag linebreak *any|(linebreak &quot;``&quot;)
-multistring_3_block = &quot;```&quot; tag linebreak *any|(linebreak &quot;```&quot;)
-...
-multistring_6_block = &quot;``````&quot; tag linebreak *any|(linebreak &quot;``````&quot;)
+multistring_10 = &quot;``````````&quot; &quot;&#39;&quot; *any⇥(&quot;&#39;&quot; &quot;``````````&quot;)
 ...</code></pre>
-<p>This formal definition should be sufficient to implement the feature.
-I have left some details out, such as the exact grammar of
-<code>tag</code>s and <code>linebreak</code>s, perhaps for another
-article. For now, I’d recommend sticking to conservative definitions for
-these. Should multistrings get any traction, we can go about specifying
-these details properly.</p>
+<p>This formal definition should be sufficient to implement the
+feature.</p>
+<h2 id="possible-extensions">Possible extensions</h2>
+<p>Multistrings, as specified above, are very basic and solve only one
+problem, i.e. verbatim embedding of arbitrary text into another syntax
+(e.g. source code in some programming lanugage) without needing to
+modify the embedded text. Thanks to multistrings, we can literally
+copy-paste anything into a syntax that supports them as a string and not
+worry about <a
+href="https://en.wikipedia.org/wiki/Delimiter#Delimiter_collision">delimiter
+collision</a>. When in doubt: add more backticks.</p>
+<p>However, there is a number of possible extensions that we can add to
+the feature. One I’ll mention here briefly is what I call tags.</p>
+<h3 id="tags">Tags</h3>
+<p>Tags can be seen as a generalization of Markdown language
+specifiers.</p>
+<p>A tagged multistring may look like:</p>
+<pre><code>```tag&#39;multistring&#39;```</code></pre>
+<p>Such tags can be used as metadata to describe the content within the
+multistring. This metadata may direct transformation(s) of the
+multistring: e.g. to interpret it as a specific language, to adjust or
+remove indentation, to enable interpretation of <code>\x</code> escape
+sequences, to enable <code>${substitutions}</code>, etc.</p>
+<p>To allow tags, we’d extend our syntax (in a backwards-compatible way)
+like so (again in customized ABNF):</p>
+<pre class="abnf"><code>multistring(n) = {n}&quot;`&quot; tag &quot;&#39;&quot; *any⇥(&quot;&#39;&quot; {n}&quot;`&quot;)</code></pre>
+<p>The only thing that was changed is the addition of <code>tag</code>
+inbetween the apostrophe and the backtick.</p>
+<p>I’ll leave the precise definition of the <code>tag</code> rule for
+another time. Certainly it should not contain backticks or apostrophes
+and generally we’d want tags to be kept on the same line as the
+multistring delimiter. For an actual implementation I’d recommend
+starting with a conservative syntax for tags, with limited special
+symbols – we may want to use one or more of those to create a
+generalized version of multistrings (but that’s perhaps for another
+article).</p>
+<p>I give a few examples of how tags could be used in <a
+href="#appendix-iii-examples-for-how-tags-could-be-used">Appendix
+III</a>.</p>
 <h2 id="whats-next">What’s next</h2>
 <p>Having defined the multistring rule, it may be time to use it as part
 of a new syntax! I encourage language designers and implementers to try
@@ -382,17 +310,19 @@ them in the wild.</p>
 <p>This is it for now.</p>
 <p>Thank you for reading and until next time.</p>
 <hr />
+<p>This post was discussed on <a
+href="https://www.reddit.com/r/ProgrammingLanguages/comments/13rij54/multistrings_a_simple_syntax_for_heredocstyle/">reddit.com/r/ProgrammingLanguages</a>.</p>
 <p>If you like this, you can help by spreading it further, e.g.</p>
 <ul>
-<li><a
-href="https://www.reddit.com/submit?url=https://djedr.github.io/posts/multistrings-2023-05-25.html&amp;title=Multistrings:%20a%20simple%20syntax%20for%20heredoc-style%20strings%20(2023)">submit
-to Reddit</a>,</li>
 <li><a
 href="https://news.ycombinator.com/submitlink?u=https://djedr.github.io/posts/multistrings-2023-05-25.html&amp;t=Multistrings:%20a%20simple%20syntax%20for%20heredoc-style%20strings%20(2023)">submit
 to Hacker News</a>,</li>
 <li><a
 href="https://lobste.rs/stories/new?url=https://djedr.github.io/posts/multistrings-2023-05-25.html&amp;title=Multistrings:%20a%20simple%20syntax%20for%20heredoc-style%20strings%20(2023)">submit
 to Lobsters</a>,</li>
+<li><a
+href="https://www.reddit.com/submit?url=https://djedr.github.io/posts/multistrings-2023-05-25.html&amp;title=Multistrings:%20a%20simple%20syntax%20for%20heredoc-style%20strings%20(2023)">submit
+to Reddit</a>,</li>
 </ul>
 <p>or elsewhere. In any case, you can use this title and link:</p>
 <div
@@ -416,79 +346,140 @@ class="uri">https://en.wikipedia.org/wiki/Delimiter#Delimiter_collision</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Markdown"
 class="uri">https://en.wikipedia.org/wiki/Markdown</a></li>
 </ul>
-<h2 id="appendix-edge-cases">Appendix: edge cases</h2>
-<h3 id="empty-markdown-code-blocks-are-not-valid-multistrings">Empty
-Markdown code blocks are not valid multistrings</h3>
+<h2 id="appendix-i-why-choose-apostrophe-as-the-separator">Appendix I:
+why choose apostrophe as the separator?</h2>
+<p>Other more or less viable separators for multistrings include:</p>
+<ul>
+<li><code>"</code> (double quote): I chose <code>'</code> over
+<code>"</code> because often languages use <code>'</code> for raw
+strings which do not support escape sequences or substitutions – as is
+true for (untagged) multistrings. An implementation may choose to allow
+<code>"</code> as an alternative separator. Another (very minor) reason
+is that <code>'</code> is generally one keypress less than
+<code>"</code>.</li>
+<li>linebreak: which would make multistrings look exactly like Markdown
+code blocks. I rejected this as slightly harder to implement, less
+obvious, less flexible, more error-prone, and to reduce confusion with
+Markdown.</li>
+</ul>
+<p>A nice advantage of <code>'</code> also is that if we find ourselves
+needing to convert from a regular <code>'</code>-delimited string into a
+multistring, there is no need to delete or replace the delimiters. We
+only need to add a layer of <code>`</code>-delimiters around the regular
+string. This is particularly easy in a modern code editor.</p>
+<p>For example if we have an <code>'</code>-delimited string such
+as:</p>
+<pre><code>&#39;a string with an apostrophe: &#39;</code></pre>
+<p>and we find that the next character we insert is <code>'</code>,
+making the string invalid:</p>
+<pre><code>&#39;a string with an apostrophe: &#39;&#39;</code></pre>
+<p>we can quickly fix this by surrounding the whole string with
+<code>`</code>:</p>
+<pre><code>`&#39;a string with an apostrophe: &#39;&#39;`</code></pre>
+<p>That said, <code>|</code> is a nice separator too and you can choose
+whatever you like. You could also replace <code>`</code> with another
+delimiter that suits your language better.</p>
+<!--I had to pick something to show concrete examples -->
+<h2 id="appendix-ii-edge-cases">Appendix II: edge cases</h2>
+<p>Implementers beware.</p>
+<h3
+id="empty-multistrings-are-not-like-empty-markdown-code-blocks">Empty
+multistrings are not like empty Markdown code blocks</h3>
 <p>In Markdown, an empty code block is denoted as:</p>
 <pre><code>```
 ```</code></pre>
-<p>which is not a valid multistring, according to the stated <a
-href="#formal-definition">formal definition</a>.</p>
-<p>Instead, a valid empty multistring is denoted as:</p>
-<pre><code>```
-
-```</code></pre>
-<p>Furthermore:</p>
+<p>Note the single linebreak between the delimiters.</p>
+<p>However, an equivalent empty multistring is:</p>
+<pre><code>```&#39;&#39;```</code></pre>
+<p>rather than:</p>
+<pre><code>```&#39;```</code></pre>
+<p>The stated <a href="#formal-definition">formal definition</a> does
+not allow to “fuse together” the opening and closing delimiters like
+this, which is what effectively happens in Markdown.</p>
+<p>Instead, an empty multistring is always an opening delimiter
+immediately next to a closing delimiter. This is the same principle as
+in the familiar <code>""</code> or <code>''</code> empty strings.</p>
+<p>Thanks to that the following multistring:</p>
+<pre><code>```&#39;```&#39;```</code></pre>
+<p>is valid and contains <code>```</code>.</p>
+<p>Whereas in Markdown an analogous syntax:</p>
 <pre><code>```
 ```
 ```</code></pre>
-<p>is a valid multistring that contains <code>```</code>.</p>
-<p>Whereas in Markdown this means an empty code block followed by
-<code>```</code> (an unclosed, and thus invalid, code block). To make
-that work in Markdown, we would need to increase the number of backticks
-around the middle <code>```</code>.</p>
+<p>means an empty code block followed by <code>```</code> (an unclosed,
+and thus invalid, code block). To make that work in Markdown, we would
+need to increase the number of backticks around the middle
+<code>```</code>.</p>
 <p>This edge case illustrates that the multistring syntax is more
-regular than Markdown, which stems from its simple formal
-definition.</p>
-<h3 id="the-same-edge-case-repeated-for-inline-multistrings">The same
-edge case repeated for inline multistrings</h3>
-<p>The previously mentioned edge case can be written as an inline
-multistring like so:</p>
-<pre><code>```&#39;```&#39;```</code></pre>
-<p>In Markdown, we’d need to write something like:</p>
-<pre><code>```` ``` ````</code></pre>
-<p>whereas:</p>
-<pre><code>``` ``` ```</code></pre>
-<p>would be invalid.</p>
-<p>NB The following is the minimal edge case of an inline multistring
+regular than Markdown, thanks to the simple formal definition.</p>
+<p>By the way, the following is a minimal edge case of a multistring
 that can be used to test a parser:</p>
 <pre><code>`&#39;`&#39;`</code></pre>
 <p>It should parse as a multistring which contains <code>`</code>.</p>
-<p>For completeness, we may note that an empty inline multistring is
-denoted as:</p>
+<p>For completeness, this is the minimal empty multistring:</p>
 <pre><code>`&#39;&#39;`</code></pre>
-<p>i.e. an opening delimiter immediately next to a closing delimiter.
-This is the same principle as in the familiar <code>""</code> or
-<code>''</code> empty strings.</p>
-<p>This can be contrasted with:</p>
-<pre><code>`&#39;`</code></pre>
-<p>which is invalid and should not parse as a multistring. Implementers
-beware.</p>
-<p>The opening and closing delimiters cannot be “fused together” like
-this, which is what effectively happens in Markdown.</p>
+<h2 id="appendix-iii-examples-for-how-tags-could-be-used">Appendix III:
+examples for how tags could be used</h2>
+<!-- Here I shall give a few illustrative examples of how [tags](#tags) could be used. -->
+<p>For example, a <code>dedent</code> tag could signify that the
+multistring should be postprocessed by removing the first linebreak, all
+indentation that goes beyond the indentation of the last line, as well
+as the last line, achieving the behavior of raw string literals from C#
+11 (thanks <a
+href="https://www.reddit.com/r/ProgrammingLanguages/comments/13rij54/multistrings_a_simple_syntax_for_heredocstyle/jlkgzpe/"><span
+class="citation" data-cites="useerup">@useerup</span> on reddit</a> for
+mentioning those). For example using <code>dedent</code> this
+multistring:</p>
+<pre><code>    ```dedent&#39;
+    {
+      &quot;key&quot;: &quot;value
+    }
+    &#39;```</code></pre>
+<p>would be equivalent to this one without <code>dedent</code>:</p>
+<pre><code>```&#39;{
+  &quot;key&quot;: &quot;value
+}&#39;```</code></pre>
+<p>An <code>esc</code> tag could signify that C-style escapes should be
+recognized and replaced within the multistring. E.g.:</p>
+<pre><code>```esc&#39;\n\n\n&#39;```</code></pre>
+<p>would be equivalent to:</p>
+<pre><code>```&#39;
+
+
+&#39;```</code></pre>
+<p>i.e. a string which contains 3 linebreaks.</p>
+<p>A <code>$</code> tag could turn the multistring into a <a
+href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals">template
+literal</a>, where names of variables or expressions could be
+substituted for their values, e.g.:</p>
+<pre><code>`$&#39;Hello, ${username}!&#39;`</code></pre>
+<p>could be equivalent to:</p>
+<pre><code>`&#39;Hello, John!&#39;`</code></pre>
+<p>assuming <code>John</code> as the value of the <code>username</code>
+variable.</p>
+<p>Multiple tags could be allowed for one multistring, perhaps by
+comma-separating them. E.g.:</p>
+<pre><code>`$,esc&#39;Hello,\n${username}!&#39;`</code></pre>
+<p>Here we are using both the <code>$</code> and <code>esc</code> tags
+to achieve something like:</p>
+<pre><code>`&#39;Hello,
+John!&#39;`</code></pre>
+<p>In this way could make up all kinds of useful tags and rules for
+them.</p>
 <section id="footnotes" class="footnotes footnotes-end-of-document"
 role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Note: only one of these variants is sufficient to
-achieve the full power of multistrings – they are interchangeable, and
-differ only aesthetically. To keep an implementation as simple and
-minimal as possible I’d recommend going with the inline variant, as it
-is very slightly easier to implement (don’t have to worry about
-different linebreak standards) and can be made to mimic the block
-variant, especially if we designate a proper tag for that. In fact if
-you were forced to choose only one type of strings for your language, I
-think inline multistrings would be an excellent choice.<a href="#fnref1"
-class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Which are <a
+href="#appendix-i-why-choose-apostrophe-as-the-separator">an arbitrary
+choice</a>. This recipe can of course be adjusted by picking different
+delimiters, to fit the syntax of a specific programming lanugage,
+implementer’s sense of aesthetics, or other constraints.<a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>Although an implementation is of course free to restrict
 the minimum number of backticks.<a href="#fnref2" class="footnote-back"
 role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>I’d only recommend starting with a conservative syntax
-for tags, without any special symbols – we may want to use one or more
-of those to create a generalized version of multistrings (but that’s for
-another article).<a href="#fnref3" class="footnote-back"
-role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>If interested in the details of that, you may want to
+<li id="fn3"><p>If interested in the details of that, you may want to
 look into: <a
 href="https://en.wikipedia.org/wiki/Two-level_grammar">two-level
 grammars</a>, <a
@@ -496,13 +487,13 @@ href="https://en.wikipedia.org/wiki/Van_Wijngaarden_grammar">Van
 Wijngaarden grammars</a>, <a
 href="https://en.wikipedia.org/wiki/Affix_grammar">affix grammars</a> or
 <a href="https://en.wikipedia.org/wiki/Extended_affix_grammar">extended
-affix grammars</a>.<a href="#fnref4" class="footnote-back"
+affix grammars</a>.<a href="#fnref3" class="footnote-back"
 role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>To put it anoter way, <code>rule_a⇥rule_b</code> can be
+<li id="fn4"><p>To put it anoter way, <code>rule_a⇥rule_b</code> can be
 expressed in EBNF as: <code>(rule_a - rule_b), rule_b</code>.<a
-href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>In practice if we limit <code>n</code> to 255, we’ll get
-2*255=510 rules.<a href="#fnref6" class="footnote-back"
+href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>In practice if we limit <code>n</code> to 255, we’ll get
+255 rules.<a href="#fnref5" class="footnote-back"
 role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
