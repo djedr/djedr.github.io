@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Darius J Chuck -- Writing</title>
+    <description>Darius J Chuck -- Writing</description>
+    <link>https://djedr.github.io/writing.html</link>
+    <atom:link href="https://djedr.github.io/rss.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Multistrings: a simple syntax for heredoc-style strings / 2023-05-25</title>
+      <link>https://djedr.github.io/posts/multistrings-2023-05-25.html</link>
+      <guid>https://djedr.github.io/posts/multistrings-2023-05-25.html</guid>
+    </item>
+    <item>
+      <title>Introducing Jevko: a minimal general-purpose syntax / 2022-02-22</title>
+      <link>https://djedr.github.io/posts/jevko-2022-02-22.html</link>
+      <guid>https://djedr.github.io/posts/jevko-2022-02-22.html</guid>
+    </item>
+    <item>
+      <title>JsonHilo.js – ultra-fast lossless JSON parse event streaming / 2021-07-29</title>
+      <link>https://djedr.github.io/posts/jsonhilo-2021-07-29.html</link>
+      <guid>https://djedr.github.io/posts/jsonhilo-2021-07-29.html</guid>
+    </item>
+    <item>
+      <title>Why NOT to add the pipeline operator to JavaScript? / 2018-01-25</title>
+      <link>https://djedr.github.io/posts/random-2018-01-25.html</link>
+      <guid>https://djedr.github.io/posts/random-2018-01-25.html</guid>
+    </item>
+  </channel>
+</rss>
