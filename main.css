@@ -21,7 +21,7 @@ td {
 }
 
 tr > td {
-	vertical-align: top
+	vertical-align: top;
 }
 
 td > h3 {
