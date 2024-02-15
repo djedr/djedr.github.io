@@ -34,7 +34,7 @@ footer {
 }
 
 hr {
-	border: 1px solid black;
+	border: 1px solid #ccc;
 }
 
 .print-only, .hidden, .print-only-table-row {
@@ -141,6 +141,10 @@ body {
 
 .avatar {
     width: 64px;
+}
+
+.projectlogo {
+  width: 2.5rem;
 }
 
 .avatar-container {
