@@ -5,6 +5,7 @@ canvas {
   transform: scale(8, 8);
   position: absolute;
   top: 0;
+  position: fixed;
 
   image-rendering: optimizeSpeed; /* Legal fallback */
   image-rendering: -moz-crisp-edges; /* Firefox        */
