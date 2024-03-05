@@ -1,214 +1,320 @@
 <!doctype html>
 <html>
 <head>
-	<meta charset="utf-8" />
-	<title>Darius J Chuck -- Resume</title>
-	<link rel="stylesheet" type="text/css" href="main.css" />
-	<style>
-		@media print {
-    	.pbb { page-break-before: always; }
-		}
+  <meta charset="utf-8" />
+  <title>Darius J Chuck -- Resume</title>
+  <!-- <link rel="stylesheet" type="text/css" href="main.css" /> -->
+  <style>
+    @media screen {
+      html {
+        filter: invert(1);
+        background-color: white;
+      }
+      .photo {
+        display: none;
+      }
+      .mail-addr-postfix:before {
+        content: " on " "gmail";
+      }
+      .print {
+        display: none;
+      }
+      .top > a {
+        color: blue;
+        text-decoration: none;
+      }
+    }
 
-		h1, h2, h3, h4, ul {
-			margin: 0;
-		}
-	</style>
+    @media print {
+      .mail-addr-postfix:before {
+        content: "\0040" "gmail" "\002e" "com";
+      }
+      .screen {
+        display: none;
+      }
+      .top {
+        display: none;
+      }
+      .photo {
+        width: 12rem;
+        position: absolute;
+        right: 0;
+      }
+    }
+
+    body {
+      max-width: 44em;
+      padding: 0 1em;
+      margin: auto;
+      margin-top: 1em;
+      position: relative;
+      font-family: "Times New Roman", Times, serif;
+      font-size: 15pt;
+    }
+  </style>
 </head>
 <body>
-	<div class="document">
-	<img class="photo print-only" src="photo.jpg" />
-	<!-- <img class="photo screen-only" src="self.png" /> -->
-	<h1><a href="index.html" title="Click here to go to the home page">Darius J Chuck</a></h1>
-	<h2>Resume</h2>
+<!--
+  NOTE: this HTML file should not be changed manually, but generated from resume.md by running `sh resume-maker/make.sh`
+--><p><img class="photo" src="photo.jpg" /></p>
+<h1 class="top" id="darius-j-chuck"><a href="./index.html">Darius J
+Chuck</a></h1>
+<div class="screen">
+<p>This is my resume/CV. It is designed to be easy to print and process
+automatically.</p>
+</div>
+<h1 id="dariusz-jędrzejczak">Dariusz Jędrzejczak</h1>
+<h2 id="personal-details">Personal details</h2>
+<ul>
+<li>Name pronunciation: Daryush Yeh-J-Chuck</li>
+<li>Internationalized name: Darius J Chuck</li>
+<li>E-mail: darius.j.chuck<span class="mail-addr-postfix"></span></li>
+<li>Home page: <a href="https://djedr.github.io"
+class="uri">https://djedr.github.io</a></li>
+<li>LinkedIn: <a href="https://www.linkedin.com/in/darius-j-chuck"
+class="uri">https://www.linkedin.com/in/darius-j-chuck</a></li>
+</ul>
+<h2 id="summary">Summary</h2>
+<ul>
+<li><p>Programming since 2004</p></li>
+<li><p>Master of Engineering in Computer Science</p></li>
+<li><p>4+ years of professional experience:</p>
+<ul>
+<li>TomTom Germany, Samsung R&amp;D, Mobica Limited, University of
+Edinburgh, an American startup</li>
+<li>Web applications, human-machine interfaces, functional programming
+research</li>
+<li>Scala (Akka, Play), TypeScript (React, Node.js), functional
+languages</li>
+</ul></li>
+<li><p>Original projects:</p>
+<ul>
+<li>TAO <a href="https://xtao.org" class="uri">https://xtao.org</a></li>
+<li>Jevko <a href="https://jevko.org"
+class="uri">https://jevko.org</a></li>
+<li>λDNA <a href="https://xtao.org/last.html"
+class="uri">https://xtao.org/last.html</a></li>
+</ul></li>
+<li><p>Interested in:</p>
+<ul>
+<li>Teaching, writing, creating digital content</li>
+<li>Syntax, data formats, structured communication</li>
+<li>Functional programming languages</li>
+<li>Web applications and frameworks</li>
+<li>Interactive applications, such as simulations or computer games</li>
+</ul></li>
+</ul>
+<div style="page-break-before: always;">
 
-	<h3>Summary</h3>
-	<ul>
-		<li>Programming since 2004.</li>
-		<li>Master of Engineering in Computer Science.</li>
-		<li>Created <a href="https://xtao.org">TAO</a>, <a href="https://jevko.org">Jevko</a>, and <a href="https://xtao.org/last.html">λDNA</a>.</li>
-		<li>4+ years of professional experience:</li>
-			<ul>
-				<li>TomTom, Samsung R&amp;D, Mobica Limited, University of Edinburgh, an american startup.</li>
-				<li>Web applications, human-machine interfaces, functional programming research.</li>
-				<li>Scala (Akka, Play), TypeScript (React, Node.js), functional languages.</li>
-			</ul>
-		<li>Interested in design and implementation of:
-			<ul>
-				<li>syntax, data formats, structured communication,</li>
-				<li>functional programming languages,</li>
-				<li>web applications and frameworks,</li>
-				<li>and interactive applications, such as simulations or computer games.</li>
-			</ul>
-		</li>
-	</ul>
+</div>
+<h2 id="experience">Experience</h2>
+<h3 id="specialist">Specialist</h3>
+<p>ZSiPONTWŁ w Łodzi | Łódź, Poland | 2024-03 to present</p>
+<ul>
+<li>Onsite, part-time (weekends)</li>
+<li>Technical college (technikum) <a
+href="https://nowoczesnaszkola.edu.pl"
+class="uri">https://nowoczesnaszkola.edu.pl</a></li>
+<li>Teaching future programmers website design, database design and
+administration</li>
+</ul>
+<h3 id="creator-researcher">Creator, Researcher</h3>
+<p>TAO | Łódź, Poland | 2020 to present</p>
+<ul>
+<li>Self-employed</li>
+<li>Creating digital content: writing, videos</li>
+<li>Teaching programming</li>
+<li>Original projects:
+<ul>
+<li>TAO <a href="https://xtao.org" class="uri">https://xtao.org</a> –
+cultivating simplicity in software. Umbrella for various software
+projects and a technical blog</li>
+<li>Jevko <a href="https://jevko.org" class="uri">https://jevko.org</a>
+– a versatile minimal syntax for encoding tree-structured information as
+human-friendly text</li>
+<li>λDNA, LAST <a href="https://xtao.org/last.html"
+class="uri">https://xtao.org/last.html</a> – extremely minimal
+programming languages</li>
+</ul></li>
+</ul>
+<h3 id="senior-software-engineer">Senior Software Engineer</h3>
+<p>Standard Notes | Chicago, Illinois, USA | 2021-02 to 2021-05</p>
+<ul>
+<li>Fully remote, 24-32 h/week</li>
+<li>American startup creating an end-to-end encrypted note-taking
+app</li>
+<li>Backend development in TypeScript with Docker</li>
+<li>Worked on crypto, auth, files</li>
+<li>Open-source <a
+href="https://github.com/standarius?from=2021-12-01&amp;to=2021-12-31"
+class="uri">https://github.com/standarius?from=2021-12-01&amp;to=2021-12-31</a></li>
+</ul>
+<div style="page-break-before: always;">
 
-	<table>
-		<tr><td colspan=3><h3>Relevant experience</h3></td></tr>
-		<tr>
-			<td style="width: 5em">2020 to present</td>
-			<td style="width: 17em">
-				<a href="https://xtao.org/index.html">TAO</a> &ndash; self-employed<br/>
-				Łódź, Poland
-			</td>
-			<td>Independent Researcher<br />JavaScript, original tech</td>
-		</tr>
-		<tr>
-			<td style="width: 5em">2021-02 to 2021-05</td>
-			<td style="width: 17em">Standard Notes<br />Remote</td>
-			<td>Senior Software Engineer<br />TypeScript</td>
-		</tr>
-		<tr>
-			<td style="width: 5em">2018-10 to 2019-12</td>
-			<td style="width: 17em">TomTom Germany<br />Berlin, Germany</td>
-			<td>Software Engineer<br />Scala (Spring, Akka, Play), TypeScript (React)</td>
-		</tr>
-		<tr>
-			<td style="width: 5em">2017-02 to 2018-10</td>
-			<td style="width: 17em">TomTom Polska<br />Łódź, Poland</td>
-			<td>Software Engineer<br />JavaScript (React + Redux)</td>
-		</tr>
-		<tr>
-			<td>2016-02 to 2016-05</td>
-			<td>Mobica Limited<br />Łódź, Poland</td>
-			<td>Junior Software Engineer<br />JavaScript&nbsp;(AngularJS)</td>
-		</tr>
-		<tr>
-			<td>2015-09 to 2015-12</td>
-			<td>Samsung Electronics Polska<br />Warsaw, Poland</td>
-			<td>Trainee/Engineer<br />JavaScript&nbsp;(AngularJS), Java&nbsp;(Spring), SQL&nbsp;(MySQL)</td>
-		</tr>
-		<tr>
-			<td>2015-06 to 2015-08</td>
-			<td>Samsung Electronics Polska<br />Łódź, Poland</td>
-			<td>Trainee<br />JavaScript&nbsp;(AngularJS), Java&nbsp;(Spring), SQL&nbsp;(PostgreSQL)</td>
-		</tr>
-		<tr>
-			<td>2014-08 to 2014-09</td>
-			<td>University of Edinburgh<br />Edinburgh, Scotland</td>
-			<td>Researcher, IAESTE traineeship<br />JavaScript, Haskell, Links</td>
-		</tr>
+</div>
+<h3 id="software-engineer">Software Engineer</h3>
+<p>TomTom Germany | Berlin, Germany | 2018-10 to 2019-12</p>
+<ul>
+<li>Onsite, hybrid, full-time</li>
+<li>Full stack development. Mainly back-end. Web applications for data
+processing and fusion. Internal tools for data visualization (front-end,
+back-end, design, architecture)</li>
+<li>Scala (Spring, Akka, Play), Java, TypeScript (React), web
+applications, data fusion, processing, analysis, Docker, AWS, Azure</li>
+<li>Development and maintenance of multiple web application
+back-ends</li>
+<li>JSON REST API design and implementation</li>
+<li>Coordination with multiple teams, e.g. internal consumers of our
+APIs</li>
+<li>Documentation, design, development and optimization of a data-heavy
+front-end application</li>
+</ul>
+<h3 id="software-engineer-1">Software Engineer</h3>
+<p>TomTom Polska | Łódź, Poland | 2017-02 to 2018-10</p>
+<ul>
+<li>Onsite, full-time</li>
+<li>Maps and location</li>
+<li>Front-end focus (JavaScript, TypeScript, React + Redux):
+<ul>
+<li>A CRUD app. Main developer. From inception to release</li>
+<li>A data visualization tool. Main developer</li>
+</ul></li>
+<li>Back-end (Scala, Spring, Akka, Play):
+<ul>
+<li>Web apps for data fusion and processing. One of the main
+developers</li>
+<li>Maintenance, extension, development from scratch, JSON API design
+and implementation</li>
+<li>Maintenance of related projects: auxiliary apps in Java, XML
+schemas, etc.</li>
+<li>Data analysis (various scripts, Node.js + Bash), Docker, AWS,
+Azure</li>
+</ul></li>
+</ul>
+<div style="page-break-before: always;">
 
-		<tr class="hidden"><td colspan=3><h3>Other experience</h3></td></tr>
-		<tr class="hidden">
-			<td>2016-10 to 2016-12</td>
-			<td>Personal projects</td>
-			<td></td>
-		</tr>
-		<tr class="hidden">
-			<td>2015-04 to 2016-07</td>
-			<td>Early-stage start-up (closed)<br />Poland</td>
-			<td>Technical lead and main JavaScript developer<br />
-				JavaScript (Angular 2, LoopBack, NodeJS), SQL (PostgreSQL)
-			</td>
-		</tr>
-		<tr class="hidden">
-			<td></td>
-			<td>Competitions</td>
-			<td></td>
-		</tr>
-		<tr class="hidden">
-			<td></td>
-			<td>Personal projects</td>
-			<td></td>
-		</tr>
+</div>
+<h3 id="junior-software-engineer">Junior Software Engineer</h3>
+<p>Mobica Limited | Łódź, Poland | 2016-02 to 2016-05</p>
+<ul>
+<li>Onsite, Talent as a Service company</li>
+<li>Automotive industry</li>
+<li>Human-Machine Interface (UI) application for an embedded system
+using JavaScript, Node.js, AngularJS, Gulp.js, Git + Gerrit, IBM
+Rational</li>
+<li>Operated specialized software for communicating with and
+manipulating the target device</li>
+</ul>
+<h3 id="engineer">Engineer</h3>
+<p>Samsung Electronics Polska | Warsaw, Poland | 2015-09 to 2015-12</p>
+<ul>
+<li>Onsite, front-end focus, R&amp;D</li>
+<li>Healthcare webapp</li>
+<li>Completed HIPAA training</li>
+<li>Web application development using JavaScript, Node.js, AngularJS,
+Gulp.js, Java, Spring, Gradle, PostgreSQL, MySQL, Git + Gerrit,
+Confluence, JIRA</li>
+</ul>
+<h3 id="trainee">Trainee</h3>
+<p>Samsung Electronics Polska | Łódź, Poland | 2015-06 to 2015-08</p>
+<h3 id="researcher">Researcher</h3>
+<p>University of Edinburgh | Edinburgh, Scotland | 2014-08 to
+2014-09</p>
+<ul>
+<li>Onsite, IAESTE traineeship</li>
+<li>Worked on Links <a href="https://links-lang.org"
+class="uri">https://links-lang.org</a>, a research web programming
+language</li>
+<li>Learned and wrote JavaScript, Haskell, OCaml</li>
+<li>Significantly sped up JavaScript compilation in Links and built and
+evaluated the performance of a number of games written in Links</li>
+<li>Open-source <a
+href="https://github.com/djedr?from=2014-12-01&amp;to=2014-12-31"
+class="uri">https://github.com/djedr?from=2014-12-01&amp;to=2014-12-31</a></li>
+</ul>
+<div style="page-break-before: always;">
 
-		<tr>
-			<td colspan=3><h3>Education</h3></td>
-		</tr>
-		<tr>
-			<td>2015 to 2016</td>
-			<td>Łódź University of Technology<br />
-				Łódź, Poland
-			</td>
-			<td>
-                Master of Engineering&nbsp;in Computer Science
-                |&nbsp;GPA:&nbsp;4.71/5.0
-            </td>
-		</tr>
-		<tr>
-			<td colspan=2 class="continuation-row">
-                Thesis:
-                <span class="thesis-title"><a href="masters_thesis.pdf">
-                    Dual: a web-based, Pac-Man-complete hybrid text and visual programming language
-                </a></span> |&nbsp;Grade:&nbsp;5/5
-            </td>
-			<td>
-                Specialisation:<br />
-                Interactive System and Games Technology
-			</td>
-		</tr>
-		<tr>
-			<td>2011 to 2015</td>
-			<td>Łódź University of Technology<br />
-				Łódź, Poland
-			</td>
-			<td>Bachelor of Engineering&nbsp;in Computer Science
-            |&nbsp;GPA:&nbsp;4.56/5.0</td>
-		</tr>
-		<tr>
-			<td colspan=2 class="continuation-row">
-                Thesis:
-                <span class="thesis-title"><a href="bachelors_thesis.pdf">
-                    Optimizing Links, a functional programming language that compiles to JavaScript, for computer games
-                </a></span> |&nbsp;Grade:&nbsp;5/5
-            </td>
-			<td>
-                Specialisation:<br />
-                Computer Simulation and Games Technology
-			</td>
-		</tr>
+</div>
+<h2 id="education">Education</h2>
+<h3 id="master-of-engineering-in-computer-science">Master of Engineering
+in Computer Science</h3>
+<p>Łódź University of Technology | Łódź, Poland | 2015 to 2016</p>
+<ul>
+<li>GPA: 4.71/5.0</li>
+<li>Thesis:
+<ul>
+<li>Title: <em>Dual: a web-based, Pac-Man-complete hybrid text and
+visual programming language</em></li>
+<li>Grade: 5/5</li>
+<li><a href="https://djedr.github.io/masters_thesis.pdf"
+class="uri">https://djedr.github.io/masters_thesis.pdf</a></li>
+</ul></li>
+<li>Specialization: Interactive System and Games Technology</li>
+<li>Leader of a team which won silver in VR Challenge, 1st edition.
+<ul>
+<li>Created a virtual reality game-simulation <a
+href="https://youtu.be/Qi2UEvtk9E8"
+class="uri">https://youtu.be/Qi2UEvtk9E8</a></li>
+</ul></li>
+</ul>
+<h3 id="bachelor-of-engineering-in-computer-science">Bachelor of
+Engineering in Computer Science</h3>
+<p>Łódź University of Technology | Łódź, Poland | 2011 to 2015</p>
+<ul>
+<li>GPA: 4.56/5.0</li>
+<li>Thesis:
+<ul>
+<li>Title: <em>Optimizing Links, a functional programming language that
+compiles to JavaScript, for computer games</em></li>
+<li>Grade: 5/5</li>
+<li><a href="https://djedr.github.io/bachelors_thesis.pdf"
+class="uri">https://djedr.github.io/bachelors_thesis.pdf</a></li>
+</ul></li>
+<li>Specialization: Computer Simulation and Games Technology</li>
+<li>Vice-leader of a team which won the Team Computer Game Development
+Competition, 6th edition. <a
+href="https://gry.it.p.lodz.pl/main/index.php/pl/okonkursie/poprzednie-edycje/edycja2014"
+class="uri">https://gry.it.p.lodz.pl/main/index.php/pl/okonkursie/poprzednie-edycje/edycja2014</a>
+<ul>
+<li>Designed and implemented a game engine in C# and Microsoft XNA
+framework</li>
+<li>Designed and implemented a game on top of that <a
+href="https://youtu.be/U5mKpAnPqNw"
+class="uri">https://youtu.be/U5mKpAnPqNw</a></li>
+</ul></li>
+</ul>
+<div style="page-break-before: always;">
 
-		<tr class="pbb"><td colspan=3><h3>Skills</h3></td></tr>
-		<tr>
-			<td>Languages</td>
-			<td colspan=2>Polish (native), English (fluent), German (basic), Spanish (basic)</td>
-		</tr>
-		<tr>
-			<td>Programming languages (experience)</td>
-			<td colspan=2>
-				Significant: JavaScript/TypeScript (+ HTML, CSS), Scala<br />
-				Some: C, C++, C#, Java, PHP, SQL<br />
-				Basic: Ada, Bash, D, Haskell, Pascal, Python, x86 assembly, and more
-			</td>
-		</tr>
-		<tr>
-			<td>Software</td>
-			<td colspan=2>
-				Platforms: Azure, AWS, Web, Linux, Windows, embedded, Unity 3D, Unreal Engine 4<br />
-				Databases: PostgreSQL, SQLite, MySQL, MS SQL<br />
-				Version control: Git, Subversion, Perforce<br />
-				Other: Docker, Atlassian suite, project management tools, office suites, graphics editing (raster and vector), and more
-			</td>
-		</tr>
-
-		<tr><td colspan=3><h3>Personal details</h3></td></tr>
-		<tr>
-			<td>Legal name</td>
-			<td colspan=2>
-				Dariusz Jędrzejczak<br/>
-				<i>(internationalized as Darius J Chuck for <del>pronounceability</del> professional purposes)</i>
-			</td>
-		</tr>
-		<tr>
-			<td>E-mail</td>
-			<td colspan=2>darius.j.chuck<span class="mail-addr-postfix"></span></td>
-		</tr>
-		<tr class="print-only-table-row">
-			<td>Home page</td>
-			<td colspan=2>http://djedr.github.io</td>
-		</tr>
-
-		<tr class="print-only-table-row">
-			<td colspan=3>
-				<p class="personal-data-clause">I hereby authorise you to process my personal data included in my job application for the needs of the current and future recruitment processes (in accordance with the Personnel Protection Act of 29.08.1997 no 133 position 883).</p>
-
-				<p class="personal-data-clause">Wyrażam zgodę na przetwarzanie moich danych osobowych zawartych w mojej ofercie pracy dla potrzeb niezbędnych do realizacji procesu rekrutacji (zgodnie z Ustawą z dnia 29.08.1997 roku o Ochronie Danych Osobowych; tekst jednolity: Dz. U. z 2002r. Nr 101, poz. 926 ze zm.).</p>
-			</td>
-		</tr>
-	</table>
-
-	<footer class="screen-only">This document was last updated 2024-01-27</footer>
-
-	</div>
+</div>
+<h2 id="skills">Skills</h2>
+<h3 id="languages">Languages</h3>
+<ul>
+<li>Native: Polish</li>
+<li>Fluent: English</li>
+<li>Basic: German, Spanish</li>
+</ul>
+<h3 id="programming-languages">Programming languages</h3>
+<ul>
+<li>Significant experience: JavaScript/TypeScript (+ HTML, CSS),
+Scala</li>
+<li>Some experience: C, C++, C#, Java, PHP, SQL</li>
+<li>Basic experience: Ada, Bash, D, Haskell, Pascal, Python, x86
+assembly, and more</li>
+</ul>
+<h3 id="software">Software</h3>
+<ul>
+<li>Platforms: Azure, AWS, Web, Linux, Windows, embedded, Unity 3D,
+Unreal Engine 4</li>
+<li>Databases: PostgreSQL, SQLite, MySQL, MS SQL</li>
+<li>Version control: Git, Subversion, Perforce</li>
+<li>Other: Docker, Atlassian suite, project management tools, office
+suites, graphics editing (raster and vector), and more</li>
+</ul>
+<div class="print">
+<p><em>I hereby consent to my personal data being processed for the
+purpose of considering my application for the vacancy.</em></p>
+<p><em>Wyrażam zgodę na przetwarzanie moich danych osobowych w celu
+prowadzenia rekrutacji na aplikowane przeze mnie stanowisko.</em></p>
+</div>
 </body>
 </html>

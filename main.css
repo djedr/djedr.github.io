@@ -50,12 +50,6 @@ hr {
 	font-style: italic;
 }
 
-.photo {
-	width: 13rem;
-	position: absolute;
-	right: 0;
-}
-
 .summary {
 	width: 45em;
 }
