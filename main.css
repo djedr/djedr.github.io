@@ -54,10 +54,14 @@ body {
     margin-top: 1em;
 	position: relative;
 	font-family: "Times New Roman", Times, serif;
-	font-size: 17pt;
+	font-size: 20pt;
 }
 
-
+@media screen and (max-width: 900px) {
+  .document {
+    font-size: 17pt;
+  }
+}
 
 .title {
 	font-size: 2em;
@@ -113,7 +117,7 @@ body {
 }
 
 .projectlogo {
-  width: 2.5rem;
+  width: 3rem;
 }
 
 .avatar-container {
