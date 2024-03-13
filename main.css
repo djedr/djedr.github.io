@@ -2,33 +2,6 @@ body {
   margin: auto;
 }
 
-a {
-	text-decoration: none;
-}
-
-table, tr, td {
-	border: 1px solid rgba(0, 0, 0, 0);
-	table-layout: fixed;
-	border-collapse: collapse;
-}
-
-table {
-	margin-bottom: 1em;
-}
-
-td {
-	padding: 0.25em;
-}
-
-tr > td {
-	vertical-align: top;
-}
-
-td > h3 {
-	padding-top: 0.5em;
-	margin: 0;
-}
-
 footer {
 	font-size: 0.75em;
 }
@@ -64,6 +37,8 @@ hr {
 
 a {
 	color: yellow;
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
 }
 
 body {
