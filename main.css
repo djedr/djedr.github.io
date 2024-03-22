@@ -3,28 +3,28 @@ body {
 }
 
 footer {
-	font-size: 0.75em;
+  font-size: 0.75em;
 }
 
 hr {
-	border: 1px solid #1f1f1f;
+  border: 1px solid #1f1f1f;
 }
 
 .print-only, .hidden, .print-only-table-row {
-	display: none;
+  display: none;
 }
 
 .personal-data-clause {
-	font-style: italic;
-	font-size: 0.75em;
+  font-style: italic;
+  font-size: 0.75em;
 }
 
 .thesis-title {
-	font-style: italic;
+  font-style: italic;
 }
 
 .summary {
-	width: 45em;
+  width: 45em;
 }
 
 .wide {
@@ -36,68 +36,66 @@ hr {
 }
 
 a {
-	color: yellow;
+  color: yellow;
   text-decoration: underline;
   text-underline-offset: 0.25rem;
 }
 
 body {
-	background-color: #111;
-	color: #eee;
-	/* font-size: 12pt; */
+  background-color: #111;
+  color: #eee;
+  /* font-size: 12pt; */
+  font-family: sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Times New Roman", Times, serif;
 }
 
 .document {
-	max-width: 44em;
-	padding: 0 1em;
-	margin: auto;
-    margin-top: 1em;
-	position: relative;
-	font-family: "Times New Roman", Times, serif;
-	font-size: 20pt;
-}
-
-@media screen and (max-width: 900px) {
-  .document {
-    font-size: 17pt;
-  }
+  max-width: 44em;
+  padding: 0 1em;
+  margin: auto;
+  margin-top: 1em;
+  position: relative;
+  font-size: calc(1rem + 0.7vw);
 }
 
 .title {
-	font-size: 2em;
+  font-size: 2em;
 }
 
 .date {
-	line-height: 2em;
+  line-height: 2em;
 }
 
 .blog-title {
-	font-size: 3em;
-	text-align: center;
-	display: block;
-	text-align: center;
+  font-size: 3em;
+  text-align: center;
+  display: block;
+  text-align: center;
 }
 
 .blog-title a {
-	color: #88d;
+  color: #88d;
 }
 
 .mail-addr-postfix:before {
-	content: " at gmail dot com";
+  content: " at gmail dot com";
 }
 
 .pre-serif {
-	font-family: "Times New Roman", Times, serif;
-	white-space: pre-wrap;
-	margin-top: 0;
+  font-family: "Times New Roman", Times, serif;
+  white-space: pre-wrap;
+  margin-top: 0;
 }
 
 .label {
-	color: #555;
+  color: #555;
 }
 
 .bottom-space {
-	margin-bottom: 1em;
+  margin-bottom: 1em;
 }
 
 .publication-date {
