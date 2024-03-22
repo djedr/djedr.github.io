@@ -4,7 +4,7 @@ title: Darius J Chuck &ndash; Resume
 
 <img class="photo" src="photo.jpg" />
 
-# [Darius J Chuck](./index.html) {.top}
+# [Darius J Chuck](./index.html) / Resume {.top}
 
 <div class="screen">
 
