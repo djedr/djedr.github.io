@@ -19,6 +19,7 @@ This is my resume/CV. It is designed to be easy to print and process automatical
 * Name pronunciation: Daryush Yeh-J-Chuck
 * Internationalized name: Darius J Chuck
 * E-mail: darius.j.chuck<span class="mail-addr-postfix"></span>
+* Portfolio: <https://djedr.github.io/projects.html>
 * Home page: <https://djedr.github.io>
 * LinkedIn: <https://www.linkedin.com/in/darius-j-chuck>
 * GitHub: <https://github.com/djedr>
