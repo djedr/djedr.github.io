@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Darius J Chuck -- Resume</title>
+  <!-- <link rel="stylesheet" type="text/css" href="main.css" /> -->
+  <style>
+    @media screen {
+      html {
+        filter: invert(1);
+        background-color: white;
+      }
+      .photo {
+        display: none;
+      }
+      .mail-addr-postfix:before {
+        content: " on " "gmail";
+      }
+      .print {
+        display: none;
+      }
+      .top > a {
+        color: blue;
+      }
+    }
+
+    @media print {
+      .mail-addr-postfix:before {
+        content: "\0040" "gmail" "\002e" "com";
+      }
+      .screen {
+        display: none;
+      }
+      .top {
+        display: none;
+      }
+      .photo {
+        width: 11rem;
+        position: absolute;
+        right: 0;
+      }
+    }
+
+    body {
+      max-width: 44em;
+      padding: 0 1em;
+      margin: auto;
+      margin-top: 1em;
+      position: relative;
+      font-family: "Times New Roman", Times, serif;
+      font-size: 15pt;
+    }
+  </style>
+</head>
+<body>
+<!--
+  NOTE: this HTML file should not be changed manually, but generated from resume.md by running `sh resume-maker/make.sh`
+-->
